@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './item.css';
+import './style.css';
 
 export class Item extends Component {
   render() {
@@ -11,7 +11,7 @@ export class Item extends Component {
               <div className='card h-100'>
                 <a href='#'>
                   <img
-                    class='img-thumbnail'
+                    className='img-thumbnail'
                     src='https://via.placeholder.com/300'
                     alt=''
                   />

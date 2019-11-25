@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import NavBarTop from '../NavBarTop';
-import Item from '../Item/index';
-import Footer from '../Footer/index';
+import NavBarTop from '../../components/NavBarTop';
+import Item from '../../components/Item/index';
+import Footer from '../../components/Footer/index';
 
-import './home.css';
+import './style.css';
 
 class Home extends Component {
   handleLogout = () => {

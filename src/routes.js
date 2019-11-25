@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Login from './components/Login/index';
-import Home from './components/Home/index';
+import LoginPage from './pages/Login';
+import Home from './pages/Home';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -21,8 +21,8 @@ export default function Routes() {
   return (
     <BrowserRouter>
       <Switch>
-        <PrivateRoute path='/home' component={Home} />
-        <Route path='/login' component={Login} />
+        <PrivateRoute path='/' component={Home} exact={true} />
+        <Route path='/login' component={LoginPage} />
       </Switch>
     </BrowserRouter>
   );

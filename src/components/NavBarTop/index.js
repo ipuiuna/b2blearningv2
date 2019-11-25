@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './navbartop.css';
+import './style.css';
 
 class NavBarTop extends Component {
   render() {
