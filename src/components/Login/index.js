@@ -29,7 +29,7 @@ class Login extends Component {
   render() {
     return (
       <div className='box'>
-        <h1>{this.props.title}</h1>
+        <h1>login</h1>
         <div>
           <input
             type='email'

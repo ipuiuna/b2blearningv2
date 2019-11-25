@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import Login from './components/Login/Login';
-import Home from './components/Home/Home';
+import Login from './components/Login/index';
+import Home from './components/Home/index';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route

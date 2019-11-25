@@ -64,8 +64,3 @@ body {
   background: white;
   color: #035eb4;
 }
-
-.box button:disabled {
-  background-color: #fbec5d;
-  color: #757575;
-}
