@@ -8,7 +8,8 @@ export class Product extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qtdy: 0
+      qtdy: 0,
+      totals: 0
     };
   }
 
@@ -21,21 +22,36 @@ export class Product extends Component {
   };
 
   IncrementQtdy = () => {
-    this.setState({ qtdy: this.state.qtdy + 1 });
+    this.setState({ qtdy: this.state.qtdy + 1 }, () =>
+      console.log(`Qtdy: ${this.state.qtdy}`)
+    );
+    this.setState({ totals: this.state.totals + this.props.productPrice }, () =>
+      console.log(`Product totals: ${this.state.totals}`)
+    );
+    this.props.updateTotals(this.state.totals);
   };
 
-  DecrementeQtdy = () => {
-    if (this.state.qtdy === 0) {
-    } else {
-      this.setState({ qtdy: this.state.qtdy - 1 });
+  DecrementQtdy = () => {
+    if (this.state.qtdy > 0) {
+      this.setState({
+        qtdy: this.state.qtdy - 1
+      });
+      this.setState(
+        { totals: this.state.totals - this.props.productPrice },
+        () => console.log(`Product totals: ${this.state.totals}`)
+      );
+      this.props.updateTotals(-this.props.productPrice);
     }
   };
 
   render() {
-    const productTitle = this.props.productTitle;
-    const productPrice = this.props.productPrice;
-    const productDescription = this.props.productDescription;
-    const productKey = this.props.productKey;
+    const {
+      productTitle,
+      productPrice,
+      productDescription,
+      productKey
+    } = this.props;
+
     return (
       <Col lg={3}>
         <div className='card h-100'>
@@ -51,7 +67,7 @@ export class Product extends Component {
           </div>
           <div className='card-footer'>
             <div className='row justify-content-center'>
-              <button className='btn btn-primary' onClick={this.DecrementeQtdy}>
+              <button className='btn btn-primary' onClick={this.DecrementQtdy}>
                 <span>-</span>
               </button>
               <div className='divider'></div>
