@@ -18,9 +18,10 @@ export default class ProductList extends Component {
     return (
       <Row>
         <Col lg={12}>
-          <Row>
+          <Row className='justify-content-center'>
             {products.map((product, productKey) => (
               <Product
+                updateTotals={this.props.updateTotals}
                 className='product'
                 key={productKey}
                 productTitle={product.title}

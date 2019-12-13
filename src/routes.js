@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import LoginPage from './pages/Login';
 import Home from './pages/Home';
+import Cart from './pages/Cart';
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -22,6 +23,7 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         <PrivateRoute path='/' component={Home} exact={true} />
+        <PrivateRoute path='/cart' component={Cart} />
         <Route path='/login' component={LoginPage} />
       </Switch>
     </BrowserRouter>
