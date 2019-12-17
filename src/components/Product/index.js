@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'react-bootstrap';
 import ProductCarousel from '../ProductCarousel';
+import Data from '../../Data';
 import './style.css';
 
 export class Product extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      qtdy: 0,
-      totals: 0
+      qtdy: 0
     };
   }
 
@@ -22,25 +22,27 @@ export class Product extends Component {
   };
 
   IncrementQtdy = () => {
-    this.setState({ qtdy: this.state.qtdy + 1 }, () =>
-      console.log(`Qtdy: ${this.state.qtdy}`)
-    );
-    this.setState({ totals: this.state.totals + this.props.productPrice }, () =>
-      console.log(`Product totals: ${this.state.totals}`)
-    );
-    this.props.updateTotals(this.state.totals);
+    this.setState({ qtdy: this.state.qtdy + 1 }, () => {
+      Data.setState({
+        id: this.props.productId,
+        title: this.props.productTitle,
+        price: this.props.productPrice,
+        qtdy: this.state.qtdy
+      });
+      console.log(Data.state);
+    });
   };
 
   DecrementQtdy = () => {
     if (this.state.qtdy > 0) {
-      this.setState({
-        qtdy: this.state.qtdy - 1
-      });
       this.setState(
-        { totals: this.state.totals - this.props.productPrice },
-        () => console.log(`Product totals: ${this.state.totals}`)
+        {
+          qtdy: this.state.qtdy - 1
+        },
+        () => {
+          Data.setState({ id: this.props.productId, qtdy: this.state.qtdy });
+        }
       );
-      this.props.updateTotals(-this.props.productPrice);
     }
   };
 
@@ -49,7 +51,7 @@ export class Product extends Component {
       productTitle,
       productPrice,
       productDescription,
-      productKey
+      productId
     } = this.props;
 
     return (
@@ -73,7 +75,7 @@ export class Product extends Component {
               <div className='divider'></div>
               <input
                 className='qty-field'
-                id={`qty-field-${productKey}`}
+                id={`qty-field-${productId}`}
                 type='text'
                 placeholder='0'
                 value={this.state.qtdy}

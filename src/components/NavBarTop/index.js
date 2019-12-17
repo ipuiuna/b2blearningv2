@@ -6,17 +6,12 @@ import Login from '../Login';
 import './style.css';
 
 class NavBarTop extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   handleLogout = () => {
     localStorage.removeItem('email');
     return <Login />;
   };
 
   render() {
-    const { totals } = this.props;
     return (
       <div>
         <Navbar className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
@@ -45,7 +40,7 @@ class NavBarTop extends Component {
                   </a>
                 </li>
               </ul>
-              <span className='navbar-text'>{totals}</span>
+              <span className='navbar-text'>0.00</span>
             </div>
           </div>
         </Navbar>

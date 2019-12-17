@@ -22,6 +22,7 @@ export default class ProductList extends Component {
             {products.map((product, productKey) => (
               <Product
                 updateTotals={this.props.updateTotals}
+                productId={product.id}
                 className='product'
                 key={productKey}
                 productTitle={product.title}

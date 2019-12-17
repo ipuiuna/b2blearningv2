@@ -26,6 +26,8 @@ div {
 
 .flex-table {
   display: flex;
+  margin-left: 50px;
+  margin-right: 50px;
   flex-flow: row wrap;
   border-left: solid 1px $table-border;
   transition: 0.5s;
@@ -52,7 +54,7 @@ div {
 }
 
 .flex-row {
-  width: calc(100% / 6);
+  width: calc(100% / 5);
   text-align: center;
   padding: 0.5em 0.5em;
   border-right: solid 1px $table-border;
