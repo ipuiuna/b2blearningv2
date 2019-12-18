@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Data from '../../Data';
 import Login from '../Login';
 import './style.css';
 
@@ -22,9 +23,9 @@ class NavBarTop extends Component {
             <div className='collapse navbar-collapse' id='navbarResponsive'>
               <ul className='navbar-nav ml-auto'>
                 <li className='nav-item active'>
-                  <a className='nav-link' href='/'>
+                  <Link to={'/'} className='nav-link'>
                     Catalog
-                  </a>
+                  </Link>
                 </li>
                 <li className='nav-item'>
                   <Link to={'/cart'} className='nav-link'>
@@ -40,7 +41,7 @@ class NavBarTop extends Component {
                   </a>
                 </li>
               </ul>
-              <span className='navbar-text'>0.00</span>
+              <span className='navbar-text'>{Data.getTotals()}</span>
             </div>
           </div>
         </Navbar>

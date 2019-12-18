@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Data from '../../Data';
 import CartItem from '../CartItem';
+import Totals from '../Totals';
 import './style.scss';
 
 export class ProductInCart extends Component {
@@ -29,6 +30,7 @@ export class ProductInCart extends Component {
             key={itemKey}
           />
         ))}
+        {<Totals />}
       </div>
     );
   }

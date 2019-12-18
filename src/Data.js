@@ -13,6 +13,14 @@ export default class Data {
     return Data.inst._state;
   }
 
+  static getTotals() {
+    let totals = 0;
+    for (let i = 0; i < Object.keys(Data.inst._state).length; i++) {
+      totals += Data.inst._state[i].qtdy * Data.inst._state[i].price;
+    }
+    return totals;
+  }
+
   static getLenght() {
     return Object.keys(Data.inst._state).length;
   }

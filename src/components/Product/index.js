@@ -22,6 +22,20 @@ export class Product extends Component {
   };
 
   IncrementQtdy = () => {
+    const cartStored = !localStorage.getItem('cart');
+    const cart = cartStored ? JSON.parse(cartStored) : [];
+    if (cart === []) {
+      cart.push({
+        id: this.props.productId,
+        title: this.props.productTitle,
+        price: this.props.productPrice,
+        qtdy: 1
+      });
+    } else {
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
     this.setState({ qtdy: this.state.qtdy + 1 }, () => {
       Data.setState({
         id: this.props.productId,
@@ -29,7 +43,7 @@ export class Product extends Component {
         price: this.props.productPrice,
         qtdy: this.state.qtdy
       });
-      console.log(Data.state);
+      // console.log(Data.state);
     });
   };
 

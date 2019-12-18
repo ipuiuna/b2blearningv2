@@ -12,7 +12,7 @@ class Home extends Component {
       <div>
         <NavBarTop />
         <Container>
-          <h1>{`Bem vindo: ${email}`}</h1>
+          <h5>{`Bem vindo: ${email}`}</h5>
           <ProductList />
         </Container>
         <Footer />

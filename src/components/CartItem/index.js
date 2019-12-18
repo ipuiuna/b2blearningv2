@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './style.css';
 
 export default class index extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   static defaultProps = {
     itemId: '0',
     itemQdy: 0,
@@ -33,9 +30,25 @@ export default class index extends Component {
         <div className='flex-row' role='cell'>
           {itemPrice}
         </div>
+
         <div className='flex-row' role='cell'>
-          {itemQtdy}
+          <button className='btn btn-primary'>
+            <span>-</span>
+          </button>
+
+          <input
+            className='qtdy-in-cart'
+            id={`qty-field-${itemId}`}
+            type='text'
+            placeholder='0'
+            value={itemQtdy}
+          />
+
+          <button className='btn btn-primary'>
+            <span>+</span>
+          </button>
         </div>
+
         <div className='flex-row' role='cell'>
           {itemQtdy * itemPrice}
         </div>
