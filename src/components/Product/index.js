@@ -22,20 +22,6 @@ export class Product extends Component {
   };
 
   IncrementQtdy = () => {
-    const cartStored = !localStorage.getItem('cart');
-    const cart = cartStored ? JSON.parse(cartStored) : [];
-    if (cart === []) {
-      cart.push({
-        id: this.props.productId,
-        title: this.props.productTitle,
-        price: this.props.productPrice,
-        qtdy: 1
-      });
-    } else {
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
     this.setState({ qtdy: this.state.qtdy + 1 }, () => {
       Data.setState({
         id: this.props.productId,
@@ -45,6 +31,40 @@ export class Product extends Component {
       });
       // console.log(Data.state);
     });
+
+    const cartStored = localStorage.getItem('cart');
+    const cart = cartStored ? JSON.parse(cartStored) : [];
+    console.log(cart);
+    if (Object.keys(cart).length === 0) {
+      cart.push({
+        id: this.props.productId,
+        title: this.props.productTitle,
+        price: this.props.productPrice,
+        qtdy: 1
+      });
+      //console.log('sempre no primeiro if');
+    } else {
+      for (let i = 0; i < Object.keys(cart).length; i++) {
+        //console.log('entrou no for');
+        if (cart[i].id === this.props.productId) {
+          //console.log(`ids: ${cart[i].id} | ${this.props.productId}`);
+          cart[i].qtdy += 1;
+          localStorage.setItem('cart', JSON.stringify(cart));
+          return;
+        }
+      }
+      cart.push({
+        id: this.props.productId,
+        title: this.props.productTitle,
+        price: this.props.productPrice,
+        qtdy: 1
+      });
+      // console.log('else');
+    }
+
+    //console.log('cart' + cart);
+
+    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   DecrementQtdy = () => {
@@ -68,6 +88,8 @@ export class Product extends Component {
       productId
     } = this.props;
 
+    const json = JSON.parse(localStorage.getItem('cart'));
+    const index = ;
     return (
       <Col lg={3}>
         <div className='card h-100'>
@@ -92,7 +114,7 @@ export class Product extends Component {
                 id={`qty-field-${productId}`}
                 type='text'
                 placeholder='0'
-                value={this.state.qtdy}
+                value={}
               />
               <div className='divider'></div>
               <button className='btn btn-primary' onClick={this.IncrementQtdy}>
