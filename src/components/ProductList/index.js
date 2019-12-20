@@ -4,13 +4,23 @@ import { Row, Col } from 'react-bootstrap';
 
 export default class ProductList extends Component {
   state = {
-    products: []
+    products: [],
+    cartArray: []
   };
 
   componentDidMount() {
     fetch('https://abi-bus-api.herokuapp.com/api/products')
       .then(data => data.json().then(json => this.setState({ products: json })))
       .catch(error => console.log(error));
+    if (!localStorage.getItem('cart')) {
+      localStorage.setItem('cart', []);
+    }
+    try {
+      const cartArray = JSON.parse(localStorage.getItem('cart'));
+      this.setState({ cartArray: cartArray });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   render() {
@@ -23,6 +33,7 @@ export default class ProductList extends Component {
               <Product
                 productId={product.id}
                 className='product'
+                cartArray={this.state.cartArray}
                 key={productKey}
                 productTitle={product.title}
                 productPrice={product.price}

@@ -13,6 +13,29 @@ export class Product extends Component {
     };
   }
 
+  size = function(obj) {
+    var size = 0,
+      key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+
+  componentDidMount() {
+    const cartArrayItem = this.props.cartArray.filter(
+      item => item.id === this.props.productId
+    );
+
+    if (this.size(cartArrayItem) > 0) {
+      this.setState({ qtdy: cartArrayItem[0].qtdy }, () =>
+        console.log(
+          `productId: ${this.props.productId} qtdy: ${this.state.qtdy}`
+        )
+      );
+    }
+  }
+
   static defaultProps = {
     productKey: '0'
   };
@@ -22,34 +45,26 @@ export class Product extends Component {
   };
 
   IncrementQtdy = () => {
-    this.setState({ qtdy: this.state.qtdy + 1 }, () => {
-      Data.setState({
-        id: this.props.productId,
-        title: this.props.productTitle,
-        price: this.props.productPrice,
-        qtdy: this.state.qtdy
-      });
-      // console.log(Data.state);
-    });
+    const cart = this.props.cartArray;
+    const cartArrayItem = this.props.cartArray.filter(
+      item => item.id === this.props.productId
+    );
 
-    const cartStored = localStorage.getItem('cart');
-    const cart = cartStored ? JSON.parse(cartStored) : [];
-    console.log(cart);
-    if (Object.keys(cart).length === 0) {
+    if (cart.length === 0) {
       cart.push({
         id: this.props.productId,
         title: this.props.productTitle,
         price: this.props.productPrice,
         qtdy: 1
       });
-      //console.log('sempre no primeiro if');
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.setState({ qtdy: 1 });
     } else {
-      for (let i = 0; i < Object.keys(cart).length; i++) {
-        //console.log('entrou no for');
+      for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === this.props.productId) {
-          //console.log(`ids: ${cart[i].id} | ${this.props.productId}`);
           cart[i].qtdy += 1;
           localStorage.setItem('cart', JSON.stringify(cart));
+          this.setState({ qtdy: cart[i].qtdy });
           return;
         }
       }
@@ -59,22 +74,27 @@ export class Product extends Component {
         price: this.props.productPrice,
         qtdy: 1
       });
-      // console.log('else');
+      localStorage.setItem('cart', JSON.stringify(cart));
+      this.setState({ qtdy: 1 });
     }
-
-    //console.log('cart' + cart);
-
-    localStorage.setItem('cart', JSON.stringify(cart));
   };
 
   DecrementQtdy = () => {
+    const cart = this.props.cartArray;
     if (this.state.qtdy > 0) {
       this.setState(
         {
           qtdy: this.state.qtdy - 1
         },
         () => {
-          Data.setState({ id: this.props.productId, qtdy: this.state.qtdy });
+          for (let i = 0; i < cart.length; i++) {
+            if (cart[i].id === this.props.productId) {
+              cart[i].qtdy -= 1;
+              localStorage.setItem('cart', JSON.stringify(cart));
+              this.setState({ qtdy: cart[i].qtdy });
+              return;
+            }
+          }
         }
       );
     }
@@ -88,14 +108,12 @@ export class Product extends Component {
       productId
     } = this.props;
 
-    const json = JSON.parse(localStorage.getItem('cart'));
-    const index = ;
+    const { qtdy } = this.state;
+
     return (
       <Col lg={3}>
         <div className='card h-100'>
-          <a href='#'>
-            <ProductCarousel productImages={this.props.productImages} />
-          </a>
+          <ProductCarousel productImages={this.props.productImages} />
           <div className='card-body'>
             <h4 className='card-title'>
               <a href='#'>{productTitle}</a>
@@ -114,7 +132,8 @@ export class Product extends Component {
                 id={`qty-field-${productId}`}
                 type='text'
                 placeholder='0'
-                value={}
+                value={qtdy}
+                readOnly
               />
               <div className='divider'></div>
               <button className='btn btn-primary' onClick={this.IncrementQtdy}>

@@ -41,7 +41,7 @@ class NavBarTop extends Component {
                   </a>
                 </li>
               </ul>
-              <span className='navbar-text'>{Data.getTotals()}</span>
+              <span className='navbar-text'>{toString(Data.getTotals())}</span>
             </div>
           </div>
         </Navbar>

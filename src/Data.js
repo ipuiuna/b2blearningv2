@@ -5,12 +5,19 @@ export default class Data {
   static get inst() {
     if (Data.instance == null) {
       Data.instance = new Data();
+      if (localStorage.getItem('cart') === null) {
+        this.instance._state = localStorage.setItem('cart', []);
+      } else {
+        this.instance._state = localStorage.getItem('cart');
+      }
     }
+
     return this.instance;
   }
 
   static get state() {
-    return Data.inst._state;
+    //console.log(Data.inst);
+    return JSON.parse(Data.inst._state);
   }
 
   static getTotals() {

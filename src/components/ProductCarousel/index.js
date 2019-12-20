@@ -15,9 +15,14 @@ export class ProductCarousel extends Component {
   render() {
     return (
       <Carousel>
-        {this.props.productImages.map(image => (
-          <Carousel.Item>
-            <img className='img-thumbnail' src={image} alt='Description' />
+        {this.props.productImages.map((image, key) => (
+          <Carousel.Item key={key}>
+            <img
+              className='img-thumbnail'
+              key={key}
+              src={image}
+              alt='Description'
+            />
           </Carousel.Item>
         ))}
       </Carousel>
