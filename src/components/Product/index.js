@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'react-bootstrap';
 import ProductCarousel from '../ProductCarousel';
-import Data from '../../Data';
 import './style.css';
 
 export class Product extends Component {
@@ -13,8 +12,8 @@ export class Product extends Component {
     };
   }
 
-  size = function(obj) {
-    var size = 0,
+  size = obj => {
+    let size = 0,
       key;
     for (key in obj) {
       if (obj.hasOwnProperty(key)) size++;
@@ -28,11 +27,7 @@ export class Product extends Component {
     );
 
     if (this.size(cartArrayItem) > 0) {
-      this.setState({ qtdy: cartArrayItem[0].qtdy }, () =>
-        console.log(
-          `productId: ${this.props.productId} qtdy: ${this.state.qtdy}`
-        )
-      );
+      this.setState({ qtdy: cartArrayItem[0].qtdy });
     }
   }
 
@@ -44,11 +39,8 @@ export class Product extends Component {
     productKey: PropTypes.string
   };
 
-  IncrementQtdy = () => {
+  incrementQtdy = () => {
     const cart = this.props.cartArray;
-    const cartArrayItem = this.props.cartArray.filter(
-      item => item.id === this.props.productId
-    );
 
     if (cart.length === 0) {
       cart.push({
@@ -59,12 +51,14 @@ export class Product extends Component {
       });
       localStorage.setItem('cart', JSON.stringify(cart));
       this.setState({ qtdy: 1 });
+      this.props.updateTotals();
     } else {
       for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === this.props.productId) {
           cart[i].qtdy += 1;
           localStorage.setItem('cart', JSON.stringify(cart));
           this.setState({ qtdy: cart[i].qtdy });
+          this.props.updateTotals();
           return;
         }
       }
@@ -76,11 +70,15 @@ export class Product extends Component {
       });
       localStorage.setItem('cart', JSON.stringify(cart));
       this.setState({ qtdy: 1 });
+      this.props.updateTotals();
     }
   };
 
-  DecrementQtdy = () => {
+  decrementQtdy = () => {
     const cart = this.props.cartArray;
+    if (this.state.qtdy === 0) {
+      this.deleteItem();
+    }
     if (this.state.qtdy > 0) {
       this.setState(
         {
@@ -92,12 +90,25 @@ export class Product extends Component {
               cart[i].qtdy -= 1;
               localStorage.setItem('cart', JSON.stringify(cart));
               this.setState({ qtdy: cart[i].qtdy });
+              this.props.updateTotals();
               return;
             }
           }
         }
       );
     }
+  };
+
+  deleteItem = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    const index = cart.findIndex(x => x.id === this.props.itemId);
+    if (index !== undefined) cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    this.setState({
+      qtdy: 0,
+      totals: 0
+    });
+    this.props.updateTotals();
   };
 
   render() {
@@ -123,7 +134,7 @@ export class Product extends Component {
           </div>
           <div className='card-footer'>
             <div className='row justify-content-center'>
-              <button className='btn btn-primary' onClick={this.DecrementQtdy}>
+              <button className='btn btn-primary' onClick={this.decrementQtdy}>
                 <span>-</span>
               </button>
               <div className='divider'></div>
@@ -133,10 +144,10 @@ export class Product extends Component {
                 type='text'
                 placeholder='0'
                 value={qtdy}
-                readOnly
+                disabled
               />
               <div className='divider'></div>
-              <button className='btn btn-primary' onClick={this.IncrementQtdy}>
+              <button className='btn btn-primary' onClick={this.incrementQtdy}>
                 <span>+</span>
               </button>
             </div>

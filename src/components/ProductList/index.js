@@ -31,6 +31,7 @@ export default class ProductList extends Component {
           <Row className='justify-content-center'>
             {products.map((product, productKey) => (
               <Product
+                updateTotals={this.props.updateTotals}
                 productId={product.id}
                 className='product'
                 cartArray={this.state.cartArray}

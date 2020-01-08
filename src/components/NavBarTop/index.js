@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Data from '../../Data';
 import Login from '../Login';
 import './style.css';
 
 class NavBarTop extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      totals: 0
+    };
+  }
+
   handleLogout = () => {
     localStorage.removeItem('email');
     return <Login />;
@@ -22,15 +28,27 @@ class NavBarTop extends Component {
             </a>
             <div className='collapse navbar-collapse' id='navbarResponsive'>
               <ul className='navbar-nav ml-auto'>
-                <li className='nav-item active'>
-                  <Link to={'/'} className='nav-link'>
+                <li className='nav-item'>
+                  <NavLink
+                    to={'/'}
+                    isActive={match => {
+                      return match ? match.isExact : false;
+                    }}
+                    className='nav-link'
+                  >
                     Catalog
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
-                  <Link to={'/cart'} className='nav-link'>
+                  <NavLink
+                    to={'/cart'}
+                    isActive={match => {
+                      return match ? match.isExact : false;
+                    }}
+                    className='nav-link'
+                  >
                     Cart
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
                   <a className='nav-link'>Checkout</a>
@@ -41,7 +59,9 @@ class NavBarTop extends Component {
                   </a>
                 </li>
               </ul>
-              <span className='navbar-text'>{toString(Data.getTotals())}</span>
+              <span className='navbar-text'>{`$ ${this.props.totals.toFixed(
+                2
+              )}`}</span>
             </div>
           </div>
         </Navbar>

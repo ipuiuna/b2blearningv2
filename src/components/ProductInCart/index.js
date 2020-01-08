@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import Data from '../../Data';
 import CartItem from '../CartItem';
-import Totals from '../Totals';
 import './style.scss';
 
 export class ProductInCart extends Component {
@@ -14,9 +12,15 @@ export class ProductInCart extends Component {
 
   componentDidMount() {
     this.setState({
-      array: Data.state
+      array: JSON.parse(localStorage.getItem('cart'))
     });
   }
+
+  reRenderAfterDeleteAnItem = () => {
+    this.setState({
+      array: JSON.parse(localStorage.getItem('cart'))
+    });
+  };
 
   render() {
     return (
@@ -25,12 +29,21 @@ export class ProductInCart extends Component {
           <CartItem
             itemId={item.id}
             itemTitle={item.title}
-            itemPrice={item.price}
-            itemQtdy={item.qtdy}
+            itemPrice={Number(item.price)}
             key={itemKey}
+            updateTotals={this.props.updateTotals}
+            reRenderAfterDeleteAnItem={this.reRenderAfterDeleteAnItem}
           />
         ))}
-        {<Totals />}
+        <div className='flex-table row' role='rowgroup'>
+          <div className='flex-row first' role='cell'></div>
+          <div className='flex-row' role='cell'></div>
+          <div className='flex-row' role='cell'></div>
+          <div className='flex-row' role='cell'></div>
+          <div className='flex-row' role='cell'>
+            $ {this.props.totals.toFixed(2)}
+          </div>
+        </div>
       </div>
     );
   }

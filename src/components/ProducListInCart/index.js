@@ -7,7 +7,11 @@ export default class ProductListInCart extends Component {
     return (
       <div>
         <div className='table-container' role='table'>
-          <div className='flex-table header' role='rowgroup'>
+          <div
+            className='flex-table header'
+            role='rowgroup'
+            style={{ color: 'white' }}
+          >
             <div className='flex-row first' role='columnheader'>
               id
             </div>
@@ -26,7 +30,10 @@ export default class ProductListInCart extends Component {
           </div>
         </div>
         <div className='product-list'>
-          <ProductInCart />
+          <ProductInCart
+            totals={this.props.totals}
+            updateTotals={this.props.updateTotals}
+          />
         </div>
       </div>
     );
