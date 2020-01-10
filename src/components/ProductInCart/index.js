@@ -16,10 +16,16 @@ export class ProductInCart extends Component {
     });
   }
 
-  reRenderAfterDeleteAnItem = () => {
-    this.setState({
-      array: JSON.parse(localStorage.getItem('cart'))
-    });
+  updateList = () => {
+    console.log('updateList ');
+    this.setState(
+      {
+        array: JSON.parse(localStorage.getItem('cart'))
+      },
+      () => {
+        this.props.updateTotals();
+      }
+    );
   };
 
   render() {
@@ -31,8 +37,11 @@ export class ProductInCart extends Component {
             itemTitle={item.title}
             itemPrice={Number(item.price)}
             key={itemKey}
+            itemKey={itemKey}
+            itemsArray={this.state.array}
+            itemQtdy={item.qtdy}
             updateTotals={this.props.updateTotals}
-            reRenderAfterDeleteAnItem={this.reRenderAfterDeleteAnItem}
+            updateList={this.updateList}
           />
         ))}
         <div className='flex-table row' role='rowgroup'>

@@ -11,56 +11,42 @@ export default class index extends Component {
     };
   }
 
-  isTotalsEmpty = () => {
-    if (this.state.totals === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
-
-  componentDidMount() {
-    const cartItem = JSON.parse(localStorage.getItem('cart'));
-    let qtdy = 0;
-    let totals = 0;
-    cartItem.forEach(item => {
-      if (item.id === this.props.itemId) {
-        qtdy = item.qtdy;
-        totals = item.qtdy * item.price;
-      }
-    });
-
-    this.setState({
-      qtdy: qtdy,
-      totals: totals
-    });
-  }
-
   static defaultProps = {
     itemId: '0',
-    itemQtdy: 0,
     itemPrice: '0.00',
     itemTitle: 'none'
   };
 
   static propTypes = {
     itemId: PropTypes.string,
-    itemQtdy: PropTypes.number,
     itemPrice: PropTypes.number,
     itemTitle: PropTypes.string
   };
+
+  componentDidMount() {
+    this.props.itemsArray.forEach(item => {
+      if (item.id === this.props.itemId) {
+        this.setState({ qtdy: item.qtdy, totals: item.qtdy * item.price });
+      }
+    });
+  }
 
   incrementQtdy = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     cart.forEach(item => {
       if (item.id === this.props.itemId) {
         item.qtdy += 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        this.setState({
-          qtdy: this.state.qtdy + 1,
-          totals: item.qtdy * item.price
-        });
-        this.props.updateTotals();
+        this.setState(
+          {
+            qtdy: this.state.qtdy + 1,
+            totals: item.qtdy * item.price
+          },
+          () => {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            this.props.updateTotals();
+          }
+        );
+
         return;
       }
     });
@@ -68,31 +54,39 @@ export default class index extends Component {
 
   decrementQtdy = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
-    cart.forEach(item => {
-      if (item.id === this.props.itemId) {
-        item.qtdy -= 1;
-        localStorage.setItem('cart', JSON.stringify(cart));
-        this.setState({
-          qtdy: this.state.qtdy - 1,
-          totals: item.qtdy * item.price
-        });
-        this.props.updateTotals();
-        return;
-      }
-    });
+    if (this.state.qtdy > 1) {
+      cart.forEach(item => {
+        if (item.id === this.props.itemId) {
+          item.qtdy -= 1;
+          this.setState(
+            {
+              qtdy: this.state.qtdy - 1,
+              totals: item.qtdy * item.price
+            },
+            () => {
+              localStorage.setItem('cart', JSON.stringify(cart));
+              this.props.updateTotals();
+            }
+          );
+        }
+      });
+    }
   };
 
   deleteItem = () => {
-    const cart = JSON.parse(localStorage.getItem('cart'));
-    const index = cart.findIndex(x => x.id === this.props.itemId);
-    if (index !== undefined) cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    this.setState({
-      qtdy: 0,
-      totals: 0
+    this.props.itemsArray.splice(this.props.itemKey, 1);
+    this.props.itemsArray.forEach(item => {
+      this.setState(
+        {
+          qtdy: this.props.itemQtdy
+        },
+        () => {
+          this.props.updateTotals();
+        }
+      );
     });
-    this.props.updateTotals();
-    this.props.reRenderAfterDeleteAnItem();
+    localStorage.setItem('cart', JSON.stringify(this.props.itemsArray));
+    this.props.updateList();
   };
 
   render() {

@@ -14,7 +14,11 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    this.updateTotals();
+    try {
+      this.updateTotals();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   updateTotals = () => {
