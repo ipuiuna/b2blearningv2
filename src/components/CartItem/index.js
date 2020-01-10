@@ -1,9 +1,61 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import './style.css';
 
-export default class index extends Component {
-  constructor(props) {
+export default ({ item, changeQuantity, total }) => {
+  const incItem = changeQuantity
+    ? () => changeQuantity(item.id, item.quantity + 1)
+    : null;
+  const decItem = changeQuantity
+    ? () => {
+        if (item.quantity > 1) {
+          changeQuantity(item.id, item.quantity - 1);
+        }
+      }
+    : null;
+  const removeItem = changeQuantity ? () => changeQuantity(item.id, 0) : null;
+  return (
+    <div className='flex-table row' role='rowgroup'>
+      <div className='flex-row first' role='cell'>
+        {item ? item.title : ''}
+      </div>
+      <div className='flex-row' role='cell'>
+        {item ? `$ ${item.price.toFixed(2)}` : ''}
+      </div>
+
+      <div className='flex-row' role='cell'>
+        {item ? (
+          <React.Fragment>
+            <button className='btn btn-primary' onClick={decItem}>
+              <span>-</span>
+            </button>
+
+            <input
+              className='qtdy-in-cart'
+              id={`qty-field-${item.id}`}
+              type='text'
+              placeholder='0'
+              value={item.quantity}
+            />
+
+            <button className='btn btn-primary' onClick={incItem}>
+              <span>+</span>
+            </button>
+            <button className='btn btn btn-danger' onClick={removeItem}>
+              <span className='btn-text-delete'>x</span>
+            </button>
+          </React.Fragment>
+        ) : null}
+      </div>
+
+      <div className='flex-row' role='cell'>
+        $ {total.toFixed(2)}
+      </div>
+    </div>
+  );
+};
+
+/*
+constructor(props) {
     super(props);
     this.state = {
       qtdy: 0,
@@ -88,46 +140,4 @@ export default class index extends Component {
     localStorage.setItem('cart', JSON.stringify(this.props.itemsArray));
     this.props.updateList();
   };
-
-  render() {
-    const { itemId, key, itemPrice, itemTitle } = this.props;
-    return (
-      <div className='flex-table row' role='rowgroup' id={key}>
-        <div className='flex-row first' role='cell'>
-          {itemId}
-        </div>
-        <div className='flex-row' role='cell'>
-          {itemTitle}
-        </div>
-        <div className='flex-row' role='cell'>
-          $ {itemPrice.toFixed(2)}
-        </div>
-
-        <div className='flex-row' role='cell'>
-          <button className='btn btn-primary' onClick={this.decrementQtdy}>
-            <span>-</span>
-          </button>
-
-          <input
-            className='qtdy-in-cart'
-            id={`qty-field-${itemId}`}
-            type='text'
-            placeholder='0'
-            value={this.state.qtdy}
-          />
-
-          <button className='btn btn-primary' onClick={this.incrementQtdy}>
-            <span>+</span>
-          </button>
-          <button className='btn btn btn-danger' onClick={this.deleteItem}>
-            <span className='btn-text-delete'>x</span>
-          </button>
-        </div>
-
-        <div className='flex-row' role='cell'>
-          $ {this.state.totals.toFixed(2)}
-        </div>
-      </div>
-    );
-  }
-}
+*/
