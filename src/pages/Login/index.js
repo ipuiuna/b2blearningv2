@@ -17,7 +17,7 @@ class LoginPage extends Component {
   render() {
     return (
       <div className='box'>
-        {this.state.error && <div>Ocorreu um erro no login</div>}
+        {this.state.error && <div>Error...</div>}
         <Login title={'Login'} onLogin={this.handleLogin} />
       </div>
     );

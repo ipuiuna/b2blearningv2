@@ -5,6 +5,7 @@ export default ({ item, changeQuantity, total }) => {
   const incItem = changeQuantity
     ? () => changeQuantity(item.id, item.quantity + 1)
     : null;
+
   const decItem = changeQuantity
     ? () => {
         if (item.quantity > 1) {
@@ -12,7 +13,9 @@ export default ({ item, changeQuantity, total }) => {
         }
       }
     : null;
+
   const removeItem = changeQuantity ? () => changeQuantity(item.id, 0) : null;
+
   return (
     <div className='flex-table row' role='rowgroup'>
       <div className='flex-row first' role='cell'>
@@ -34,7 +37,8 @@ export default ({ item, changeQuantity, total }) => {
               id={`qty-field-${item.id}`}
               type='text'
               placeholder='0'
-              value={item.quantity}
+              readOnly
+              defaultValue={item.quantity}
             />
 
             <button className='btn btn-primary' onClick={incItem}>

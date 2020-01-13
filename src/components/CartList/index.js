@@ -29,7 +29,7 @@ export default ({ total, getCart, changeQuantity }) => {
       <div className='product-list'>
         <div>
           {items.length === 0 ? (
-            <div>Cart is empty</div>
+            <div className='cart-empty'>Your cart is empty</div>
           ) : (
             <React.Fragment>
               {items.map((item, idx) => (

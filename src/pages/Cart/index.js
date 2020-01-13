@@ -13,7 +13,7 @@ export default () => {
           <NavBarTop totals={total} />
           <Container>
             {loading ? (
-              <div>Carregando...</div>
+              <div>Loading your cart...</div>
             ) : (
               <React.Fragment>
                 <CartlList

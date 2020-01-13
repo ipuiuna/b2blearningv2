@@ -38,7 +38,7 @@ export default function Product({ product, changeQuantity }) {
               type='text'
               placeholder='0'
               value={product.quantity}
-              disabled
+              readOnly
             />
             <div className='divider'></div>
             <button className='btn btn-primary' onClick={incItem}>
