@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './style.css';
 
-export default ({ item, changeQuantity, total }) => {
+const CartItem = props => {
+  const { item, changeQuantity, total, editable } = props;
   const incItem = changeQuantity
     ? () => changeQuantity(item.id, item.quantity + 1)
     : null;
@@ -28,25 +30,37 @@ export default ({ item, changeQuantity, total }) => {
       <div className='flex-row' role='cell'>
         {item ? (
           <React.Fragment>
-            <button className='btn btn-primary' onClick={decItem}>
-              <span>-</span>
-            </button>
+            {editable ? (
+              <React.Fragment>
+                <button className='btn btn-primary' onClick={decItem}>
+                  <span>-</span>
+                </button>
+              </React.Fragment>
+            ) : (
+              <div></div>
+            )}
 
             <input
               className='qtdy-in-cart'
               id={`qty-field-${item.id}`}
               type='text'
               placeholder='0'
-              readOnly
+              disabled
               value={item.quantity}
             />
 
-            <button className='btn btn-primary' onClick={incItem}>
-              <span>+</span>
-            </button>
-            <button className='btn btn btn-danger' onClick={removeItem}>
-              <span className='btn-text-delete'>x</span>
-            </button>
+            {editable ? (
+              <React.Fragment>
+                <button className='btn btn-primary' onClick={incItem}>
+                  <span>+</span>
+                </button>
+                <button className='btn btn btn-danger' onClick={removeItem}>
+                  <span className='btn-text-delete'>x</span>
+                </button>
+              </React.Fragment>
+            ) : (
+              <div></div>
+            )}
           </React.Fragment>
         ) : null}
       </div>
@@ -57,6 +71,17 @@ export default ({ item, changeQuantity, total }) => {
     </div>
   );
 };
+
+// proptypes
+CartItem.propTypes = {
+  editable: PropTypes.bool
+};
+
+CartItem.defaultProps = {
+  editable: true
+};
+
+export default CartItem;
 
 /*
 constructor(props) {

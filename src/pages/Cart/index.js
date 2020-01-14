@@ -8,7 +8,7 @@ import { Container } from 'react-bootstrap';
 export default () => {
   return (
     <CartManager>
-      {(loading, products, total, getCart, changeQuantity) => (
+      {(loading, products, total, getCart, changeQuantity, editable) => (
         <div>
           <NavBarTop totals={total} />
           <Container>
@@ -20,6 +20,7 @@ export default () => {
                   total={total}
                   getCart={getCart}
                   changeQuantity={changeQuantity}
+                  editable={editable}
                 />
               </React.Fragment>
             )}

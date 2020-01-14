@@ -51,7 +51,15 @@ class NavBarTop extends Component {
                   </NavLink>
                 </li>
                 <li className='nav-item'>
-                  <a className='nav-link'>Checkout</a>
+                  <NavLink
+                    to={'/checkout'}
+                    isActive={match => {
+                      return match ? match.isExact : false;
+                    }}
+                    className='nav-link'
+                  >
+                    Checkout
+                  </NavLink>
                 </li>
                 <li className='nav-item'>
                   <a className='nav-link' onClick={this.handleLogout} href='#'>

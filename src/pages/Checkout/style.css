@@ -1,0 +1,17 @@
+.address-form .row {
+  margin-bottom: 15px;
+  margin-left: 30px;
+  width: 600px;
+}
+
+h2 {
+  margin-left: 45px;
+}
+
+input {
+  text-align: left;
+}
+
+.address-form .row .short {
+  width: 400 !important;
+}

@@ -1,8 +1,11 @@
 import React from 'react';
 import CartItem from '../CartItem';
+import PropTypes from 'prop-types';
 import './style.scss';
 
-export default ({ total, getCart, changeQuantity }) => {
+const CartList = props => {
+  const { total, getCart, changeQuantity, editable } = props;
+  console.log('editable on cartlist: ', editable);
   const items = getCart();
   return (
     <div>
@@ -38,6 +41,7 @@ export default ({ total, getCart, changeQuantity }) => {
                   item={item}
                   total={item.quantity * item.price}
                   changeQuantity={changeQuantity}
+                  editable={editable}
                 />
               ))}
               <CartItem total={total} />
@@ -48,3 +52,14 @@ export default ({ total, getCart, changeQuantity }) => {
     </div>
   );
 };
+
+// proptypes
+CartList.propTypes = {
+  editable: PropTypes.bool
+};
+
+CartList.defaultProps = {
+  editable: true
+};
+
+export default CartList;
