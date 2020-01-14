@@ -38,7 +38,7 @@ export default ({ item, changeQuantity, total }) => {
               type='text'
               placeholder='0'
               readOnly
-              defaultValue={item.quantity}
+              value={item.quantity}
             />
 
             <button className='btn btn-primary' onClick={incItem}>

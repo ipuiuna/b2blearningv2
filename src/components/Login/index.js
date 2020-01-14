@@ -15,7 +15,6 @@ class Login extends Component {
     const { onLogin } = this.props;
     const login_url = `https://abi-bus-api.herokuapp.com/api/users/login?email=${this.state.email}&password=${this.state.password}`;
     fetch(login_url, { method: 'post' }).then(response => {
-      console.log(response);
       if (response.ok) {
         localStorage.setItem('email', this.state.email);
         if (onLogin) {

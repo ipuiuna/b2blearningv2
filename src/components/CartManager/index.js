@@ -1,6 +1,6 @@
 import { Component } from 'react';
 
-const CART_NAME = 'cart2';
+const CART_NAME = 'cart';
 
 export default class index extends Component {
   state = {
