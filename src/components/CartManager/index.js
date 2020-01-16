@@ -7,11 +7,25 @@ export default class index extends Component {
     loading: false,
     error: false,
     products: [],
-    total: 0
+    total: 0,
+    payments: []
   };
 
   componentDidMount() {
     this.loadProducts();
+    this.loadPayment();
+  }
+
+  loadPayment() {
+    fetch('https://abi-bus-api.herokuapp.com/api/paymentMethods')
+      .then(data =>
+        data.json().then(json => {
+          this.setState({ payments: json });
+        })
+      )
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   loadProducts() {
@@ -93,13 +107,14 @@ export default class index extends Component {
 
   render() {
     const { children } = this.props;
-    const { products, total, loading } = this.state;
+    const { products, total, loading, payments } = this.state;
     return children(
       loading,
       products,
       total,
       this.getCart.bind(this),
-      this.changeQuantity.bind(this)
+      this.changeQuantity.bind(this),
+      payments
     );
   }
 }

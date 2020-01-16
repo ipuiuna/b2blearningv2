@@ -1,15 +1,16 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import CartManager from '../../components/CartManager';
 import NavBarTop from '../../components/NavBarTop';
-import { Container, Form, Row, Col } from 'react-bootstrap';
+import { Container, Form, Row, Col, Button } from 'react-bootstrap';
 import Footer from '../../components/Footer';
 import CartList from '../../components/CartList';
-import './style.css';
+import './style.scss';
 
 export default () => {
   return (
     <CartManager>
-      {(loading, products, total, getCart, changeQuantity) => (
+      {(loading, products, total, getCart, changeQuantity, payments) => (
         <div>
           <NavBarTop totals={total} />
           <Container>
@@ -48,10 +49,46 @@ export default () => {
                       />
                     </Col>
                   </Row>
+                  <Row>
+                    <Col className='payments'>
+                      {payments.map(method => (
+                        <div key={`key-${method.id}`} className='mb-3'>
+                          <Col>
+                            <Form.Check
+                              type='radio'
+                              id={`id-${method.id}`}
+                              label={method.name}
+                              name='radio'
+                              value={method.id}
+                            />
+                          </Col>
+                        </div>
+                      ))}
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                      <Col>
+                        <NavLink
+                          to={'/cart'}
+                          isActive={match => {
+                            return match ? match.isExact : false;
+                          }}
+                          className='nav-link'
+                        >
+                          <Button>Edit Cart</Button>
+                        </NavLink>
+                      </Col>
+                    </Col>
+                    <Col className='payments'>
+                      <Button type='submit'>Place Order</Button>
+                    </Col>
+                  </Row>
                 </Form>
               </React.Fragment>
             )}
           </Container>
+
           <Footer />
         </div>
       )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Product from '../Product';
 import { Row, Col } from 'react-bootstrap';
+import './style.css';
 
 export default ({ products, ...others }) => {
   return (

@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.css';
+import './style.scss';
 
 const CartItem = props => {
-  const { item, changeQuantity, total, editable } = props;
+  const { item, changeQuantity, total, getCart, editable } = props;
   const incItem = changeQuantity
     ? () => changeQuantity(item.id, item.quantity + 1)
     : null;
@@ -32,7 +32,11 @@ const CartItem = props => {
           <React.Fragment>
             {editable ? (
               <React.Fragment>
-                <button className='btn btn-primary' onClick={decItem}>
+                <button
+                  className='btn btn-primary'
+                  onClick={decItem}
+                  disabled={item.quantity === 1}
+                >
                   <span>-</span>
                 </button>
               </React.Fragment>

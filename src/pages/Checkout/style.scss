@@ -1,0 +1,31 @@
+@import '../../assets/theme/variables';
+
+.address-form .row {
+  margin-bottom: 15px;
+  margin-left: 30px;
+  width: 600px;
+}
+
+h2 {
+  margin-left: 45px;
+  color: $primary;
+}
+
+input {
+  text-align: left;
+}
+
+.address-form .row .short {
+  width: 400 !important;
+}
+
+.qtdy-in-cart {
+  text-align: center;
+}
+
+.payments {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
+}

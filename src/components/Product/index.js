@@ -1,9 +1,9 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
 import ProductCarousel from '../ProductCarousel';
-import './style.css';
+import './style.scss';
 
-export default function Product({ product, changeQuantity }) {
+export default function Product({ product, changeQuantity, getCart }) {
   // Challenge: create just one method to support both actions
   const incItem = changeQuantity
     ? () => changeQuantity(product.id, product.quantity + 1)
@@ -28,7 +28,11 @@ export default function Product({ product, changeQuantity }) {
         </div>
         <div className='card-footer'>
           <div className='row justify-content-center'>
-            <button className='btn btn-primary' onClick={decItem}>
+            <button
+              className='btn btn-primary'
+              onClick={decItem}
+              disabled={product.quantity === 0}
+            >
               <span>-</span>
             </button>
             <div className='divider'></div>

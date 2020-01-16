@@ -5,7 +5,6 @@ import './style.scss';
 
 const CartList = props => {
   const { total, getCart, changeQuantity, editable } = props;
-  console.log('editable on cartlist: ', editable);
   const items = getCart();
   return (
     <div>
@@ -42,6 +41,7 @@ const CartList = props => {
                   total={item.quantity * item.price}
                   changeQuantity={changeQuantity}
                   editable={editable}
+                  getCart={getCart}
                 />
               ))}
               <CartItem total={total} />

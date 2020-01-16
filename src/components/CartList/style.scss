@@ -1,7 +1,4 @@
-$table-header: #035eb4;
-$table-header-border: #1565c0;
-$table-border: #d9d9d9;
-$row-bg: #f4f2f1;
+@import '../../assets/theme/variables.scss';
 
 div {
   box-sizing: border-box;
@@ -42,7 +39,7 @@ div {
     border-left: solid 1px $table-border;
   }
   &:first-of-type .flex-row {
-    background: $table-header;
+    background: $primary;
   }
   &.row:nth-child(odd) .flex-row {
     background: $row-bg;

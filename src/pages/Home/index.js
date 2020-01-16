@@ -20,6 +20,7 @@ export default () => {
                 <ProductList
                   products={products}
                   changeQuantity={changeQuantity}
+                  getCart={getCart}
                 />
               </React.Fragment>
             )}

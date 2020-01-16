@@ -1,0 +1,32 @@
+@import '../../assets/theme/variables.scss';
+body {
+  margin-bottom: 180px;
+}
+
+.col {
+  display: flex;
+  justify-content: center;
+}
+
+.qtdy-in-cart {
+  overflow: visible;
+  width: 35px;
+  margin: 5px;
+  text-align: center;
+}
+
+.btn-danger {
+  margin-left: 5px;
+}
+
+.btn-primary {
+  &.focus,
+  &:focus,
+  &:not(:disabled):not(.disabed):active {
+    box-shadow: 0 0 0 0.2rem rgba($secondary, 0.8);
+  }
+}
+.nav-link {
+  display: block;
+  padding: 0;
+}
