@@ -1,5 +1,4 @@
 import React from 'react';
-import Carousel from '../Carousel';
 import { makeStyles } from '@material-ui/core/styles';
 import muitheme from '../../Theme';
 import {
