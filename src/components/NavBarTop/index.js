@@ -1,10 +1,39 @@
 import React, { Component } from 'react';
-import { Navbar } from 'react-bootstrap';
+import theme from '../../Theme';
+import { withStyles } from '@material-ui/core/styles';
+import {
+  AppBar,
+  Toolbar,
+  Button,
+  Container,
+  Grid,
+  ThemeProvider,
+  Typography,
+  Box
+} from '@material-ui/core';
 import { NavLink } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from '../Login';
 import logo from '../../img/logo-white.png';
+import PropTypes from 'prop-types';
 import './style.scss';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  logo: {
+    height: '43px'
+  },
+  toolbar: {
+    justifyContent: 'space-between'
+  },
+  total: {
+    justifyContent: 'center',
+    padding: '0px'
+  },
+  buttonMargin: {
+    marginRight: '10px'
+  }
+});
 
 class NavBarTop extends Component {
   constructor(props) {
@@ -16,24 +45,83 @@ class NavBarTop extends Component {
 
   handleLogout = () => {
     localStorage.removeItem('email');
-    return <Login />;
+    window.location.pathname = '/';
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <div>
-        <Navbar className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
+      <React.Fragment>
+        <ThemeProvider theme={theme}>
+          <Container maxWidth='sm'>
+            <div className={classes.root}>
+              <AppBar position='fixed'>
+                <Toolbar className={classes.toolbar}>
+                  <NavLink
+                    to={'/'}
+                    isActive={match => {
+                      return match ? match.isExact : false;
+                    }}
+                    className='nav-link'
+                  >
+                    <img
+                      className={classes.logo}
+                      alt='Ta na Mão'
+                      src={logo}
+                    ></img>
+                  </NavLink>
+
+                  <Grid
+                    container
+                    direction='row'
+                    justify='flex-end'
+                    alignItems='center'
+                    spacing={2}
+                  >
+                    <NavLink to={'/cart'} className='nav-link'>
+                      <Button
+                        className={classes.buttonMargin}
+                        variant='outlined'
+                        color='primary.dark'
+                      >
+                        <Typography component='div'>
+                          <Box color='primary.contrastText'>Cart</Box>
+                        </Typography>
+                      </Button>
+                    </NavLink>
+
+                    <Button
+                      className={classes.buttonMargin}
+                      variant='outlined'
+                      color='primary.dark'
+                      onClick={this.handleLogout}
+                    >
+                      <Typography component='div'>
+                        <Box color='primary.contrastText'>Logout</Box>
+                      </Typography>
+                    </Button>
+                    <Button variant='outlined' color='primary.dark'>
+                      <Typography component='div'>
+                        <Box color='primary.contrastText'>{`$ ${this.props.totals.toFixed(
+                          2
+                        )}`}</Box>
+                      </Typography>
+                    </Button>
+                  </Grid>
+                </Toolbar>
+              </AppBar>
+            </div>
+
+            {/* <Navbar className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
           <div className='container'>
             <NavLink
               to={'/'}
               isActive={match => {
                 return match ? match.isExact : false;
               }}
-              className='nav-link'
+              className='nav-link navbar-brand'
             >
-              <a className='navbar-brand' href='index.html'>
-                <img className='logo' alt='Ta na Mão' src={logo}></img>
-              </a>
+              <img className='logo' alt='Ta na Mão' src={logo}></img>
             </NavLink>
             <div className='collapse navbar-collapse' id='navbarResponsive'>
               <ul className='navbar-nav ml-auto'>
@@ -60,10 +148,16 @@ class NavBarTop extends Component {
               )}`}</span>
             </div>
           </div>
-        </Navbar>
-      </div>
+        </Navbar> */}
+          </Container>
+        </ThemeProvider>
+      </React.Fragment>
     );
   }
 }
 
-export default NavBarTop;
+NavBarTop.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+export default withStyles(styles)(NavBarTop);

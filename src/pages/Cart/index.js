@@ -10,7 +10,7 @@ import './style.scss';
 export default () => {
   return (
     <CartManager>
-      {(loading, products, total, getCart, changeQuantity, editable) => (
+      {(loading, products, total, getCart, changeQuantity) => (
         <div>
           <NavBarTop totals={total} />
           <Container>
@@ -22,7 +22,6 @@ export default () => {
                   total={total}
                   getCart={getCart}
                   changeQuantity={changeQuantity}
-                  editable={editable}
                 />
                 <Row>
                   <Col>

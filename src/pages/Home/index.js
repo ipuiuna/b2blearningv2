@@ -3,7 +3,7 @@ import NavBarTop from '../../components/NavBarTop';
 import ProductList from '../../components/ProductList';
 import Footer from '../../components/Footer/index';
 import CartManager from '../../components/CartManager';
-import { Container } from 'react-bootstrap';
+import { Grid } from '@material-ui/core';
 import './style.css';
 
 export default () => {
@@ -12,7 +12,7 @@ export default () => {
       {(loading, products, total, getCart, changeQuantity) => (
         <div>
           <NavBarTop totals={total} />
-          <Container>
+          <Grid container className='product-list-container'>
             {loading ? (
               <div>Loading product list...</div>
             ) : (
@@ -24,7 +24,7 @@ export default () => {
                 />
               </React.Fragment>
             )}
-          </Container>
+          </Grid>
           <Footer />
         </div>
       )}

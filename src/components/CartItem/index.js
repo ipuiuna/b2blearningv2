@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const CartItem = props => {
-  const { item, changeQuantity, total, getCart, editable } = props;
+  const { item, changeQuantity, total, editable } = props;
   const incItem = changeQuantity
     ? () => changeQuantity(item.id, item.quantity + 1)
     : null;

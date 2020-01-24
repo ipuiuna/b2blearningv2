@@ -1,7 +1,41 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
-import ProductCarousel from '../ProductCarousel';
+import Carousel from '../Carousel';
+import { makeStyles } from '@material-ui/core/styles';
+import muitheme from '../../Theme';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Button,
+  Grid,
+  Typography,
+  Paper,
+  ThemeProvider
+} from '@material-ui/core';
 import './style.scss';
+
+const useStyles = makeStyles({
+  card: {
+    width: 290,
+    height: 427,
+    margin: 24,
+    backgroundColor: '#fff'
+  },
+  textField: {
+    width: 90,
+    padding: 0
+  },
+  paper: {
+    width: 60
+  },
+  typographyQuantityBox: {
+    textAlign: 'center'
+  },
+  content: {
+    width: 290,
+    height: 102
+  }
+});
 
 export default function Product({ product, changeQuantity, getCart }) {
   // Challenge: create just one method to support both actions
@@ -12,46 +46,105 @@ export default function Product({ product, changeQuantity, getCart }) {
     ? () => changeQuantity(product.id, product.quantity - 1)
     : null;
 
+  const classes = useStyles();
+  const { title, price, description, productKey, images } = product;
+
   return (
-    <Col lg={3}>
-      <div className='card h-100'>
-        <ProductCarousel productImages={product.images} />
-        <div className='card-body'>
-          <h4 className='card-title'>
-            <a href='#'>{product.title}</a>
-          </h4>
-          <h5>${product.price}</h5>
-          <p className='card-text'>{`${product.description.substring(
-            0,
-            100
-          )}...`}</p>
-        </div>
-        <div className='card-footer'>
-          <div className='row justify-content-center'>
-            <button
-              className='btn btn-primary'
+    <ThemeProvider theme={muitheme}>
+      <Card className={classes.card}>
+        <Grid container justify='center'>
+          <img
+            style={{ width: 257.72, height: 257.72 }}
+            src={images[0]}
+            alt={title}
+          ></img>
+        </Grid>
+
+        <CardContent className={classes.content}>
+          <Typography gutterBottom variant='h3' component='h2'>
+            {title}
+          </Typography>
+          <Typography
+            variant='h3'
+            color='textSecondary'
+            component='p'
+            style={{ marginTop: 16 }}
+          >
+            R$ {price}
+          </Typography>
+        </CardContent>
+        <Grid container justify='center'>
+          <CardActions>
+            <Button
               onClick={decItem}
               disabled={product.quantity === 0}
+              variant='contained'
+              size='small'
             >
-              <span>-</span>
-            </button>
-            <div className='divider'></div>
-            <input
-              className='qty-field'
-              id={`qty-field-${product.id}`}
-              type='text'
-              placeholder='0'
-              value={product.quantity}
-              readOnly
-            />
-            <div className='divider'></div>
-            <button className='btn btn-primary' onClick={incItem}>
-              <span>+</span>
-            </button>
-          </div>
-        </div>
-      </div>
-    </Col>
+              <Typography variant='h2'>-</Typography>
+            </Button>
+
+            <Paper className={classes.paper}>
+              <Typography
+                className={classes.typographyQuantityBox}
+                variant='h2'
+              >
+                {product.quantity}
+              </Typography>
+            </Paper>
+
+            <Button
+              onClick={incItem}
+              variant='contained'
+              size='small'
+              color='secondary'
+            >
+              <Typography variant='h2'>+</Typography>
+            </Button>
+          </CardActions>
+        </Grid>
+      </Card>
+    </ThemeProvider>
+
+    // <Col lg={3}>
+    //   <div className='card h-100'>
+    //     <ProductCarousel productImages={product.images} />
+    //     <div className='card-body'>
+    //       <h4 className='card-title'>
+    //         <a href='#'>{product.title}</a>
+    //       </h4>
+    //       <h5>${product.price}</h5>
+    //       <p className='card-text'>{`${product.description.substring(
+    //         0,
+    //         100
+    //       )}...`}</p>
+    //     </div>
+    //     <div className='card-footer'>
+    //       <div className='row justify-content-center'>
+    //         <button
+    //           className='btn btn-primary'
+    //           onClick={decItem}
+    //           disabled={product.quantity === 0}
+    //         >
+    //           <span>-</span>
+    //         </button>
+    //         <div className='divider'></div>
+    //         <input
+    //           className='qty-field'
+    //           id={`qty-field-${product.id}`}
+    //           type='text'
+    //           placeholder='0'
+    //           value={product.quantity}
+    //           readOnly
+    //         />
+    //         <div className='divider'></div>
+    //         <button className='btn btn-primary' onClick={incItem}>
+    //           <span>+</span>
+    //         </button>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </Col>
   );
 }
 
