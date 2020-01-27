@@ -27,6 +27,16 @@ const muitheme = createMuiTheme({
       root: {
         backgroundColor: '#FFF'
       }
+    },
+    MuiPaper: {
+      rounded: {
+        borderRadius: 15
+      }
+    },
+    MuiButton: {
+      root: {
+        borderRadius: 15
+      }
     }
   },
   typography: {

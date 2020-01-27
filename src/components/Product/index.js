@@ -1,40 +1,14 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import muitheme from '../../Theme';
+import useStyles from './styles';
 import {
   Card,
-  CardActions,
   CardContent,
   Button,
+  Box,
   Grid,
   Typography,
-  Paper,
-  ThemeProvider
+  ButtonGroup
 } from '@material-ui/core';
-import './style.scss';
-
-const useStyles = makeStyles({
-  card: {
-    width: 290,
-    height: 427,
-    margin: 24,
-    backgroundColor: '#fff'
-  },
-  textField: {
-    width: 90,
-    padding: 0
-  },
-  paper: {
-    width: 60
-  },
-  typographyQuantityBox: {
-    textAlign: 'center'
-  },
-  content: {
-    width: 290,
-    height: 102
-  }
-});
 
 export default function Product({ product, changeQuantity, getCart }) {
   // Challenge: create just one method to support both actions
@@ -49,61 +23,58 @@ export default function Product({ product, changeQuantity, getCart }) {
   const { title, price, description, productKey, images } = product;
 
   return (
-    <ThemeProvider theme={muitheme}>
-      <Card className={classes.card}>
-        <Grid container justify='center'>
-          <img
-            style={{ width: 257.72, height: 257.72 }}
-            src={images[0]}
-            alt={title}
-          ></img>
-        </Grid>
+    <Card className={classes.card}>
+      <Grid container justify='center'>
+        <img
+          style={{ width: 257.72, height: 257.72 }}
+          src={images[0]}
+          alt={title}
+        ></img>
+      </Grid>
 
-        <CardContent className={classes.content}>
-          <Typography gutterBottom variant='h3' component='h2'>
-            {title}
-          </Typography>
-          <Typography
-            variant='h3'
-            color='textSecondary'
-            component='p'
-            style={{ marginTop: 16 }}
+      <CardContent className={classes.content}>
+        <Typography gutterBottom variant='h3' component='h2'>
+          {title}
+        </Typography>
+        <Typography
+          variant='h3'
+          color='textSecondary'
+          component='p'
+          style={{ marginTop: 16 }}
+        >
+          R$ {price}
+        </Typography>
+      </CardContent>
+      <Grid container justify='center'>
+        <ButtonGroup aria-label='primary button group'>
+          <Button
+            className={classes.buttonSize}
+            onClick={decItem}
+            disabled={product.quantity === 0}
+            variant='contained'
+            size='small'
           >
-            R$ {price}
-          </Typography>
-        </CardContent>
-        <Grid container justify='center'>
-          <CardActions>
-            <Button
-              onClick={decItem}
-              disabled={product.quantity === 0}
-              variant='contained'
-              size='small'
-            >
-              <Typography variant='h2'>-</Typography>
-            </Button>
+            <Typography variant='h2'>-</Typography>
+          </Button>
 
-            <Paper className={classes.paper}>
-              <Typography
-                className={classes.typographyQuantityBox}
-                variant='h2'
-              >
-                {product.quantity}
-              </Typography>
-            </Paper>
+          <Box className={classes.boxSize} boxShadow={2}>
+            <Typography className={classes.typographyQuantityBox} variant='h2'>
+              {product.quantity}
+            </Typography>
+          </Box>
 
-            <Button
-              onClick={incItem}
-              variant='contained'
-              size='small'
-              color='secondary'
-            >
-              <Typography variant='h2'>+</Typography>
-            </Button>
-          </CardActions>
-        </Grid>
-      </Card>
-    </ThemeProvider>
+          <Button
+            className={classes.buttonSize}
+            onClick={incItem}
+            variant='contained'
+            size='small'
+            color='secondary'
+          >
+            <Typography variant='h2'>+</Typography>
+          </Button>
+        </ButtonGroup>
+      </Grid>
+    </Card>
 
     // <Col lg={3}>
     //   <div className='card h-100'>

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   Grid,
-  ThemeProvider,
   AppBar,
   Toolbar,
   Typography,
@@ -34,7 +33,7 @@ const useStyles = makeStyles(theme => ({
     width: 300,
     marginTop: 24,
     marginBottom: 24,
-    backgroundColor: muitheme.palette.secondary.main,
+    backgroundColor: '#fff',
     borderRadius: 16
   },
   drawer: {
@@ -68,7 +67,13 @@ const useStyles = makeStyles(theme => ({
     marginRight: 0
   },
   inicialContent: {
-    marginLeft: 50
+    marginLeft: 48
+  },
+  landingIcons: {
+    color: muitheme.palette.primary.main
+  },
+  inputFields: {
+    color: muitheme.palette.primary.main
   }
 }));
 
@@ -131,6 +136,7 @@ export default function Login(props) {
         <form onSubmit={handleSubmit}>
           <ListItem>
             <Input
+              className={classes.inputFields}
               type='email'
               name='email'
               label='Usuário'
@@ -139,6 +145,7 @@ export default function Login(props) {
           </ListItem>
           <ListItem>
             <Input
+              className={classes.inputFields}
               type='password'
               name='password'
               label='Senha'
@@ -149,7 +156,6 @@ export default function Login(props) {
             <Fab
               variant='extended'
               size='small'
-              //className='login-label'
               className='login-buton login-label'
               type='submit'
             >
@@ -176,154 +182,169 @@ export default function Login(props) {
         </div>
         {sideList('right')}
       </Drawer>
-      <ThemeProvider theme={muitheme}>
-        <Grid item>
-          <AppBar
-            bgcolor='primary.main'
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center'
-            }}
-            position='static'
-          >
-            <Container>
-              <Toolbar style={{ justifyContent: 'flex-end', flexGrow: 1 }}>
-                <Fab variant='extended' size='small' className='login-buton'>
-                  <div className='login-label' onClick={handleDrawerOpen}>
-                    Entrar
-                  </div>
-                </Fab>
-              </Toolbar>
-            </Container>
-          </AppBar>
-        </Grid>
-        <Grid item>
-          <Container>
-            <Grid className='landing-page' container justify='flex-start'>
-              <Link edge='start' aria-label='inicio'>
-                <img alt='ta na mao logo' src={logo} />
-              </Link>
-            </Grid>
-            <Typography
-              className={classes.inicialContent}
-              variant='h2'
-              align='left'
-              color='textPrimary'
-            >
-              E aí, bora fazer
-            </Typography>
-            <Typography
-              className={classes.inicialContent}
-              variant='h2'
-              align='left'
-              color='textPrimary'
-            >
-              um churras?
-            </Typography>
-            <Typography variant='subtitle1' align='left' color='textPrimary'>
-              O Tá na Mão é uma plataforma que
-            </Typography>
-            <Typography variant='subtitle1' align='left' color='textPrimary'>
-              reune tudo para o seu churrasco.
-            </Typography>
-            <Grid container justify='center' spacing={4}>
-              <Grid item>
-                <Paper className={classes.paper}>
-                  <DoneIcon className='landing-icons' />
-                  <Typography variant='h5'>Valide seu cep</Typography>
-                  <Typography>Antes de selecionar suas</Typography>
-                  <Typography>compras, recomendamos</Typography>
-                  <Typography>que verifique se entregamos</Typography>
-                  <Typography>na sua casa</Typography>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper className={classes.paper}>
-                  <TouchAppIcon className='landing-icons' />
-                  <Typography variant='h5'>Escolha seus produtos</Typography>
-                  <Typography>adicione seus produtos</Typography>
-                  <Typography>preferidos no seu carrinho e</Typography>
-                  <Typography>finalize sua compra</Typography>
-                </Paper>
-              </Grid>
-              <Grid item>
-                <Paper className={classes.paper}>
-                  <MoodIcon className='landing-icons' />
-                  <Typography variant='h5'>Receba em casa</Typography>
-                  <Typography>acompanhe seu pedido em</Typography>
-                  <Typography>tempo real e receba seus</Typography>
-                  <Typography>produtos sem stress ;)</Typography>
-                </Paper>
-              </Grid>
-            </Grid>
-          </Container>
-        </Grid>
-        <Grid
-          item
-          style={{
-            backgroundColor: muitheme.palette.secondary.main,
-            height: 64
-          }}
-        >
-          <Grid item>
-            <ExpandLessIcon
-              className='expandless-icon'
-              style={{
-                color: '#fff'
-              }}
-            />
-          </Grid>
-          <Grid item>
-            <Typography color='textPrimary'>ir para o topo</Typography>
-          </Grid>
-        </Grid>
 
-        <Grid
-          style={{ backgroundColor: '#fff', marginTop: 0, marginBottom: 8 }}
-          container
-          direction='row'
-          justify='center'
-          spacing={10}
-        >
-          <Grid item>
-            <Grid container direction='column'>
-              <Typography variant='h6'>INSTITUCIONAL</Typography>
-              <Link>marca</Link>
-              <Link>quem somos</Link>
-              <Link>fale conosco</Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container direction='column'>
-              <Typography variant='h6'>MINHA CONTA</Typography>
-              <Link>conta</Link>
-              <Link>pedidos</Link>
-              <Link>carrinho</Link>
-              <Link>editar conta</Link>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Grid container direction='column'>
-              <Typography variant='h6'>AJUDA</Typography>
-              <Link>pagamentos</Link>
-              <Link>entrega</Link>
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid
+      <Grid item>
+        <AppBar
+          bgcolor='primary.main'
           style={{
-            backgroundColor: muitheme.palette.primary.main,
-            paddingTop: 8,
-            paddingBottom: 8,
-            bottom: 0
+            display: 'flex',
+            flexDirection: 'row',
+            alignItems: 'center'
           }}
+          position='static'
         >
-          <Typography variant='body2' color='textPrimary'>
-            Bud Light Team, ABInbev. 2020
+          <Container>
+            <Toolbar style={{ justifyContent: 'flex-end', flexGrow: 1 }}>
+              <Fab variant='extended' size='small' className='login-buton'>
+                <div className='login-label' onClick={handleDrawerOpen}>
+                  Entrar
+                </div>
+              </Fab>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </Grid>
+      <Grid item style={{ backgroundColor: muitheme.palette.primary.main }}>
+        <Container>
+          <Grid className='landing-page' container justify='flex-start'>
+            <Link edge='start' aria-label='inicio'>
+              <img alt='ta na mao logo' src={logo} />
+            </Link>
+          </Grid>
+          <Typography
+            className={classes.inicialContent}
+            variant='h2'
+            align='left'
+            color='textPrimary'
+          >
+            E aí, bora fazer
           </Typography>
+          <Typography
+            className={classes.inicialContent}
+            variant='h2'
+            align='left'
+            color='textPrimary'
+          >
+            um churras?
+          </Typography>
+          <Typography variant='subtitle1' align='left' color='textPrimary'>
+            O Tá na Mão é uma plataforma que
+          </Typography>
+          <Typography variant='subtitle1' align='left' color='textPrimary'>
+            reune tudo para o seu churrasco.
+          </Typography>
+          <Grid container justify='center' spacing={4}>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <DoneIcon className={`landing-icons ${classes.landingIcons}`} />
+                <Typography variant='h5' color='primary'>
+                  Valide seu cep
+                </Typography>
+                <Typography color='primary'>
+                  Antes de selecionar suas
+                </Typography>
+                <Typography color='primary'>compras, recomendamos</Typography>
+                <Typography color='primary'>
+                  que verifique se entregamos
+                </Typography>
+                <Typography color='primary'>na sua casa</Typography>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <TouchAppIcon
+                  className={`landing-icons ${classes.landingIcons}`}
+                />
+                <Typography variant='h5' color='primary'>
+                  Escolha seus produtos
+                </Typography>
+                <Typography color='primary'>adicione seus produtos</Typography>
+                <Typography color='primary'>
+                  preferidos no seu carrinho e
+                </Typography>
+                <Typography color='primary'>finalize sua compra</Typography>
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.paper}>
+                <MoodIcon className={`landing-icons ${classes.landingIcons}`} />
+                <Typography variant='h5' color='primary'>
+                  Receba em casa
+                </Typography>
+                <Typography color='primary'>acompanhe seu pedido em</Typography>
+                <Typography color='primary'>
+                  tempo real e receba seus
+                </Typography>
+                <Typography color='primary'>produtos sem stress ;)</Typography>
+              </Paper>
+            </Grid>
+          </Grid>
+        </Container>
+      </Grid>
+      <Grid
+        item
+        style={{
+          backgroundColor: muitheme.palette.secondary.main,
+          height: 64
+        }}
+      >
+        <Grid item>
+          <ExpandLessIcon
+            className='expandless-icon'
+            style={{
+              color: '#fff'
+            }}
+          />
         </Grid>
-      </ThemeProvider>
+        <Grid item>
+          <Typography color='textPrimary'>ir para o topo</Typography>
+        </Grid>
+      </Grid>
+
+      <Grid
+        style={{ backgroundColor: '#fff', marginTop: 0, marginBottom: 8 }}
+        container
+        direction='row'
+        justify='center'
+        spacing={10}
+      >
+        <Grid item>
+          <Grid container direction='column'>
+            <Typography variant='h6'>INSTITUCIONAL</Typography>
+            <Link>marca</Link>
+            <Link>quem somos</Link>
+            <Link>fale conosco</Link>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container direction='column'>
+            <Typography variant='h6'>MINHA CONTA</Typography>
+            <Link>conta</Link>
+            <Link>pedidos</Link>
+            <Link>carrinho</Link>
+            <Link>editar conta</Link>
+          </Grid>
+        </Grid>
+        <Grid item>
+          <Grid container direction='column'>
+            <Typography variant='h6'>AJUDA</Typography>
+            <Link>pagamentos</Link>
+            <Link>entrega</Link>
+          </Grid>
+        </Grid>
+      </Grid>
+      <Grid
+        style={{
+          backgroundColor: muitheme.palette.primary.main,
+          paddingTop: 8,
+          paddingBottom: 8,
+          bottom: 0
+        }}
+      >
+        <Typography variant='body2' color='textPrimary'>
+          Bud Light Team, ABInbev. 2020
+        </Typography>
+      </Grid>
     </div>
 
     // <div>
