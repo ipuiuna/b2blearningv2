@@ -1,12 +1,11 @@
 import React from 'react';
 import NavBarTop from '../../components/NavBarTop';
 import ProductList from '../../components/ProductList';
-import Footer from '../../components/Footer/index';
 import CartManager from '../../components/CartManager';
 import { Grid } from '@material-ui/core';
 import './style.css';
 
-export default () => {
+export default props => {
   return (
     <CartManager>
       {(loading, products, total, getCart, changeQuantity) => (
@@ -25,7 +24,6 @@ export default () => {
               </React.Fragment>
             )}
           </Grid>
-          <Footer />
         </div>
       )}
     </CartManager>

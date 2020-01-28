@@ -37,6 +37,9 @@ const muitheme = createMuiTheme({
       root: {
         borderRadius: 15
       }
+    },
+    MuiButtonBase: {
+      backgroundColor: 'primary'
     }
   },
   typography: {

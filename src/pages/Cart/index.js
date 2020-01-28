@@ -1,10 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import CartlList from '../../components/CartList';
-import NavBarTop from '../../components/NavBarTop';
-import Footer from '../../components/Footer';
 import CartManager from '../../components/CartManager';
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container } from '@material-ui/core';
 import './style.scss';
 
 export default () => {
@@ -12,7 +9,6 @@ export default () => {
     <CartManager>
       {(loading, products, total, getCart, changeQuantity) => (
         <div>
-          <NavBarTop totals={total} />
           <Container>
             {loading ? (
               <div>Loading your cart...</div>
@@ -23,25 +19,21 @@ export default () => {
                   getCart={getCart}
                   changeQuantity={changeQuantity}
                 />
-                <Row>
-                  <Col>
-                    <NavLink
-                      to={'/checkout'}
-                      isActive={match => {
-                        return match ? match.isExact : false;
-                      }}
-                      className='nav-link'
-                    >
-                      <Button disabled={getCart().length === 0}>
-                        Proceed to Checkout
-                      </Button>
-                    </NavLink>
-                  </Col>
-                </Row>
+
+                {/* <NavLink
+                  to={'/checkout'}
+                  isActive={match => {
+                    return match ? match.isExact : false;
+                  }}
+                  className='nav-link'
+                >
+                  <Button disabled={getCart().length === 0}>
+                    Proceed to Checkout
+                  </Button>
+                </NavLink> */}
               </React.Fragment>
             )}
           </Container>
-          <Footer />
         </div>
       )}
     </CartManager>

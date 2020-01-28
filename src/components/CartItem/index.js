@@ -1,9 +1,42 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './style.scss';
+import { Card, Typography, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import QuantityEditor from '../QuantityEditor';
+
+const useStyles = makeStyles({
+  card: {
+    display: 'flex',
+    width: '310px',
+    height: '190px',
+    margin: '12px',
+    backgroundColor: '#fff',
+    alignContent: 'space-around',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    padding: '10px 0px'
+  },
+  textField: {
+    padding: 16,
+    flex: 2,
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start'
+  },
+  typographyQuantityBox: {
+    textAlign: 'center'
+  },
+  buttonStyled: {
+    width: 50,
+    alignSelf: 'center',
+    padding: 2
+  }
+});
 
 const CartItem = props => {
-  const { item, changeQuantity, total, editable } = props;
+  const classes = useStyles();
+  const { item, changeQuantity } = props;
   const incItem = changeQuantity
     ? () => changeQuantity(item.id, item.quantity + 1)
     : null;
@@ -18,62 +51,41 @@ const CartItem = props => {
 
   const removeItem = changeQuantity ? () => changeQuantity(item.id, 0) : null;
 
-  return (
-    <div className='flex-table row' role='rowgroup'>
-      <div className='flex-row first' role='cell'>
-        {item ? item.title : ''}
-      </div>
-      <div className='flex-row' role='cell'>
-        {item ? `$ ${item.price.toFixed(2)}` : ''}
-      </div>
+  return item ? (
+    <Card className={classes.card}>
+      <Grid container direction='row' justify='space-between'>
+        <Grid direction='column'>
+          <Grid item>
+            <img
+              style={{ width: 64, height: 65 }}
+              src={
+                'https://emporiodacerveja.vteximg.com.br/arquivos/ids/174971-500-500/Budweiser-330-6pack.png?v=637067545578500000'
+              }
+              alt={'img description'}
+            ></img>
+          </Grid>
+        </Grid>
+        <Grid direction='column'>
+          <Grid item>
+            <Typography color='primary'>{item.title}</Typography>
+            <Typography color='primary'>
+              {`$ ${item.price.toFixed(2)}`}
+            </Typography>
+            <Grid item>
+              <QuantityEditor
+                incItem={incItem}
+                decItem={decItem}
+                quantity={item.quantity}
+                min={1}
+              ></QuantityEditor>
 
-      <div className='flex-row' role='cell'>
-        {item ? (
-          <React.Fragment>
-            {editable ? (
-              <React.Fragment>
-                <button
-                  className='btn btn-primary'
-                  onClick={decItem}
-                  disabled={item.quantity === 1}
-                >
-                  <span>-</span>
-                </button>
-              </React.Fragment>
-            ) : (
-              <div></div>
-            )}
-
-            <input
-              className='qtdy-in-cart'
-              id={`qty-field-${item.id}`}
-              type='text'
-              placeholder='0'
-              disabled
-              value={item.quantity}
-            />
-
-            {editable ? (
-              <React.Fragment>
-                <button className='btn btn-primary' onClick={incItem}>
-                  <span>+</span>
-                </button>
-                <button className='btn btn btn-danger' onClick={removeItem}>
-                  <span className='btn-text-delete'>x</span>
-                </button>
-              </React.Fragment>
-            ) : (
-              <div></div>
-            )}
-          </React.Fragment>
-        ) : null}
-      </div>
-
-      <div className='flex-row' role='cell'>
-        $ {total.toFixed(2)}
-      </div>
-    </div>
-  );
+              {/* <Typography color='primary'>R$ {total.toFixed(2)}</Typography> */}
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Card>
+  ) : null;
 };
 
 // proptypes
@@ -88,6 +100,10 @@ CartItem.defaultProps = {
 export default CartItem;
 
 /*
+
+/* <button className='btn btn btn-danger' onClick={removeItem}>
+                      <span className='btn-text-delete'>x</span>
+                    </button> 
 constructor(props) {
     super(props);
     this.state = {

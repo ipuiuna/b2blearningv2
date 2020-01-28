@@ -1,22 +1,43 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import theme from '../../Theme';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
+import Cart from '../../pages/Cart';
 import {
   AppBar,
   Toolbar,
   Button,
-  Container,
-  Grid,
   ThemeProvider,
+  Box,
+  Grid,
+  Drawer,
   Typography,
-  Box
+  Container,
+  List,
+  ListItem,
+  Fab,
+  IconButton
 } from '@material-ui/core';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import CloseIcon from '@material-ui/icons/Close';
 import { NavLink } from 'react-router-dom';
 import logo from '../../img/logo-white.png';
 import PropTypes from 'prop-types';
 import './style.scss';
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
+  drawerHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end'
+  },
+  list: {
+    width: 300
+  },
+  fullList: {
+    width: 'auto'
+  },
   root: {
     flexGrow: 1
   },
@@ -33,131 +54,147 @@ const styles = theme => ({
   buttonMargin: {
     marginRight: '10px'
   }
-});
+}));
 
-class NavBarTop extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      totals: 0
-    };
-  }
+export default function NavBarTop(props) {
+  const classes = useStyles();
+  const [state, setState] = useState({
+    right: false
+  });
 
-  handleLogout = () => {
+  const handleLogout = () => {
     localStorage.removeItem('email');
     window.location.pathname = '/';
   };
 
-  render() {
-    const { classes } = this.props;
-    return (
-      <React.Fragment>
-        <ThemeProvider theme={theme}>
-          <Container maxWidth='sm'>
-            <div className={classes.root}>
-              <AppBar position='fixed'>
-                <Toolbar className={classes.toolbar}>
-                  <NavLink
-                    to={'/'}
-                    isActive={match => {
-                      return match ? match.isExact : false;
-                    }}
-                    className='nav-link'
-                  >
-                    <img
-                      className={classes.logo}
-                      alt='Ta na Mão'
-                      src={logo}
-                    ></img>
-                  </NavLink>
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
 
-                  <Grid
-                    container
-                    direction='row'
-                    justify='flex-end'
-                    alignItems='center'
-                    spacing={2}
-                  >
-                    <NavLink to={'/cart'} className='nav-link'>
-                      <Button
-                        className={classes.buttonMargin}
-                        variant='outlined'
-                        color='primary.dark'
-                      >
-                        <Typography component='div'>
-                          <Box color='primary.contrastText'>Cart</Box>
-                        </Typography>
-                      </Button>
-                    </NavLink>
+    setState({ ...state, [side]: open });
+  };
 
+  const sideList = side => (
+    <div
+      className={classes.fullList}
+      role='presentation'
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        <ListItem>
+          <Cart />
+        </ListItem>
+
+        <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
+          <Fab
+            variant='extended'
+            size='small'
+            className='login-buton login-label'
+            type='button'
+          >
+            Finalizar Compra
+          </Fab>
+        </ListItem>
+      </List>
+    </div>
+  );
+
+  return (
+    <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <Drawer
+          anchor='right'
+          open={state.right}
+          onClose={toggleDrawer('right', false)}
+        >
+          {sideList('right')}
+
+          <div className={classes.drawerHeader}>
+            <Typography color='textPrimary' variant='h2'>
+              Carrinho
+            </Typography>
+            <IconButton>
+              <Typography color='textPrimary'>
+                <CloseIcon />
+              </Typography>
+            </IconButton>
+          </div>
+          {sideList('right')}
+        </Drawer>
+
+        <Container maxWidth='sm'>
+          <div className={classes.root}>
+            <AppBar position='fixed'>
+              <Toolbar className={classes.toolbar}>
+                <NavLink
+                  to={'/'}
+                  isActive={match => {
+                    return match ? match.isExact : false;
+                  }}
+                  className='nav-link'
+                >
+                  <img
+                    className={classes.logo}
+                    alt='Ta na Mão'
+                    src={logo}
+                  ></img>
+                </NavLink>
+
+                <Grid
+                  container
+                  direction='row'
+                  justify='flex-end'
+                  alignItems='center'
+                  spacing={2}
+                >
+                  <ShoppingCartIcon
+                    onClick={toggleDrawer('right', true)}
+                  ></ShoppingCartIcon>
+
+                  <NavLink to={'/cart'} className='nav-link'>
                     <Button
                       className={classes.buttonMargin}
                       variant='outlined'
                       color='primary.dark'
-                      onClick={this.handleLogout}
                     >
                       <Typography component='div'>
-                        <Box color='primary.contrastText'>Logout</Box>
+                        <Box color='primary.contrastText'>Cart</Box>
                       </Typography>
                     </Button>
-                    <Button variant='outlined' color='primary.dark'>
-                      <Typography component='div'>
-                        <Box color='primary.contrastText'>{`$ ${this.props.totals.toFixed(
-                          2
-                        )}`}</Box>
-                      </Typography>
-                    </Button>
-                  </Grid>
-                </Toolbar>
-              </AppBar>
-            </div>
-
-            {/* <Navbar className='navbar navbar-expand-lg navbar-dark bg-dark fixed-top'>
-          <div className='container'>
-            <NavLink
-              to={'/'}
-              isActive={match => {
-                return match ? match.isExact : false;
-              }}
-              className='nav-link navbar-brand'
-            >
-              <img className='logo' alt='Ta na Mão' src={logo}></img>
-            </NavLink>
-            <div className='collapse navbar-collapse' id='navbarResponsive'>
-              <ul className='navbar-nav ml-auto'>
-                <li className='nav-item'>
-                  <NavLink
-                    to={'/cart'}
-                    isActive={match => {
-                      return match ? match.isExact : false;
-                    }}
-                    className='nav-link'
-                  >
-                    Cart
                   </NavLink>
-                </li>
 
-                <li className='nav-item'>
-                  <a className='nav-link' onClick={this.handleLogout} href='#'>
-                    Logout
-                  </a>
-                </li>
-              </ul>
-              <span className='navbar-text'>{`$ ${this.props.totals.toFixed(
-                2
-              )}`}</span>
-            </div>
+                  <Button
+                    className={classes.buttonMargin}
+                    variant='outlined'
+                    color='primary.dark'
+                    onClick={handleLogout}
+                  >
+                    <Typography component='div'>
+                      <Box color='primary.contrastText'>Logout</Box>
+                    </Typography>
+                  </Button>
+                  <Button variant='outlined' color='primary.dark'>
+                    <Typography component='div'>
+                      <Box color='primary.contrastText'>{`$ ${props.totals.toFixed(
+                        2
+                      )}`}</Box>
+                    </Typography>
+                  </Button>
+                </Grid>
+              </Toolbar>
+            </AppBar>
           </div>
-        </Navbar> */}
-          </Container>
-        </ThemeProvider>
-      </React.Fragment>
-    );
-  }
+        </Container>
+      </ThemeProvider>
+    </React.Fragment>
+  );
 }
 
 NavBarTop.propTypes = {
   classes: PropTypes.object.isRequired
 };
-
-export default withStyles(styles)(NavBarTop);
