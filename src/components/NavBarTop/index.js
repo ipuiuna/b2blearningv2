@@ -30,7 +30,8 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    backgroundColor: theme.palette.primary.main
   },
   list: {
     width: 300
@@ -112,14 +113,15 @@ export default function NavBarTop(props) {
           open={state.right}
           onClose={toggleDrawer('right', false)}
         >
-          {sideList('right')}
-
           <div className={classes.drawerHeader}>
             <Typography color='textPrimary' variant='h2'>
               Carrinho
             </Typography>
             <IconButton>
-              <Typography color='textPrimary'>
+              <Typography
+                color='textPrimary'
+                onClick={toggleDrawer('right', false)}
+              >
                 <CloseIcon />
               </Typography>
             </IconButton>
