@@ -1,10 +1,15 @@
 @import '../../assets/theme/variables';
 
-// .bg-dark {
-//   background-color: $primary !important;
-// }
+.MuiFab-root.login-buton {
+  color: #825542;
+  font-weight: 700;
+}
 
-// .logo {
-//   width: 20%;
-//   min-width: 90px;
-// }
+.MuiFab-root.finalizar-button:hover {
+  background-color: #f5a800;
+  color: #fff;
+}
+
+.finalizar-label {
+  padding: 0px 20px;
+}

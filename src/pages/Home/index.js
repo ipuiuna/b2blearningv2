@@ -10,7 +10,7 @@ export default props => {
     <CartManager>
       {(loading, products, total, getCart, changeQuantity) => (
         <div>
-          <NavBarTop totals={total} />
+          <NavBarTop totals={total} changeQuantity={changeQuantity} />
           <Grid container className='product-list-container'>
             {loading ? (
               <div>Loading product list...</div>

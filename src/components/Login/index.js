@@ -92,12 +92,10 @@ export default function Login(props) {
 
   const handleChangeEmail = evt => {
     setEmail(evt.target.value);
-    console.log(email);
   };
 
   const handleChangePassword = evt => {
     setPassword(evt.target.value);
-    console.log(password);
   };
 
   const handleSubmit = evt => {

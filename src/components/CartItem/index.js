@@ -1,38 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Typography, Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Paper, Typography, Grid, ButtonBase } from '@material-ui/core';
 import QuantityEditor from '../QuantityEditor';
-
-const useStyles = makeStyles({
-  card: {
-    display: 'flex',
-    width: '310px',
-    height: '190px',
-    margin: '12px',
-    backgroundColor: '#fff',
-    alignContent: 'space-around',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    padding: '10px 0px'
-  },
-  textField: {
-    padding: 16,
-    flex: 2,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start'
-  },
-  typographyQuantityBox: {
-    textAlign: 'center'
-  },
-  buttonStyled: {
-    width: 50,
-    alignSelf: 'center',
-    padding: 2
-  }
-});
+import DeleteIcon from '@material-ui/icons/Delete';
+import useStyles from './styles';
 
 const CartItem = props => {
   const classes = useStyles();
@@ -52,39 +23,50 @@ const CartItem = props => {
   const removeItem = changeQuantity ? () => changeQuantity(item.id, 0) : null;
 
   return item ? (
-    <Card className={classes.card}>
-      <Grid container direction='row' justify='space-between'>
-        <Grid direction='column'>
-          <Grid item>
-            <img
-              style={{ width: 64, height: 65 }}
-              src={
-                'https://emporiodacerveja.vteximg.com.br/arquivos/ids/174971-500-500/Budweiser-330-6pack.png?v=637067545578500000'
-              }
-              alt={'img description'}
-            ></img>
-          </Grid>
+    <Paper className={classes.paper}>
+      {console.log('item', item)}
+      <Grid container spacing={2}>
+        <Grid item>
+          <ButtonBase className={classes.image}>
+            <img className={classes.img} alt='complex' src={item.images} />
+          </ButtonBase>
         </Grid>
-        <Grid direction='column'>
-          <Grid item>
-            <Typography color='primary'>{item.title}</Typography>
-            <Typography color='primary'>
-              {`$ ${item.price.toFixed(2)}`}
-            </Typography>
-            <Grid item>
+        <Grid item xs={12} sm container>
+          <Grid item xs container direction='column' spacing={2}>
+            <Grid item xs>
+              <Typography
+                className={classes.titleMargin}
+                gutterBottom
+                color='primary'
+                variant='h3'
+              >
+                {item.title}
+              </Typography>
+              <Typography variant='h3' color='primary'>
+                R$ {item.price}
+              </Typography>
+            </Grid>
+            <Grid container item justify='center'>
               <QuantityEditor
                 incItem={incItem}
                 decItem={decItem}
                 quantity={item.quantity}
                 min={1}
               ></QuantityEditor>
-
-              {/* <Typography color='primary'>R$ {total.toFixed(2)}</Typography> */}
             </Grid>
+          </Grid>
+          <Grid item>
+            <Typography
+              color='error'
+              style={{ cursor: 'pointer' }}
+              onClick={removeItem}
+            >
+              <DeleteIcon />
+            </Typography>
           </Grid>
         </Grid>
       </Grid>
-    </Card>
+    </Paper>
   ) : null;
 };
 

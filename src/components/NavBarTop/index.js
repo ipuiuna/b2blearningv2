@@ -95,8 +95,8 @@ export default function NavBarTop(props) {
           <Fab
             variant='extended'
             size='small'
-            className='login-buton login-label'
-            type='button'
+            className='finalizar-button finalizar-label'
+            type='submit'
           >
             Finalizar Compra
           </Fab>
@@ -114,9 +114,12 @@ export default function NavBarTop(props) {
           onClose={toggleDrawer('right', false)}
         >
           <div className={classes.drawerHeader}>
-            <Typography color='textPrimary' variant='h2'>
-              Carrinho
-            </Typography>
+            <Grid container justify='center'>
+              <Typography color='textPrimary' variant='h2'>
+                Carrinho
+              </Typography>
+            </Grid>
+
             <IconButton>
               <Typography
                 color='textPrimary'

@@ -71,12 +71,15 @@ export default class index extends Component {
   getCart() {
     return this.state.products
       .filter(product => product.quantity > 0)
-      .map(product => ({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        quantity: product.quantity
-      }));
+      .map(product => {
+        return {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: product.quantity,
+          images: product.images[0]
+        };
+      });
   }
 
   mergeCart(cart) {
