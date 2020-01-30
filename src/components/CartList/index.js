@@ -19,7 +19,6 @@ const CartList = props => {
               total={item.quantity * item.price}
               changeQuantity={changeQuantity}
               editable={editable}
-              getCart={getCart}
             />
           ))}
           <CartItem total={total} />
@@ -31,7 +30,8 @@ const CartList = props => {
 
 // proptypes
 CartList.propTypes = {
-  editable: PropTypes.bool
+  editable: PropTypes.bool,
+  getCart: PropTypes.func
 };
 
 CartList.defaultProps = {

@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+require('typeface-montserrat');
 
 const muitheme = createMuiTheme({
   palette: {
@@ -33,13 +34,11 @@ const muitheme = createMuiTheme({
         borderRadius: 15
       }
     },
+
     MuiButton: {
       root: {
         borderRadius: 15
       }
-    },
-    MuiButtonBase: {
-      backgroundColor: 'primary'
     }
   },
   typography: {

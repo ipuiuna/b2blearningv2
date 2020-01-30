@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
-import theme from '../../Theme';
-import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
 import Cart from '../../pages/Cart';
 import {
   AppBar,
   Toolbar,
-  Button,
-  ThemeProvider,
-  Box,
   Grid,
   Drawer,
   Typography,
@@ -21,52 +17,18 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import { NavLink } from 'react-router-dom';
 import logo from '../../img/logo-white.png';
-import PropTypes from 'prop-types';
-import './style.scss';
-
-const useStyles = makeStyles(theme => ({
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-    backgroundColor: theme.palette.primary.main
-  },
-  list: {
-    width: 300
-  },
-  fullList: {
-    width: 'auto'
-  },
-  root: {
-    flexGrow: 1
-  },
-  logo: {
-    height: '43px'
-  },
-  toolbar: {
-    justifyContent: 'space-between'
-  },
-  total: {
-    justifyContent: 'center',
-    padding: '0px'
-  },
-  buttonMargin: {
-    marginRight: '10px'
-  }
-}));
 
 export default function NavBarTop(props) {
+  const { loading, total, getCart, changeQuantity } = props;
   const classes = useStyles();
   const [state, setState] = useState({
     right: false
   });
 
-  const handleLogout = () => {
-    localStorage.removeItem('email');
-    window.location.pathname = '/';
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem('email');
+  //   window.location.pathname = '/';
+  // };
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -80,126 +42,98 @@ export default function NavBarTop(props) {
   };
 
   const sideList = side => (
-    <div
-      className={classes.fullList}
-      role='presentation'
-      onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}
-    >
-      <List>
-        <ListItem>
-          <Cart />
-        </ListItem>
+    // to close drawer
+    // onClick={toggleDrawer(side, false)}
+    // onKeyDown={toggleDrawer(side, false)}
+    <div role='presentation'>
+      <Grid container>
+        <List>
+          <ListItem>
+            <Cart
+              loading={loading}
+              total={total}
+              getCart={getCart}
+              changeQuantity={changeQuantity}
+            />
+          </ListItem>
 
-        <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
-          <Fab
-            variant='extended'
-            size='small'
-            className='finalizar-button finalizar-label'
-            type='submit'
-          >
-            Finalizar Compra
-          </Fab>
-        </ListItem>
-      </List>
+          <ListItem>
+            <Grid container justify='flex-end'>
+              <Typography variant='h2' color='primary'>
+                {`R$ ${total.toFixed(2)}`}
+              </Typography>
+            </Grid>
+          </ListItem>
+
+          <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
+            <Fab
+              disabled={total < 1}
+              className={classes.finalizarButton}
+              type='submit'
+              style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
+            >
+              <Typography variant='h3' color='primary'>
+                Finalizar Compra
+              </Typography>
+            </Fab>
+          </ListItem>
+        </List>
+      </Grid>
     </div>
   );
 
   return (
     <React.Fragment>
-      <ThemeProvider theme={theme}>
-        <Drawer
-          anchor='right'
-          open={state.right}
-          onClose={toggleDrawer('right', false)}
-        >
-          <div className={classes.drawerHeader}>
-            <Grid container justify='center'>
-              <Typography color='textPrimary' variant='h2'>
-                Carrinho
-              </Typography>
-            </Grid>
+      <Drawer
+        anchor='right'
+        open={state.right}
+        onClose={toggleDrawer('right', false)}
+      >
+        <div className={classes.drawerHeader}>
+          <Grid container justify='center'>
+            <Typography color='textPrimary' variant='h2'>
+              Carrinho
+            </Typography>
+          </Grid>
 
-            <IconButton>
-              <Typography
-                color='textPrimary'
-                onClick={toggleDrawer('right', false)}
+          <IconButton onClick={toggleDrawer('right', false)}>
+            <Typography color='textPrimary'>
+              <CloseIcon />
+            </Typography>
+          </IconButton>
+        </div>
+        {sideList('right')}
+      </Drawer>
+
+      <div className={classes.root}>
+        <AppBar position='fixed'>
+          <Container>
+            <Toolbar className={classes.toolbar}>
+              <NavLink
+                to={'/'}
+                isActive={match => {
+                  return match ? match.isExact : false;
+                }}
+                className='nav-link'
               >
-                <CloseIcon />
-              </Typography>
-            </IconButton>
-          </div>
-          {sideList('right')}
-        </Drawer>
+                <img className={classes.logo} alt='Ta na Mão' src={logo}></img>
+              </NavLink>
 
-        <Container maxWidth='sm'>
-          <div className={classes.root}>
-            <AppBar position='fixed'>
-              <Toolbar className={classes.toolbar}>
-                <NavLink
-                  to={'/'}
-                  isActive={match => {
-                    return match ? match.isExact : false;
-                  }}
-                  className='nav-link'
-                >
-                  <img
-                    className={classes.logo}
-                    alt='Ta na Mão'
-                    src={logo}
-                  ></img>
-                </NavLink>
-
-                <Grid
-                  container
-                  direction='row'
-                  justify='flex-end'
-                  alignItems='center'
-                  spacing={2}
-                >
-                  <ShoppingCartIcon
-                    onClick={toggleDrawer('right', true)}
-                  ></ShoppingCartIcon>
-
-                  <NavLink to={'/cart'} className='nav-link'>
-                    <Button
-                      className={classes.buttonMargin}
-                      variant='outlined'
-                      color='primary.dark'
-                    >
-                      <Typography component='div'>
-                        <Box color='primary.contrastText'>Cart</Box>
-                      </Typography>
-                    </Button>
-                  </NavLink>
-
-                  <Button
-                    className={classes.buttonMargin}
-                    variant='outlined'
-                    color='primary.dark'
-                    onClick={handleLogout}
-                  >
-                    <Typography component='div'>
-                      <Box color='primary.contrastText'>Logout</Box>
-                    </Typography>
-                  </Button>
-                  <Button variant='outlined' color='primary.dark'>
-                    <Typography component='div'>
-                      <Box color='primary.contrastText'>{`$ ${props.totals.toFixed(
-                        2
-                      )}`}</Box>
-                    </Typography>
-                  </Button>
-                </Grid>
-              </Toolbar>
-            </AppBar>
-          </div>
-        </Container>
-      </ThemeProvider>
+              <Grid
+                container
+                direction='row'
+                justify='flex-end'
+                alignItems='center'
+                spacing={2}
+              >
+                <ShoppingCartIcon
+                  onClick={toggleDrawer('right', true)}
+                ></ShoppingCartIcon>
+              </Grid>
+            </Toolbar>
+          </Container>
+        </AppBar>
+      </div>
     </React.Fragment>
   );
 }
-
-NavBarTop.propTypes = {
-  classes: PropTypes.object.isRequired
-};

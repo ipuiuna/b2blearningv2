@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Footer from '../Footer';
 import {
   Grid,
   AppBar,
@@ -17,65 +18,13 @@ import TouchAppIcon from '@material-ui/icons/TouchApp';
 import MoodIcon from '@material-ui/icons/Mood';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import CloseIcon from '@material-ui/icons/Close';
-import { makeStyles } from '@material-ui/core/styles';
 import logo from '../../assets/img/logo-white.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import muitheme from '../../Theme';
+import useStyles from './styles';
 import './style.css';
-
-const drawerWidth = 250;
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    height: 312,
-    width: 300,
-    marginTop: 24,
-    marginBottom: 24,
-    backgroundColor: '#fff',
-    borderRadius: 16
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0
-  },
-  drawerPaper: {
-    width: drawerWidth
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-start'
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    marginRight: -drawerWidth
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen
-    }),
-    marginRight: 0
-  },
-  inicialContent: {
-    marginLeft: 48
-  },
-  landingIcons: {
-    color: muitheme.palette.primary.main
-  },
-  inputFields: {
-    color: muitheme.palette.primary.main
-  }
-}));
 
 export default function Login(props) {
   const classes = useStyles();
@@ -202,7 +151,13 @@ export default function Login(props) {
           </Container>
         </AppBar>
       </Grid>
-      <Grid item style={{ backgroundColor: muitheme.palette.primary.main }}>
+      <Grid
+        item
+        style={{
+          backgroundColor: muitheme.palette.primary.main,
+          paddingTop: 25
+        }}
+      >
         <Container>
           <Grid className='landing-page' container justify='flex-start'>
             <Link edge='start' aria-label='inicio'>
@@ -231,7 +186,12 @@ export default function Login(props) {
           <Typography variant='subtitle1' align='left' color='textPrimary'>
             reune tudo para o seu churrasco.
           </Typography>
-          <Grid container justify='center' spacing={4}>
+          <Grid
+            container
+            justify='center'
+            spacing={4}
+            style={{ paddingTop: 50, paddingBottom: 50 }}
+          >
             <Grid item>
               <Paper className={classes.paper}>
                 <DoneIcon className={`landing-icons ${classes.landingIcons}`} />
@@ -300,13 +260,13 @@ export default function Login(props) {
       </Grid>
 
       <Grid
+        className={classes.linksGrid}
         style={{ backgroundColor: '#fff', marginTop: 0, marginBottom: 8 }}
         container
         direction='row'
         justify='center'
-        spacing={10}
       >
-        <Grid item>
+        <Grid item className={classes.linksGridItem}>
           <Grid container direction='column'>
             <Typography variant='h6'>INSTITUCIONAL</Typography>
             <Link>marca</Link>
@@ -314,7 +274,7 @@ export default function Login(props) {
             <Link>fale conosco</Link>
           </Grid>
         </Grid>
-        <Grid item>
+        <Grid item className={classes.linksGridItem}>
           <Grid container direction='column'>
             <Typography variant='h6'>MINHA CONTA</Typography>
             <Link>conta</Link>
@@ -344,26 +304,5 @@ export default function Login(props) {
         </Typography>
       </Grid>
     </div>
-
-    // <div>
-    //   <form onSubmit={this.handleSubmit}>
-    //     <h1>{title}</h1>
-    //     <input
-    //       type='email'
-    //       name='email'
-    //       placeholder='Type your email...'
-    //       onChange={this.handleChange}
-    //       required
-    //     />
-    //     <input
-    //       type='password'
-    //       name='password'
-    //       placeholder='Type your password...'
-    //       onChange={this.handleChange}
-    //       required
-    //     />
-    //     <button type='submit'>Login</button>
-    //   </form>
-    // </div>
   );
 }
