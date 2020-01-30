@@ -1,7 +1,6 @@
 import React from 'react';
 import CartItem from '../CartItem';
 import PropTypes from 'prop-types';
-import './style.scss';
 
 const CartList = props => {
   const { total, getCart, changeQuantity, editable } = props;
