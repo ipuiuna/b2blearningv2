@@ -1,15 +1,18 @@
 import { makeStyles } from '@material-ui/core/styles';
-const useStyles = makeStyles({
+
+const useStyles = makeStyles(theme => ({
   card: {
     display: 'flex',
     maxWidth: '266px',
-    minHeight: 'calc(100% - 20px)',
-    margin: '12px',
+    margin: '8px',
     backgroundColor: '#fff',
     alignContent: 'space-around',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    padding: '10px 0px'
+    padding: '10px 0px',
+    [theme.breakpoints.down('xs')]: {
+      margin: '0 auto'
+    }
   },
   textField: {
     padding: 16,
@@ -27,5 +30,5 @@ const useStyles = makeStyles({
     alignSelf: 'center',
     padding: 5
   }
-});
+}));
 export default useStyles;

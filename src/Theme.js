@@ -1,4 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { red } from '@material-ui/core/colors';
 require('typeface-montserrat');
 
 const muitheme = createMuiTheme({
@@ -34,11 +35,17 @@ const muitheme = createMuiTheme({
         borderRadius: 15
       }
     },
-
     MuiButton: {
       root: {
         borderRadius: 15
-      }
+      },
+      contained: {
+        '&$disabled': {
+          boxShadow:
+            '-2px 2px 1px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12)'
+        }
+      },
+      disabled: {}
     }
   },
   typography: {

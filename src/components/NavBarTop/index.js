@@ -66,16 +66,18 @@ export default function NavBarTop(props) {
           </ListItem>
 
           <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
-            <Fab
-              disabled={total < 1}
-              className={classes.finalizarButton}
-              type='submit'
-              style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
-            >
-              <Typography variant='h3' color='primary'>
-                Finalizar Compra
-              </Typography>
-            </Fab>
+            <NavLink style={{ textDecoration: 'none' }} to='/checkout'>
+              <Fab
+                disabled={total < 1}
+                className={classes.finalizarButton}
+                type='submit'
+                style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
+              >
+                <Typography variant='h3' color='primary'>
+                  Finalizar Compra
+                </Typography>
+              </Fab>
+            </NavLink>
           </ListItem>
         </List>
       </Grid>

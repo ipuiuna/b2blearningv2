@@ -12,7 +12,11 @@ export default () => {
     <CartManager>
       {(loading, products, total, getCart, changeQuantity, payments) => (
         <div>
-          <NavBarTop totals={total} />
+          <NavBarTop
+            total={total}
+            getCart={getCart}
+            changeQuantity={changeQuantity}
+          />
           <Container>
             {loading ? (
               <div>Loading your products...</div>
