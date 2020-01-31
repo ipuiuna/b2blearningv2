@@ -1,6 +1,5 @@
 import React from 'react';
 import CartlList from '../../components/CartList';
-import CartManager from '../../components/CartManager';
 
 export default props => {
   const { loading, total, getCart, changeQuantity } = props;

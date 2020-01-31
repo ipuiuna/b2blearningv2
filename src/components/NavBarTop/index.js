@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import useStyles from './styles';
 import Cart from '../../pages/Cart';
+import Badge from '@material-ui/core/Badge';
 import {
   AppBar,
   Toolbar,
@@ -128,9 +129,17 @@ export default function NavBarTop(props) {
                 alignItems='center'
                 spacing={2}
               >
-                <ShoppingCartIcon
-                  onClick={toggleDrawer('right', true)}
-                ></ShoppingCartIcon>
+                <Badge
+                  style={{ cursor: 'pointer' }}
+                  badgeContent={getCart().length}
+                  max={99}
+                  color='error'
+                >
+                  <ShoppingCartIcon
+                    style={{ cursor: 'pointer' }}
+                    onClick={toggleDrawer('right', true)}
+                  ></ShoppingCartIcon>
+                </Badge>
               </Grid>
             </Toolbar>
           </Container>

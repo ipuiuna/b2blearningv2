@@ -11,8 +11,9 @@ export default function Footer() {
     window.location.pathname = '/';
   };
   return (
-    <React.Fragment>
+    <Grid container className={classes.footerBottom}>
       <Grid
+        container
         style={{
           backgroundColor: muitheme.palette.secondary.main
         }}
@@ -74,6 +75,6 @@ export default function Footer() {
           Bud Light Team, ABInbev. 2020
         </Typography>
       </Grid>
-    </React.Fragment>
+    </Grid>
   );
 }

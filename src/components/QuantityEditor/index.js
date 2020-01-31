@@ -1,5 +1,7 @@
 import React from 'react';
 import useStyles from './styles';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
 import { Button, Box, Typography, ButtonGroup } from '@material-ui/core';
 
 export default function QuantityEditor(props) {
@@ -15,7 +17,7 @@ export default function QuantityEditor(props) {
         color='secondary'
         variant='contained'
       >
-        <Typography variant='h2'>-</Typography>
+        <RemoveIcon color={quantity <= min ? '#C4C4C4' : 'primary'} />
       </Button>
 
       <Box
@@ -26,7 +28,11 @@ export default function QuantityEditor(props) {
         }}
         boxShadow={2}
       >
-        <Typography className={classes.typographyQuantityBox} variant='h2'>
+        <Typography
+          color='primary'
+          className={classes.typographyQuantityBox}
+          variant='h2'
+        >
           {quantity}
         </Typography>
       </Box>
@@ -37,7 +43,7 @@ export default function QuantityEditor(props) {
         variant='contained'
         color='secondary'
       >
-        <Typography variant='h2'>+</Typography>
+        <AddIcon color='primary' />
       </Button>
     </ButtonGroup>
   );
