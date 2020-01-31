@@ -20,6 +20,7 @@ export default class index extends Component {
     fetch('https://abi-bus-api.herokuapp.com/api/paymentMethods')
       .then(data =>
         data.json().then(json => {
+          json.map(jsonItem => (jsonItem['selected'] = false));
           this.setState({ payments: json });
         })
       )
@@ -57,6 +58,19 @@ export default class index extends Component {
       this.calcTotal();
       this.saveCart();
     }
+  }
+
+  selectPaymentMethod(method) {
+    const newPaymentArray = this.state.payments;
+    newPaymentArray.map(item => {
+      if (item.id === method) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+    });
+    this.setState({ payments: newPaymentArray });
+    console.log('payments: ', this.state.payments);
   }
 
   calcTotal() {
@@ -117,7 +131,8 @@ export default class index extends Component {
       total,
       this.getCart.bind(this),
       this.changeQuantity.bind(this),
-      payments
+      payments,
+      this.selectPaymentMethod.bind(this)
     );
   }
 }

@@ -26,7 +26,7 @@ export default function Product({ product, changeQuantity, getCart }) {
       </Grid>
 
       <CardContent className={classes.content}>
-        <Typography gutterBottom variant='h3' component='h2'>
+        <Typography gutterBottom color='primary' variant='h3' component='h2'>
           {title}
         </Typography>
         <Typography

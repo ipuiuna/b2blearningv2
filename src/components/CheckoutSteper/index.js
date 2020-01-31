@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import GetStepContent from './GetStepContent';
 import useStyles from './styles';
 import {
@@ -16,10 +16,24 @@ function getSteps() {
 }
 
 export default function CheckoutStepper(props) {
-  const { getCart, total, changeQuantity } = props;
+  const {
+    getCart,
+    total,
+    changeQuantity,
+    payments,
+    selectPaymentMethod
+  } = props;
   const classes = useStyles();
-  const [activeStep, setActiveStep] = React.useState(0);
+  const [activeStep, setActiveStep] = useState(0);
+  const [enabledButton, setenabledButton] = useState(false);
   const steps = getSteps();
+
+  useEffect(() => {
+    payments.find(item => {
+      setenabledButton(item.selected);
+      return item.selected;
+    });
+  });
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -37,7 +51,7 @@ export default function CheckoutStepper(props) {
             const stepProps = {};
             const labelProps = {};
             return (
-              <Step key={label} {...stepProps}>
+              <Step key={index} {...stepProps}>
                 <StepLabel {...labelProps}>
                   <Typography variant='h3' color='primary'>
                     {label}
@@ -59,13 +73,13 @@ export default function CheckoutStepper(props) {
         ) : (
           <div>
             <Typography className={classes.instructions}>
-              {console.log('activestep', activeStep)}
-              {console.log('CheckoutStepper', getCart)}
               <GetStepContent
                 activeStep={activeStep}
                 total={total}
                 getCart={getCart}
                 changeQuantity={changeQuantity}
+                payments={payments}
+                selectPaymentMethod={selectPaymentMethod}
               />
             </Typography>
             <Grid container justify='space-between'>
@@ -84,10 +98,12 @@ export default function CheckoutStepper(props) {
                   </Typography>
                 )}
               </Button>
+              {/*renderezar dois botoes diferentes*/}
 
               <Button
                 variant='contained'
                 color='secondary'
+                disabled={enabledButton}
                 onClick={handleNext}
                 className={classes.button}
               >

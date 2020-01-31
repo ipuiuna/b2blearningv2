@@ -1,31 +1,54 @@
-import React, { Component } from 'react';
-import Button from '@material-ui/core/Button';
+import React, { useEffect } from 'react';
+import {
+  Box,
+  Grid,
+  FormControl,
+  FormControlLabel,
+  RadioGroup,
+  Radio
+} from '@material-ui/core';
 
-export class Step3 extends Component {
-  continue = e => {
-    e.preventDefault();
-    this.props.nextStep();
-  };
+export default function Step3(props) {
+  const { payments, selectPaymentMethod } = props;
+  console.log('payments Step 3 ', payments);
 
-  back = e => {
-    e.preventDefault();
-    this.props.prevStep();
-  };
-
-  render() {
-    return (
-      <React.Fragment>
-        <div>STEP 3</div>
-        <Button color='secondary' variant='contained' onClick={this.back}>
-          Back
-        </Button>
-
-        <Button color='primary' variant='contained' onClick={this.continue}>
-          Continue
-        </Button>
-      </React.Fragment>
-    );
-  }
+  return (
+    <Box
+      boxShadow={2}
+      style={{
+        padding: '5% 15% 20% 15%',
+        backgroundColor: 'rgba(229, 229, 229, 0.35)'
+      }}
+    >
+      <RadioGroup>
+        <Grid
+          direction='row'
+          justify='space-around'
+          container
+          sm
+          style={{
+            paddingBottom: '50px'
+          }}
+        >
+          {payments.map((item, idx) => (
+            <Grid item key={idx}>
+              <FormControl>
+                <FormControlLabel
+                  value={item.id}
+                  control={
+                    <Radio
+                      color='primary'
+                      checked={item.selected}
+                      onClick={() => selectPaymentMethod(item.id)}
+                    />
+                  }
+                  label={item.name}
+                />
+              </FormControl>
+            </Grid>
+          ))}
+        </Grid>
+      </RadioGroup>
+    </Box>
+  );
 }
-
-export default Step3;

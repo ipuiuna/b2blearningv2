@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import useStyles from './styles';
 import {
@@ -15,6 +15,7 @@ export default function Step1(props) {
   const { getCart, total, changeQuantity } = props;
   const classes = useStyles();
   const items = getCart();
+
   return (
     <TableContainer>
       {console.log('STEP1', getCart)}

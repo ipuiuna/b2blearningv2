@@ -61,6 +61,26 @@ const muitheme = createMuiTheme({
         boxShadow:
           'rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px'
       }
+    },
+    MuiInputBase: {
+      input: {
+        color: '#000'
+      }
+    },
+    MuiInput: {
+      underline: {
+        '&:hover:not($disabled):after': {
+          borderBottom: '2px solid #825542'
+        },
+        '&:hover:not($disabled):before': {
+          borderBottom: '2px solid #825542' // String should be terminated
+        }
+      }
+    },
+    MuiRadio: {
+      root: {
+        color: '#825542'
+      }
     }
   },
   typography: {

@@ -8,15 +8,13 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     paddingTop: 10,
     paddingBottom: 10,
-    paddingRight: 57,
-    paddingLeft: 57
+    width: '290px'
   },
   buttonBack: {
     marginRight: theme.spacing(1),
     paddingTop: 10,
     paddingBottom: 10,
-    paddingRight: 111,
-    paddingLeft: 112
+    width: '290px'
   },
   instructions: {
     marginTop: theme.spacing(1),

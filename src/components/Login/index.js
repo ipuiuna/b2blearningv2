@@ -195,7 +195,7 @@ export default function Login(props) {
               <Paper className={classes.paper}>
                 <DoneIcon className={`landing-icons ${classes.landingIcons}`} />
                 <Typography variant='h5' color='primary'>
-                  Valide seu cep
+                  VALIDE SEU CEP
                 </Typography>
                 <Typography color='primary'>
                   Antes de selecionar suas
@@ -213,7 +213,7 @@ export default function Login(props) {
                   className={`landing-icons ${classes.landingIcons}`}
                 />
                 <Typography variant='h5' color='primary'>
-                  Escolha seus produtos
+                  ESCOLHA SEUS PRODUTOS
                 </Typography>
                 <Typography color='primary'>adicione seus produtos</Typography>
                 <Typography color='primary'>
@@ -226,7 +226,7 @@ export default function Login(props) {
               <Paper className={classes.paper}>
                 <MoodIcon className={`landing-icons ${classes.landingIcons}`} />
                 <Typography variant='h5' color='primary'>
-                  Receba em casa
+                  RECEBA EM CASA
                 </Typography>
                 <Typography color='primary'>acompanhe seu pedido em</Typography>
                 <Typography color='primary'>

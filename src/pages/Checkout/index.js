@@ -9,7 +9,15 @@ export default () => {
   const classes = useStyle();
   return (
     <CartManager>
-      {(loading, products, total, getCart, changeQuantity, payments) => (
+      {(
+        loading,
+        products,
+        total,
+        getCart,
+        changeQuantity,
+        payments,
+        selectPaymentMethod
+      ) => (
         <div>
           <NavBarTop
             total={total}
@@ -26,6 +34,7 @@ export default () => {
                 getCart={getCart}
                 payments={payments}
                 changeQuantity={changeQuantity}
+                selectPaymentMethod={selectPaymentMethod}
               />
             </Container>
           )}
