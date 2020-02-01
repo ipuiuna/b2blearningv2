@@ -29,6 +29,7 @@ export default () => {
             <div>Loading your products...</div>
           ) : (
             <Container className={classes.checkoutStepper}>
+              {console.log('payments no checkout page')}
               <CheckoutStepper
                 total={total}
                 getCart={getCart}

@@ -68,9 +68,9 @@ export default class index extends Component {
       } else {
         item.selected = false;
       }
+      return 0;
     });
     this.setState({ payments: newPaymentArray });
-    console.log('payments: ', this.state.payments);
   }
 
   calcTotal() {

@@ -1,9 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { TextField, Grid, Box, FormControl } from '@material-ui/core';
 import useStyles from './style';
 
 export default function Step2() {
   const classes = useStyles();
+  const [rua, setRua] = useState('');
+  const [numero, setNumero] = useState('');
+  const [cidade, setCidade] = useState('');
+
+  const handleChangeRua = evt => {
+    setRua(evt.target.value);
+  };
+
+  const handleChangeNumero = evt => {
+    setNumero(evt.target.value);
+  };
+
+  const handleChangeCidade = evt => {
+    setCidade(evt.target.value);
+  };
 
   return (
     <Box
@@ -35,6 +50,7 @@ export default function Step2() {
                 label='Rua'
                 id='margin-none'
                 className={classes.textField}
+                onChange={handleChangeRua}
               />
             </FormControl>
           </Grid>
@@ -44,6 +60,7 @@ export default function Step2() {
                 label='Número'
                 id='margin-none'
                 className={classes.textField}
+                onChange={handleChangeNumero}
               />
             </FormControl>
           </Grid>
@@ -65,6 +82,7 @@ export default function Step2() {
                 label='Cidade'
                 id='margin-none'
                 className={classes.textField}
+                onChange={handleChangeCidade}
               />
             </FormControl>
           </Grid>

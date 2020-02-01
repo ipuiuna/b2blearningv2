@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from 'react';
+import React from 'react';
 import GetStepContent from './GetStepContent';
 import useStyles from './styles';
 import {
@@ -16,24 +16,14 @@ function getSteps() {
 }
 
 export default function CheckoutStepper(props) {
-  const {
-    getCart,
-    total,
-    changeQuantity,
-    payments,
-    selectPaymentMethod
-  } = props;
+  const { getCart, total, payments, selectPaymentMethod } = props;
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
-  const [enabledButton, setenabledButton] = useState(false);
+  const [activeStep, setActiveStep] = React.useState(0);
   const steps = getSteps();
 
-  useEffect(() => {
-    payments.find(item => {
-      setenabledButton(item.selected);
-      return item.selected;
-    });
-  });
+  const checkPayment = () => {
+    return payments.some(payment => payment.selected === true);
+  };
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -67,17 +57,19 @@ export default function CheckoutStepper(props) {
         {activeStep === steps.length ? (
           <div>
             <Typography className={classes.instructions}>
+              {localStorage.removeItem('cart')}
               Seu pedido foi realizado com sucesso!
             </Typography>
           </div>
         ) : (
           <div>
             <Typography className={classes.instructions}>
+              {console.log('activestep', activeStep)}
+              {console.log('CheckoutStepper', getCart)}
               <GetStepContent
                 activeStep={activeStep}
                 total={total}
                 getCart={getCart}
-                changeQuantity={changeQuantity}
                 payments={payments}
                 selectPaymentMethod={selectPaymentMethod}
               />
@@ -98,21 +90,36 @@ export default function CheckoutStepper(props) {
                   </Typography>
                 )}
               </Button>
-              {/*renderezar dois botoes diferentes*/}
 
-              <Button
-                variant='contained'
-                color='secondary'
-                disabled={enabledButton}
-                onClick={handleNext}
-                className={classes.button}
-              >
-                <Typography variant='h3' color='primary'>
-                  {activeStep === steps.length - 1
-                    ? 'Finalizar pedido'
-                    : 'Confirmar pedido'}
-                </Typography>
-              </Button>
+              {(activeStep === 2 && !checkPayment()) ||
+              (activeStep === 0 && getCart().length === 0) ? (
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  disabled={true}
+                  onClick={handleNext}
+                  className={classes.button}
+                >
+                  <Typography variant='h3' color='primary'>
+                    {activeStep === steps.length - 1
+                      ? 'Finalizar pedido'
+                      : 'Confirmar pedido'}
+                  </Typography>
+                </Button>
+              ) : (
+                <Button
+                  variant='contained'
+                  color='secondary'
+                  onClick={handleNext}
+                  className={classes.button}
+                >
+                  <Typography variant='h3' color='primary'>
+                    {activeStep === steps.length - 1
+                      ? 'Finalizar pedido'
+                      : 'Confirmar pedido'}
+                  </Typography>
+                </Button>
+              )}
             </Grid>
           </div>
         )}

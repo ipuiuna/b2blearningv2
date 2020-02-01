@@ -7,7 +7,7 @@ import useStyles from './styles';
 export default function Footer() {
   const classes = useStyles();
   const handleLogout = () => {
-    localStorage.removeItem('email');
+    localStorage.removeItem('user');
     window.location.pathname = '/';
   };
   return (

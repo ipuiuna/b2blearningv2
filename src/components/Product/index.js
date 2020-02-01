@@ -13,7 +13,7 @@ export default function Product({ product, changeQuantity, getCart }) {
     : null;
 
   const classes = useStyles();
-  const { title, price, description, productKey, images } = product;
+  const { title, price, images } = product;
 
   return (
     <Card className={classes.card}>

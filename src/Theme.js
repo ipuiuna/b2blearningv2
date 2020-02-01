@@ -31,7 +31,7 @@ const muitheme = createMuiTheme({
     },
     MuiPaper: {
       rounded: {
-        borderRadius: 15
+        borderRadius: 5
       }
     },
     MuiButton: {

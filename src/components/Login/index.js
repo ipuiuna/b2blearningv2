@@ -53,7 +53,10 @@ export default function Login(props) {
 
     fetch(login_url, { method: 'post' }).then(response => {
       if (response.ok) {
-        localStorage.setItem('email', email);
+        localStorage.setItem('user', 'ok');
+        response.json().then(json => {
+          localStorage.setItem('user', JSON.stringify(json));
+        });
         if (onLogin) {
           onLogin(true);
         }
