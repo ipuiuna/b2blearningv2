@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 import muitheme from '../../Theme';
 
-const drawerWidth = 250;
+const drawerWidth = 350;
 
 const useStyles = makeStyles(theme => ({
   paper: {

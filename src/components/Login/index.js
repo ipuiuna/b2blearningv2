@@ -75,43 +75,45 @@ export default function Login(props) {
       onClick={handleDrawerOpen}
     >
       <List>
-        <ListItem>
-          <ListItemText>
-            <Typography variant='h5' align='center' color='textSecondary'>
-              Olá!
-            </Typography>
-          </ListItemText>
-        </ListItem>
-        <form onSubmit={handleSubmit}>
+        <Grid container justify='center'>
           <ListItem>
-            <Input
-              className={classes.inputFields}
-              type='email'
-              name='email'
-              label='Usuário'
-              onChange={handleChangeEmail}
-            />
+            <ListItemText>
+              <Typography variant='h5' align='center' color='textSecondary'>
+                Olá!
+              </Typography>
+            </ListItemText>
           </ListItem>
-          <ListItem>
-            <Input
-              className={classes.inputFields}
-              type='password'
-              name='password'
-              label='Senha'
-              onChange={handleChangePassword}
-            />
-          </ListItem>
-          <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
-            <Fab
-              variant='extended'
-              size='small'
-              className='login-buton login-label'
-              type='submit'
-            >
-              Entrar
-            </Fab>
-          </ListItem>
-        </form>
+          <form onSubmit={handleSubmit}>
+            <ListItem>
+              <Input
+                className={classes.inputFields}
+                type='email'
+                name='email'
+                label='Usuário'
+                onChange={handleChangeEmail}
+              />
+            </ListItem>
+            <ListItem>
+              <Input
+                className={classes.inputFields}
+                type='password'
+                name='password'
+                label='Senha'
+                onChange={handleChangePassword}
+              />
+            </ListItem>
+            <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
+              <Fab
+                variant='extended'
+                size='small'
+                className='login-buton login-label'
+                type='submit'
+              >
+                Entrar
+              </Fab>
+            </ListItem>
+          </form>
+        </Grid>
       </List>
     </div>
   );
