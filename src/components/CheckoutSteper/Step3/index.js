@@ -10,13 +10,12 @@ import {
 
 export default function Step3(props) {
   const { payments, selectPaymentMethod } = props;
-  console.log('payments Step 3 ', payments);
 
   return (
     <Box
       boxShadow={2}
       style={{
-        padding: '5% 15% 20% 15%',
+        padding: '10% 15% 10% 15%',
         backgroundColor: 'rgba(229, 229, 229, 0.35)'
       }}
     >
@@ -25,9 +24,8 @@ export default function Step3(props) {
           direction='row'
           justify='space-around'
           container
-          sm
           style={{
-            paddingBottom: '50px'
+            paddingBottom: '40px'
           }}
         >
           {payments.map((item, idx) => (

@@ -81,6 +81,11 @@ const muitheme = createMuiTheme({
       root: {
         color: '#825542'
       }
+    },
+    MuiFormLabel: {
+      root: {
+        color: '#825542'
+      }
     }
   },
   typography: {

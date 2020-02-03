@@ -44,7 +44,7 @@ export default function Product({ product, changeQuantity, getCart }) {
           decItem={decItem}
           quantity={product.quantity}
           min={0}
-        ></QuantityEditor>
+        />
       </Grid>
     </Card>
   );

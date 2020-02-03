@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { TextField, Grid, Box, FormControl } from '@material-ui/core';
 import useStyles from './style';
 
-export default function Step2() {
+export default function Step2(props) {
+  const { setNumero, setRua, setCidade } = props;
   const classes = useStyles();
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [cidade, setCidade] = useState('');
 
   const handleChangeRua = evt => {
     setRua(evt.target.value);
@@ -28,27 +26,26 @@ export default function Step2() {
       <Grid
         direction='column'
         container
-        sm
         style={{
           paddingBottom: '50px'
         }}
       >
-        <Grid item xs={12}>
+        <Grid item xs={12} sm>
           <FormControl fullWidth>
             <TextField
-              id='margin-none'
+              id='name'
               label='Nome completo'
               className={classes.textField}
-              color='#000'
+              color='primary'
             />
           </FormControl>
         </Grid>
-        <Grid container xs={12} direction='row'>
+        <Grid container direction='row'>
           <Grid item xs={6}>
             <FormControl fullWidth>
               <TextField
                 label='Rua'
-                id='margin-none'
+                id='address'
                 className={classes.textField}
                 onChange={handleChangeRua}
               />
@@ -58,7 +55,7 @@ export default function Step2() {
             <FormControl fullWidth>
               <TextField
                 label='Número'
-                id='margin-none'
+                id='number'
                 className={classes.textField}
                 onChange={handleChangeNumero}
               />
@@ -68,19 +65,19 @@ export default function Step2() {
             <FormControl fullWidth>
               <TextField
                 label='Bairro'
-                id='margin-none'
+                id='bairro'
                 className={classes.textField}
               />
             </FormControl>
           </Grid>
         </Grid>
 
-        <Grid container xs={12} direction='row'>
+        <Grid container direction='row'>
           <Grid item xs={6}>
             <FormControl fullWidth>
               <TextField
                 label='Cidade'
-                id='margin-none'
+                id='city'
                 className={classes.textField}
                 onChange={handleChangeCidade}
               />
@@ -90,18 +87,14 @@ export default function Step2() {
             <FormControl>
               <TextField
                 label='Estado'
-                id='margin-none'
+                id='state'
                 className={classes.textField}
               />
             </FormControl>
           </Grid>
           <Grid item xs={4}>
             <FormControl>
-              <TextField
-                label='Cep'
-                id='margin-none'
-                className={classes.textField}
-              />
+              <TextField label='Cep' id='cep' className={classes.textField} />
             </FormControl>
           </Grid>
         </Grid>

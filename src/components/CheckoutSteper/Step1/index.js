@@ -18,8 +18,7 @@ export default function Step1(props) {
 
   return (
     <TableContainer>
-      {console.log('STEP1', getCart)}
-      <Table className={classes.table} aria-label='simple table'>
+      <Table className={classes.table}>
         <TableHead style={{ backgroundColor: 'rgba(229, 229, 229, 0.35)' }}>
           <TableRow>
             <TableCell>
@@ -45,8 +44,11 @@ export default function Step1(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {items.map(item => (
-            <TableRow style={{ backgroundColor: 'rgba(229, 229, 229, 0.35)' }}>
+          {items.map((item, idx) => (
+            <TableRow
+              key={idx}
+              style={{ backgroundColor: 'rgba(229, 229, 229, 0.35)' }}
+            >
               <TableCell>
                 <Typography color='primary'>{item.title}</Typography>
               </TableCell>

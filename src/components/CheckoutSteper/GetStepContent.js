@@ -11,7 +11,10 @@ export default function GetStepContent(props) {
     getCart,
     changeQuantity,
     payments,
-    selectPaymentMethod
+    selectPaymentMethod,
+    setCidade,
+    setRua,
+    setNumero
   } = props;
   switch (activeStep) {
     case 0:
@@ -27,7 +30,7 @@ export default function GetStepContent(props) {
     case 1:
       return (
         <div>
-          <Step2 />
+          <Step2 setRua={setRua} setNumero={setNumero} setCidade={setCidade} />
         </div>
       );
     case 2:
@@ -40,7 +43,7 @@ export default function GetStepContent(props) {
         </div>
       );
     default:
-      return 'Passo desconhecido';
+      return <div>'Passo desconhecido'</div>;
   }
 }
 GetStepContent.propTypes = {
