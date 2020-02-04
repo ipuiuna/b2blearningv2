@@ -11,6 +11,7 @@ class Login extends Component {
   };
 
   handleSubmit = evt => {
+    evt.preventDefault();
     const { onLogin } = this.props;
     const login_url = `https://abi-bus-api.herokuapp.com/api/users/login?email=${this.state.email}&password=${this.state.password}`;
     fetch(login_url, { method: 'post' }).then(response => {
@@ -31,22 +32,24 @@ class Login extends Component {
     const title = this.props.title || 'LOGIN';
     return (
       <div>
-        <h1>{title}</h1>
-        <input
-          type='email'
-          name='email'
-          placeholder='Type your email...'
-          onChange={this.handleChange}
-        />
-        <input
-          type='password'
-          name='password'
-          placeholder='Type your password...'
-          onChange={this.handleChange}
-        />
-        <button type='button' onClick={this.handleSubmit}>
-          Login
-        </button>
+        <form onSubmit={this.handleSubmit}>
+          <h1>{title}</h1>
+          <input
+            type='email'
+            name='email'
+            placeholder='Type your email...'
+            onChange={this.handleChange}
+            required
+          />
+          <input
+            type='password'
+            name='password'
+            placeholder='Type your password...'
+            onChange={this.handleChange}
+            required
+          />
+          <button type='submit'>Login</button>
+        </form>
       </div>
     );
   }

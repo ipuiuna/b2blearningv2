@@ -1,18 +1,32 @@
-import React, { Component } from 'react';
-import ProductListInCart from '../../components/ProducListInCart';
+import React from 'react';
+import CartlList from '../../components/CartList';
 import NavBarTop from '../../components/NavBarTop';
 import Footer from '../../components/Footer';
+import CartManager from '../../components/CartManager';
+import { Container } from 'react-bootstrap';
 
-class Cart extends Component {
-  render() {
-    return (
-      <div>
-        <NavBarTop />
-        <ProductListInCart />
-        <Footer />
-      </div>
-    );
-  }
-}
-
-export default Cart;
+export default () => {
+  return (
+    <CartManager>
+      {(loading, products, total, getCart, changeQuantity) => (
+        <div>
+          <NavBarTop totals={total} />
+          <Container>
+            {loading ? (
+              <div>Loading your cart...</div>
+            ) : (
+              <React.Fragment>
+                <CartlList
+                  total={total}
+                  getCart={getCart}
+                  changeQuantity={changeQuantity}
+                />
+              </React.Fragment>
+            )}
+          </Container>
+          <Footer />
+        </div>
+      )}
+    </CartManager>
+  );
+};
