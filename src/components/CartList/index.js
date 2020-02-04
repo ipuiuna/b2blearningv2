@@ -1,50 +1,45 @@
 import React from 'react';
 import CartItem from '../CartItem';
-import './style.scss';
+import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 
-export default ({ total, getCart, changeQuantity }) => {
+const CartList = props => {
+  const { total, getCart, changeQuantity, editable } = props;
   const items = getCart();
   return (
-    <div>
-      <div className='table-container' role='table'>
-        <div
-          className='flex-table header'
-          role='rowgroup'
-          style={{ color: 'white' }}
-        >
-          <div className='flex-row first' role='columnheader'>
-            Product
-          </div>
-          <div className='flex-row' role='columnheader'>
-            Price
-          </div>
-          <div className='flex-row' role='columnheader'>
-            Qtdy
-          </div>
-          <div className='flex-row' role='columnheader'>
-            Totals
-          </div>
+    <div className='product-list'>
+      {items.length === 0 ? (
+        <div className='cart-empty'>
+          <Typography variant='h3' color='primary'>
+            Seu carrinho está vazio
+          </Typography>
         </div>
-      </div>
-      <div className='product-list'>
-        <div>
-          {items.length === 0 ? (
-            <div className='cart-empty'>Your cart is empty</div>
-          ) : (
-            <React.Fragment>
-              {items.map((item, idx) => (
-                <CartItem
-                  key={idx}
-                  item={item}
-                  total={item.quantity * item.price}
-                  changeQuantity={changeQuantity}
-                />
-              ))}
-              <CartItem total={total} />
-            </React.Fragment>
-          )}
-        </div>
-      </div>
+      ) : (
+        <React.Fragment>
+          {items.map((item, idx) => (
+            <CartItem
+              key={idx}
+              item={item}
+              total={item.quantity * item.price}
+              changeQuantity={changeQuantity}
+              editable={editable}
+            />
+          ))}
+          <CartItem total={total} />
+        </React.Fragment>
+      )}
     </div>
   );
 };
+
+// proptypes
+CartList.propTypes = {
+  editable: PropTypes.bool,
+  getCart: PropTypes.func
+};
+
+CartList.defaultProps = {
+  editable: true
+};
+
+export default CartList;

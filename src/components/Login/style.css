@@ -1,0 +1,36 @@
+.MuiFab-root.login-buton {
+  color: #825542;
+  font-weight: 700;
+}
+
+.MuiFab-root.login-buton:hover {
+  background-color: #f5a800;
+  color: #fff;
+}
+
+.login-label {
+  padding: 0px 20px;
+}
+
+.MuiTypography-root.MuiTypography-h4 {
+  margin-left: 48px;
+}
+
+.MuiTypography-root.MuiTypography-subtitle1 {
+  margin-left: 48px;
+}
+
+.landing-page.MuiGrid-container {
+  padding: 12px 0px 12px 48px;
+}
+
+.landing-icons {
+  margin-bottom: 60px;
+  padding-top: 18px;
+  transform: scale(4);
+}
+
+.expandless-icon {
+  margin-top: 8px;
+  transform: scale(1.6);
+}

@@ -1,22 +1,23 @@
 import React from 'react';
 import Product from '../Product';
-import { Row, Col } from 'react-bootstrap';
+import { Grid, Container } from '@material-ui/core';
+import './style.css';
 
 export default ({ products, ...others }) => {
   return (
-    <Row>
-      <Col lg={12}>
-        <Row className='justify-content-center'>
-          {products.map((product, idx) => (
+    <Container justify='center'>
+      <Grid container>
+        {products.map((product, idx) => (
+          <Grid item key={idx} lg={3} md={4} sm={6} xs={12}>
             <Product
               className='product'
               key={idx}
               product={product}
               {...others}
             />
-          ))}
-        </Row>
-      </Col>
-    </Row>
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };

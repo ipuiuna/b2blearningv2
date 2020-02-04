@@ -7,11 +7,26 @@ export default class index extends Component {
     loading: false,
     error: false,
     products: [],
-    total: 0
+    total: 0,
+    payments: []
   };
 
   componentDidMount() {
     this.loadProducts();
+    this.loadPayment();
+  }
+
+  loadPayment() {
+    fetch('https://abi-bus-api.herokuapp.com/api/paymentMethods')
+      .then(data =>
+        data.json().then(json => {
+          json.map(jsonItem => (jsonItem['selected'] = false));
+          this.setState({ payments: json });
+        })
+      )
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   loadProducts() {
@@ -45,6 +60,19 @@ export default class index extends Component {
     }
   }
 
+  selectPaymentMethod(method) {
+    const newPaymentArray = this.state.payments;
+    newPaymentArray.map(item => {
+      if (item.id === method) {
+        item.selected = true;
+      } else {
+        item.selected = false;
+      }
+      return 0;
+    });
+    this.setState({ payments: newPaymentArray });
+  }
+
   calcTotal() {
     let total = 0;
     this.getCart().forEach(item => {
@@ -57,12 +85,15 @@ export default class index extends Component {
   getCart() {
     return this.state.products
       .filter(product => product.quantity > 0)
-      .map(product => ({
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        quantity: product.quantity
-      }));
+      .map(product => {
+        return {
+          id: product.id,
+          title: product.title,
+          price: product.price,
+          quantity: product.quantity,
+          images: product.images[0]
+        };
+      });
   }
 
   mergeCart(cart) {
@@ -93,13 +124,15 @@ export default class index extends Component {
 
   render() {
     const { children } = this.props;
-    const { products, total, loading } = this.state;
+    const { products, total, loading, payments } = this.state;
     return children(
       loading,
       products,
       total,
       this.getCart.bind(this),
-      this.changeQuantity.bind(this)
+      this.changeQuantity.bind(this),
+      payments,
+      this.selectPaymentMethod.bind(this)
     );
   }
 }
