@@ -95,7 +95,7 @@ export default function CheckoutStepper(props) {
                   </Typography>
                 </Grid>
                 <Grid container justify='center'>
-                  <NavLink style={{ textDecoration: 'none' }} to='/checkout'>
+                  <NavLink style={{ textDecoration: 'none' }} to='/'>
                     <Button variant='contained' type='submit' color='secondary'>
                       <Typography variant='h3' color='primary'>
                         Novo pedido
