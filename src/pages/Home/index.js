@@ -13,20 +13,17 @@ export default props => {
           <NavBarTop
             total={total}
             getCart={getCart}
+            loading={loading}
             changeQuantity={changeQuantity}
           />
-          <Grid container className='product-list-container'>
-            {loading ? (
-              <div>Loading product list...</div>
-            ) : (
-              <React.Fragment>
-                <ProductList
-                  products={products}
-                  changeQuantity={changeQuantity}
-                  getCart={getCart}
-                />
-              </React.Fragment>
-            )}
+          <Grid container justify='center' className='product-list-container'>
+            <div style={{ marginTop: 20 }}>
+              <ProductList
+                products={products}
+                changeQuantity={changeQuantity}
+                getCart={getCart}
+              />
+            </div>
           </Grid>
           <Footer />
         </div>

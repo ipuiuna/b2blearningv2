@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import GetStepContent from './GetStepContent';
 import useStyles from './styles';
@@ -17,16 +17,28 @@ function getSteps() {
 }
 
 export default function CheckoutStepper(props) {
-  const { getCart, total, payments, selectPaymentMethod } = props;
+  const {
+    getCart,
+    total,
+    payments,
+    loading,
+    selectPaymentMethod,
+    managerState
+  } = props;
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
   const [cidade, setCidade] = useState('');
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState(null);
   const steps = getSteps();
 
+  useEffect(() => {
+    activeStep === steps.length && placeOrder();
+  });
+
   const placeOrder = () => {
+    managerState('loading', true);
     const customer = localStorage.getItem('user');
     const order = {
       products: getCart(),
@@ -44,9 +56,9 @@ export default function CheckoutStepper(props) {
       body: localStorage.getItem('order')
     }).then(response => {
       if (response.ok) {
-        console.log('order ok', localStorage.getItem('order'));
         localStorage.removeItem('cart', 'order');
         setOrder(true);
+        managerState('loading', false);
       }
     });
   };
@@ -85,38 +97,9 @@ export default function CheckoutStepper(props) {
 
       <div>
         {activeStep === steps.length ? (
-          <div>
-            {placeOrder()}
-            {order ? (
-              <Grid direction='column'>
-                <Grid container justify='center'>
-                  <Typography className={classes.instructions}>
-                    Seu pedido foi realizado com sucesso!
-                  </Typography>
-                </Grid>
-                <Grid container justify='center'>
-                  <NavLink style={{ textDecoration: 'none' }} to='/'>
-                    <Button variant='contained' type='submit' color='secondary'>
-                      <Typography variant='h3' color='primary'>
-                        Novo pedido
-                      </Typography>
-                    </Button>
-                  </NavLink>
-                </Grid>
-              </Grid>
-            ) : (
-              <Grid container justify='center'>
-                <Typography className={classes.instructions}>
-                  Ocorreu algum erro e seu pedido não pode ser processado, por
-                  favor tente novamente.
-                </Typography>
-              </Grid>
-            )}
-          </div>
+          <div>{finalStep(classes, order)}</div>
         ) : (
           <div>
-            {/* {console.log('activestep', activeStep)}
-              {console.log('CheckoutStepper', getCart)} */}
             <GetStepContent
               activeStep={activeStep}
               total={total}
@@ -180,5 +163,46 @@ export default function CheckoutStepper(props) {
         )}
       </div>
     </div>
+  );
+}
+
+function finalStep(classes, order) {
+  if (order) {
+    return successful(classes);
+  } else if (order !== null) {
+    return fail(classes);
+  }
+  return;
+}
+
+function fail(classes) {
+  return (
+    <Grid container justify='center'>
+      <Typography className={classes.instructions}>
+        Ocorreu um erro e seu pedido não pode ser processado, por favor tente
+        novamente.
+      </Typography>
+    </Grid>
+  );
+}
+
+function successful(classes) {
+  return (
+    <Grid direction='column'>
+      <Grid container justify='center'>
+        <Typography className={classes.instructions}>
+          Seu pedido foi realizado com sucesso!
+        </Typography>
+      </Grid>
+      <Grid container justify='center'>
+        <NavLink style={{ textDecoration: 'none' }} to='/'>
+          <Button variant='contained' type='submit' color='secondary'>
+            <Typography variant='h3' color='primary'>
+              Novo pedido
+            </Typography>
+          </Button>
+        </NavLink>
+      </Grid>
+    </Grid>
   );
 }

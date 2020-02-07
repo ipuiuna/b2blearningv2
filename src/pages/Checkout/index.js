@@ -16,28 +16,26 @@ export default () => {
         getCart,
         changeQuantity,
         payments,
-        selectPaymentMethod
+        selectPaymentMethod,
+        managerState
       ) => (
         <div>
           <NavBarTop
             total={total}
             getCart={getCart}
+            loading={loading}
             changeQuantity={changeQuantity}
           />
-
-          {loading ? (
-            <div>Loading your products...</div>
-          ) : (
-            <Container className={classes.checkoutStepper}>
-              <CheckoutStepper
-                total={total}
-                getCart={getCart}
-                payments={payments}
-                changeQuantity={changeQuantity}
-                selectPaymentMethod={selectPaymentMethod}
-              />
-            </Container>
-          )}
+          <Container className={classes.checkoutStepper}>
+            <CheckoutStepper
+              total={total}
+              getCart={getCart}
+              payments={payments}
+              changeQuantity={changeQuantity}
+              selectPaymentMethod={selectPaymentMethod}
+              managerState={managerState}
+            />
+          </Container>
         </div>
       )}
     </CartManager>

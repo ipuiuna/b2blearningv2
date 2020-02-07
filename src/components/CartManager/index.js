@@ -4,7 +4,7 @@ const CART_NAME = 'cart';
 
 export default class index extends Component {
   state = {
-    loading: false,
+    loading: true,
     error: false,
     products: [],
     total: 0,
@@ -30,7 +30,7 @@ export default class index extends Component {
   }
 
   loadProducts() {
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
     fetch('https://abi-bus-api.herokuapp.com/api/products')
       .then(data =>
         data.json().then(json => {
@@ -122,6 +122,14 @@ export default class index extends Component {
     }
   }
 
+  managerState(stateName, stateValue) {
+    console.log('stateName ', stateName);
+    console.log('stateValue ', stateValue);
+
+    this.setState({ loading: true });
+    // this.setState({ [stateName]: stateValue });
+  }
+
   render() {
     const { children } = this.props;
     const { products, total, loading, payments } = this.state;
@@ -132,7 +140,8 @@ export default class index extends Component {
       this.getCart.bind(this),
       this.changeQuantity.bind(this),
       payments,
-      this.selectPaymentMethod.bind(this)
+      this.selectPaymentMethod.bind(this),
+      this.managerState.bind(this)
     );
   }
 }

@@ -18,6 +18,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import { NavLink } from 'react-router-dom';
 import logo from '../../img/logo-white.png';
+import Loading from '../Loading';
 
 export default function NavBarTop(props) {
   const { loading, total, getCart, changeQuantity } = props;
@@ -25,11 +26,6 @@ export default function NavBarTop(props) {
   const [state, setState] = useState({
     right: false
   });
-
-  // const handleLogout = () => {
-  //   localStorage.removeItem('email');
-  //   window.location.pathname = '/';
-  // };
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -43,9 +39,6 @@ export default function NavBarTop(props) {
   };
 
   const sideList = side => (
-    // to close drawer
-    // onClick={toggleDrawer(side, false)}
-    // onKeyDown={toggleDrawer(side, false)}
     <div role='presentation'>
       <Grid container>
         <List>
@@ -151,16 +144,17 @@ export default function NavBarTop(props) {
                   badgeContent={getCart().length}
                   max={99}
                   color='error'
+                  onClick={toggleDrawer('right', true)}
                 >
                   <ShoppingCartIcon
                     style={{ cursor: 'pointer' }}
-                    onClick={toggleDrawer('right', true)}
                   ></ShoppingCartIcon>
                 </Badge>
               </Grid>
             </Toolbar>
           </Container>
         </AppBar>
+        {loading && <Loading />}
       </div>
     </React.Fragment>
   );
