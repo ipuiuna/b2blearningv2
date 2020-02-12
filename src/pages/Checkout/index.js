@@ -4,6 +4,7 @@ import CartManager from '../../components/CartManager';
 import NavBarTop from '../../components/NavBarTop';
 import CheckoutStepper from '../../components/CheckoutSteper';
 import useStyle from './styles';
+import Loading from '../../components/Loading';
 
 export default () => {
   const classes = useStyle();
@@ -26,7 +27,7 @@ export default () => {
           />
 
           {loading ? (
-            <div>Loading your products...</div>
+            <Loading />
           ) : (
             <Container className={classes.checkoutStepper}>
               <CheckoutStepper

@@ -26,11 +26,6 @@ export default function NavBarTop(props) {
     right: false
   });
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('email');
-  //   window.location.pathname = '/';
-  // };
-
   const toggleDrawer = (side, open) => event => {
     if (
       event.type === 'keydown' &&
@@ -43,9 +38,6 @@ export default function NavBarTop(props) {
   };
 
   const sideList = side => (
-    // to close drawer
-    // onClick={toggleDrawer(side, false)}
-    // onKeyDown={toggleDrawer(side, false)}
     <div role='presentation'>
       <Grid container>
         <List>

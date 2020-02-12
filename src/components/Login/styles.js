@@ -21,10 +21,11 @@ const useStyles = makeStyles(theme => ({
   },
   drawerHeader: {
     display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(0, 1),
+    justifyContent: 'center',
+    width: '351px',
+    height: '64px',
     ...theme.mixins.toolbar,
-    justifyContent: 'flex-start'
+    backgroundColor: muitheme.palette.primary.main
   },
   content: {
     flexGrow: 1,
@@ -48,6 +49,10 @@ const useStyles = makeStyles(theme => ({
   landingIcons: {
     color: muitheme.palette.primary.main
   },
+  landingIconsText: {
+    marginTop: '28px',
+    marginBottom: '8px'
+  },
   inputFields: {
     color: muitheme.palette.primary.main
   },
@@ -63,6 +68,32 @@ const useStyles = makeStyles(theme => ({
   },
   linksGridItem: {
     marginRight: 60
+  },
+  loginLabel: {
+    padding: '0 20px'
+  },
+  loginMessage: {
+    marginTop: '24px',
+    textAlign: 'left',
+    fontWeight: 500,
+    fontSize: '16px',
+    lineHeight: '20px'
+  },
+  ola: {
+    fontWeight: 700,
+    fontSize: '36px',
+    lineHeight: '44px'
+  },
+  mLogo: {
+    width: '90px',
+    flexGrow: 1
+  },
+  closeIconContainer: {
+    position: 'absolute',
+    right: 0
+  },
+  closeIcon: {
+    color: '#fff'
   }
 }));
 export default useStyles;

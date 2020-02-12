@@ -10,10 +10,10 @@ const useStyles = makeStyles(theme => ({
   },
   linksGrid: {
     backgroundColor: muitheme.palette.primary.main,
-    padding: '40px 0 40px 0'
+    paddingTop: '20px'
   },
-  linksGridItem: {
-    marginRight: 60
+  linksSet: {
+    marginBottom: '20px'
   }
 }));
 

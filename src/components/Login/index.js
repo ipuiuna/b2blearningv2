@@ -18,6 +18,7 @@ import MoodIcon from '@material-ui/icons/Mood';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import CloseIcon from '@material-ui/icons/Close';
 import logo from '../../assets/img/logo-white.png';
+import mLogo from '../../assets/img/m-logo.png';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -78,8 +79,19 @@ export default function Login(props) {
         <Grid container justify='center'>
           <ListItem>
             <ListItemText>
-              <Typography variant='h5' align='center' color='textSecondary'>
+              <Typography
+                className={classes.ola}
+                align='center'
+                color='primary'
+              >
                 Olá!
+              </Typography>
+              <Typography
+                className={classes.loginMessage}
+                align='center'
+                color='primary'
+              >
+                Faça o login para ter acesso ao nosso catálogo de produtos.
               </Typography>
             </ListItemText>
           </ListItem>
@@ -89,7 +101,7 @@ export default function Login(props) {
                 className={classes.inputFields}
                 type='email'
                 name='email'
-                label='Usuário'
+                placeholder='Email'
                 onChange={handleChangeEmail}
               />
             </ListItem>
@@ -98,7 +110,7 @@ export default function Login(props) {
                 className={classes.inputFields}
                 type='password'
                 name='password'
-                label='Senha'
+                placeholder='Senha'
                 onChange={handleChangePassword}
               />
             </ListItem>
@@ -106,10 +118,22 @@ export default function Login(props) {
               <Fab
                 variant='extended'
                 size='small'
-                className='login-buton login-label'
+                className={classes.loginButtom}
                 type='submit'
+                color='secondary'
               >
-                Entrar
+                <Typography
+                  classeName={classes.loginLabel}
+                  variant='h3'
+                  color='primary'
+                >
+                  <div
+                    className={classes.loginLabel}
+                    onClick={handleDrawerOpen}
+                  >
+                    Entrar
+                  </div>
+                </Typography>
               </Fab>
             </ListItem>
           </form>
@@ -126,11 +150,22 @@ export default function Login(props) {
         open={open}
         classes={{ paper: classes.drawerPaper }}
       >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            <CloseIcon />
-          </IconButton>
-        </div>
+        <AppBar className={classes.drawerHeader}>
+          <Grid container direction='row' alignItems='center'>
+            <Grid item style={{ flexGrow: 1 }}>
+              <img alt='Tá na mão logo' className={classes.mLogo} src={mLogo} />
+            </Grid>
+            <Grid item className={classes.closeIconContainer}>
+              <IconButton
+                className={classes.closeIcon}
+                onClick={handleDrawerClose}
+              >
+                <CloseIcon />
+              </IconButton>
+            </Grid>
+          </Grid>
+        </AppBar>
+
         {sideList('right')}
       </Drawer>
 
@@ -146,11 +181,19 @@ export default function Login(props) {
         >
           <Container>
             <Toolbar style={{ justifyContent: 'flex-end', flexGrow: 1 }}>
-              <Fab variant='extended' size='small' className='login-buton'>
-                <div className='login-label' onClick={handleDrawerOpen}>
-                  Entrar
-                </div>
-              </Fab>
+              {!open ? (
+                <Fab
+                  variant='extended'
+                  size='small'
+                  className={classes.loginButtom}
+                  color='secondary'
+                  onClick={handleDrawerOpen}
+                >
+                  <Typography color='primary' variant='h3'>
+                    <div className={classes.loginLabel}>Entrar</div>
+                  </Typography>
+                </Fab>
+              ) : null}
             </Toolbar>
           </Container>
         </AppBar>
@@ -199,7 +242,11 @@ export default function Login(props) {
             <Grid item>
               <Paper className={classes.paper}>
                 <DoneIcon className={`landing-icons ${classes.landingIcons}`} />
-                <Typography variant='h5' color='primary'>
+                <Typography
+                  className={classes.landingIconsText}
+                  variant='h5'
+                  color='primary'
+                >
                   VALIDE SEU CEP
                 </Typography>
                 <Typography color='primary'>
@@ -217,7 +264,11 @@ export default function Login(props) {
                 <TouchAppIcon
                   className={`landing-icons ${classes.landingIcons}`}
                 />
-                <Typography variant='h5' color='primary'>
+                <Typography
+                  className={classes.landingIconsText}
+                  variant='h5'
+                  color='primary'
+                >
                   ESCOLHA SEUS PRODUTOS
                 </Typography>
                 <Typography color='primary'>adicione seus produtos</Typography>
@@ -230,7 +281,11 @@ export default function Login(props) {
             <Grid item>
               <Paper className={classes.paper}>
                 <MoodIcon className={`landing-icons ${classes.landingIcons}`} />
-                <Typography variant='h5' color='primary'>
+                <Typography
+                  className={classes.landingIconsText}
+                  variant='h5'
+                  color='primary'
+                >
                   RECEBA EM CASA
                 </Typography>
                 <Typography color='primary'>acompanhe seu pedido em</Typography>

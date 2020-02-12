@@ -4,6 +4,7 @@ import ProductList from '../../components/ProductList';
 import CartManager from '../../components/CartManager';
 import Footer from '../../components/Footer';
 import { Grid } from '@material-ui/core';
+import Loading from '../../components/Loading';
 
 export default props => {
   return (
@@ -17,7 +18,7 @@ export default props => {
           />
           <Grid container className='product-list-container'>
             {loading ? (
-              <div>Loading product list...</div>
+              <Loading />
             ) : (
               <React.Fragment>
                 <ProductList
