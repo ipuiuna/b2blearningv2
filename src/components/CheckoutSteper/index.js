@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import GetStepContent from './GetStepContent';
+import Success from '../Success';
 import useStyles from './styles';
 import {
   Stepper,
@@ -90,9 +91,10 @@ export default function CheckoutStepper(props) {
             {order ? (
               <Grid direction='column'>
                 <Grid container justify='center'>
-                  <Typography className={classes.instructions}>
+                  <Success />
+                  {/* <Typography className={classes.instructions}>
                     Seu pedido foi realizado com sucesso!
-                  </Typography>
+                  </Typography> */}
                 </Grid>
                 <Grid container justify='center'>
                   <NavLink style={{ textDecoration: 'none' }} to='/'>
