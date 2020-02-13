@@ -8,6 +8,7 @@ import Loading from '../../components/Loading';
 
 export default () => {
   const classes = useStyle();
+
   return (
     <CartManager>
       {(
@@ -20,12 +21,6 @@ export default () => {
         selectPaymentMethod
       ) => (
         <div>
-          <NavBarTop
-            total={total}
-            getCart={getCart}
-            changeQuantity={changeQuantity}
-          />
-
           {loading ? (
             <Loading />
           ) : (
