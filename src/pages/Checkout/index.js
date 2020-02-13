@@ -7,6 +7,7 @@ import useStyle from './styles';
 
 export default () => {
   const classes = useStyle();
+
   return (
     <CartManager>
       {(
@@ -19,12 +20,6 @@ export default () => {
         selectPaymentMethod
       ) => (
         <div>
-          <NavBarTop
-            total={total}
-            getCart={getCart}
-            changeQuantity={changeQuantity}
-          />
-
           {loading ? (
             <div>Loading your products...</div>
           ) : (

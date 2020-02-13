@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import GetStepContent from './GetStepContent';
+import NavBarTop from '../NavBarTop';
 import Success from '../Success';
 import useStyles from './styles';
 import {
@@ -21,7 +23,13 @@ export default function CheckoutStepper(props) {
     activeStep === steps.length && placeOrder();
   });
 
-  const { getCart, total, payments, selectPaymentMethod } = props;
+  const {
+    getCart,
+    total,
+    payments,
+    selectPaymentMethod,
+    changeQuantity
+  } = props;
   const classes = useStyles();
   const [showStepper, setShowStepper] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
@@ -71,6 +79,12 @@ export default function CheckoutStepper(props) {
 
   return (
     <div className={classes.root}>
+      <NavBarTop
+        total={total}
+        getCart={getCart}
+        changeQuantity={changeQuantity}
+        itIsToShowTheCart={false}
+      />
       {showStepper ? (
         <Box boxShadow={2}>
           <Stepper activeStep={activeStep}>
@@ -108,52 +122,72 @@ export default function CheckoutStepper(props) {
             />
 
             <Grid container style={{ marginTop: 16 }} justify='space-between'>
-              <Button
-                variant='contained'
-                disabled={activeStep === 0}
-                color='secondary'
-                onClick={handleBack}
-                className={classes.buttonBack}
-              >
+              <Grid item xs={6}>
+                {' '}
                 {activeStep === 0 ? (
-                  <Typography variant='h3'>Voltar</Typography>
+                  <NavLink style={{ textDecoration: 'none' }} to='/'>
+                    <Button
+                      className={classes.buttonBack}
+                      variant='contained'
+                      type='submit'
+                      color='secondary'
+                    >
+                      <Typography variant='h3' color='primary'>
+                        Voltar
+                      </Typography>
+                    </Button>
+                  </NavLink>
                 ) : (
-                  <Typography variant='h3' color='primary'>
-                    Voltar
-                  </Typography>
+                  <Button
+                    variant='contained'
+                    disabled={activeStep === 0}
+                    color='secondary'
+                    onClick={handleBack}
+                    className={classes.buttonBack}
+                  >
+                    {activeStep === 0 ? (
+                      <Typography variant='h3'>Voltar</Typography>
+                    ) : (
+                      <Typography variant='h3' color='primary'>
+                        Voltar
+                      </Typography>
+                    )}
+                  </Button>
                 )}
-              </Button>
+              </Grid>
 
-              {(activeStep === 2 && !checkPayment()) ||
-              (activeStep === 0 && getCart().length === 0) ||
-              (activeStep === 1 &&
-                (rua === '' || cidade === '' || numero === '')) ? (
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  disabled
-                  className={classes.button}
-                >
-                  <Typography variant='h3' color='primary'>
-                    {activeStep === steps.length - 1
-                      ? 'Finalizar pedido'
-                      : 'Confirmar pedido'}
-                  </Typography>
-                </Button>
-              ) : (
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  onClick={handleNext}
-                  className={classes.button}
-                >
-                  <Typography variant='h3' color='primary'>
-                    {activeStep === steps.length - 1
-                      ? 'Finalizar pedido'
-                      : 'Confirmar pedido'}
-                  </Typography>
-                </Button>
-              )}
+              <Grid item xs={6}>
+                {(activeStep === 2 && !checkPayment()) ||
+                (activeStep === 0 && getCart().length === 0) ||
+                (activeStep === 1 &&
+                  (rua === '' || cidade === '' || numero === '')) ? (
+                  <Button
+                    variant='contained'
+                    color='secondary'
+                    disabled
+                    className={classes.button}
+                  >
+                    <Typography variant='h3' color='primary'>
+                      {activeStep === steps.length - 1
+                        ? 'Finalizar pedido'
+                        : 'Confirmar pedido'}
+                    </Typography>
+                  </Button>
+                ) : (
+                  <Button
+                    variant='contained'
+                    color='secondary'
+                    onClick={handleNext}
+                    className={classes.button}
+                  >
+                    <Typography variant='h3' color='primary'>
+                      {activeStep === steps.length - 1
+                        ? 'Finalizar pedido'
+                        : 'Confirmar pedido'}
+                    </Typography>
+                  </Button>
+                )}
+              </Grid>
             </Grid>
           </div>
         )}

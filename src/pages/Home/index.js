@@ -14,6 +14,7 @@ export default props => {
             total={total}
             getCart={getCart}
             changeQuantity={changeQuantity}
+            itIsToShowTheCart={true}
           />
           <Grid container className='product-list-container'>
             {loading ? (

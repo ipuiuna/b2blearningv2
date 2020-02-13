@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import useStyles from './styles';
 import Cart from '../../pages/Cart';
 import Badge from '@material-ui/core/Badge';
@@ -20,16 +20,16 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../img/logo-white.png';
 
 export default function NavBarTop(props) {
-  const { loading, total, getCart, changeQuantity } = props;
+  const { loading, total, getCart, changeQuantity, itIsToShowTheCart } = props;
+  const [showCart, setShowCart] = useState(true);
   const classes = useStyles();
   const [state, setState] = useState({
     right: false
   });
 
-  // const handleLogout = () => {
-  //   localStorage.removeItem('email');
-  //   window.location.pathname = '/';
-  // };
+  useEffect(() => {
+    setShowCart(itIsToShowTheCart);
+  });
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -138,26 +138,29 @@ export default function NavBarTop(props) {
               >
                 <img className={classes.logo} alt='Ta na Mão' src={logo}></img>
               </NavLink>
-
-              <Grid
-                container
-                direction='row'
-                justify='flex-end'
-                alignItems='center'
-                spacing={2}
-              >
-                <Badge
-                  style={{ cursor: 'pointer' }}
-                  badgeContent={getCart().length}
-                  max={99}
-                  color='error'
-                >
-                  <ShoppingCartIcon
-                    style={{ cursor: 'pointer' }}
-                    onClick={toggleDrawer('right', true)}
-                  ></ShoppingCartIcon>
-                </Badge>
-              </Grid>
+              <div>
+                {showCart ? (
+                  <Grid
+                    container
+                    direction='row'
+                    justify='flex-end'
+                    alignItems='center'
+                    spacing={2}
+                  >
+                    <Badge
+                      style={{ cursor: 'pointer' }}
+                      badgeContent={getCart().length}
+                      max={99}
+                      color='error'
+                    >
+                      <ShoppingCartIcon
+                        style={{ cursor: 'pointer' }}
+                        onClick={toggleDrawer('right', true)}
+                      ></ShoppingCartIcon>
+                    </Badge>
+                  </Grid>
+                ) : null}
+              </div>
             </Toolbar>
           </Container>
         </AppBar>
