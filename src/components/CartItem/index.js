@@ -28,13 +28,59 @@ const CartItem = props => {
 
   return item ? (
     <Paper className={classes.paper}>
-      <Grid container spacing={2}>
-        <Grid item>
+      <Grid className={classes.content} container direction='row' xs={12}>
+        <Grid item xs={3}>
           <ButtonBase className={classes.image}>
             <img className={classes.img} alt='complex' src={item.images} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={12} sm container>
+        <Grid item xs={8}>
+          <Typography
+            className={classes.titleMargin}
+            gutterBottom
+            color='primary'
+            variant='h3'
+          >
+            {item.title}
+          </Typography>
+        </Grid>
+        <Grid item xs={1}>
+          <Typography
+            color='error'
+            style={{ cursor: 'pointer' }}
+            onClick={removeItem}
+          >
+            <DeleteIcon />
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid xs={12} className={classes.price}>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={8}>
+          <Typography variant='h3' color='primary'>
+            R$ {item.price}
+          </Typography>
+        </Grid>
+      </Grid>
+      <Grid container direction='row' justify='center' xs={12}>
+        <Grid item>
+          <QuantityEditor
+            incItem={incItem}
+            decItem={decItem}
+            quantity={item.quantity}
+            min={1}
+          ></QuantityEditor>
+        </Grid>
+      </Grid>
+
+      {/* </Grid>
+      <Grid container spacing={2}>
+        <Grid item xs={3}>
+          <ButtonBase className={classes.image}>
+            <img className={classes.img} alt='complex' src={item.images} />
+          </ButtonBase>
+        </Grid>
+        <Grid item xs={9} sm container>
           <Grid item xs container direction='column' spacing={2}>
             <Grid item xs>
               <Typography
@@ -68,7 +114,7 @@ const CartItem = props => {
             </Typography>
           </Grid>
         </Grid>
-      </Grid>
+      </Grid> */}
     </Paper>
   ) : null;
 };

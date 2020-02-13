@@ -7,7 +7,8 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import muitheme from '../../Theme';
 import useStyles from './styles';
 
-export default function Footer() {
+export default function Footer(props) {
+  const { logout } = props;
   const classes = useStyles();
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -47,16 +48,16 @@ export default function Footer() {
               xs={12}
               sm={3}
             >
-              <Typography color='textPrimary' variant='h3'>
+              <Typography color='textPrimary' align='left' variant='h3'>
                 INSTITUCIONAL
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>marca</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>quem somos</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>fale conosco</Link>
               </Typography>
             </Grid>
@@ -67,19 +68,19 @@ export default function Footer() {
               xs={12}
               sm={3}
             >
-              <Typography color='textPrimary' variant='h3'>
+              <Typography color='textPrimary' align='left' variant='h3'>
                 MINHA CONTA
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>conta</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>pedidos</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>carrinho</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>editar conta</Link>
               </Typography>
             </Grid>
@@ -90,49 +91,58 @@ export default function Footer() {
               xs={12}
               sm={3}
             >
-              <Typography color='textPrimary' variant='h3'>
+              <Typography color='textPrimary' align='left' variant='h3'>
                 AJUDA
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>pagamentos</Link>
               </Typography>
-              <Typography>
+              <Typography align='left'>
                 <Link color='textPrimary'>entrega</Link>
               </Typography>
-              <Typography>
-                <Link onClick={handleLogout} color='textPrimary'>
-                  logout
-                </Link>
+              <Typography align='left'>
+                {logout ? (
+                  <Link onClick={handleLogout} color='textPrimary'>
+                    logout
+                  </Link>
+                ) : (
+                  <div></div>
+                )}
               </Typography>
             </Grid>
             <Grid
               container
               className={classes.linksSet}
               direction='column'
+              justify='center'
               xs={12}
               sm={3}
             >
-              <Typography variant='h3' color='textPrimary'>
+              <Typography variant='h3' align='center' color='textPrimary'>
                 CONECTE-SE
               </Typography>
-              <Grid container direction='row'>
-                <Typography>
+              <Grid container direction='row' justify='center'>
+                <Grid item>
                   <Link
                     color='textPrimary'
                     href='https://www.instagram.com/beertechabi/'
                   >
                     <InstagramIcon />
                   </Link>
+                </Grid>
+                <Grid item>
                   <Link
                     color='textPrimary'
                     href='https://www.facebook.com/beertechabi/'
                   >
                     <FacebookIcon />
                   </Link>
+                </Grid>
+                <Grid item>
                   <Link color='textPrimary' href='#'>
                     <WhatsAppIcon />
                   </Link>
-                </Typography>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

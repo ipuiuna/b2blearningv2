@@ -29,7 +29,7 @@ export default props => {
               </React.Fragment>
             )}
           </Grid>
-          <Footer />
+          <Footer logout />
         </div>
       )}
     </CartManager>

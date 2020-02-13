@@ -35,8 +35,18 @@ const useStyles = makeStyles({
     maxHeight: '100%'
   },
   image: {
-    width: 100,
-    height: 100
+    maxWidth: 100,
+    maxHeight: 100
+  },
+  content: {
+    marginBottom: '8px'
+  },
+  price: {
+    marginLeft: '78px',
+    marginBottom: '8px'
+  },
+  title: {
+    alignItems: 'center'
   }
 });
 

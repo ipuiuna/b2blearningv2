@@ -85,7 +85,7 @@ const useStyles = makeStyles(theme => ({
     lineHeight: '44px'
   },
   mLogo: {
-    width: '90px',
+    width: '70px',
     flexGrow: 1
   },
   closeIconContainer: {

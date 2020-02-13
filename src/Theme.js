@@ -88,6 +88,7 @@ const muitheme = createMuiTheme({
       }
     }
   },
+
   typography: {
     fontFamily: ['Montserrat', 'sans-serif'],
     h2: {

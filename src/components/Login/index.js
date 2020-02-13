@@ -15,7 +15,6 @@ import Drawer from '@material-ui/core/Drawer';
 import DoneIcon from '@material-ui/icons/Done';
 import TouchAppIcon from '@material-ui/icons/TouchApp';
 import MoodIcon from '@material-ui/icons/Mood';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import CloseIcon from '@material-ui/icons/Close';
 import logo from '../../assets/img/logo-white.png';
 import mLogo from '../../assets/img/m-logo.png';
@@ -25,6 +24,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import muitheme from '../../Theme';
 import useStyles from './styles';
 import './style.css';
+import Footer from '../Footer';
 
 export default function Login(props) {
   const classes = useStyles();
@@ -298,70 +298,7 @@ export default function Login(props) {
           </Grid>
         </Container>
       </Grid>
-      <Grid
-        item
-        style={{
-          backgroundColor: muitheme.palette.secondary.main,
-          height: 64
-        }}
-      >
-        <Grid item>
-          <ExpandLessIcon
-            className='expandless-icon'
-            style={{
-              color: '#fff'
-            }}
-          />
-        </Grid>
-        <Grid item>
-          <Typography color='textPrimary'>ir para o topo</Typography>
-        </Grid>
-      </Grid>
-
-      <Grid
-        className={classes.linksGrid}
-        style={{ backgroundColor: '#fff', marginTop: 0, marginBottom: 8 }}
-        container
-        direction='row'
-        justify='center'
-      >
-        <Grid item className={classes.linksGridItem}>
-          <Grid container direction='column'>
-            <Typography variant='h6'>INSTITUCIONAL</Typography>
-            <Link>marca</Link>
-            <Link>quem somos</Link>
-            <Link>fale conosco</Link>
-          </Grid>
-        </Grid>
-        <Grid item className={classes.linksGridItem}>
-          <Grid container direction='column'>
-            <Typography variant='h6'>MINHA CONTA</Typography>
-            <Link>conta</Link>
-            <Link>pedidos</Link>
-            <Link>carrinho</Link>
-            <Link>editar conta</Link>
-          </Grid>
-        </Grid>
-        <Grid item>
-          <Grid container direction='column'>
-            <Typography variant='h6'>AJUDA</Typography>
-            <Link>pagamentos</Link>
-            <Link>entrega</Link>
-          </Grid>
-        </Grid>
-      </Grid>
-      <Grid
-        style={{
-          backgroundColor: muitheme.palette.primary.main,
-          paddingTop: 8,
-          paddingBottom: 8,
-          bottom: 0
-        }}
-      >
-        <Typography variant='body2' color='textPrimary'>
-          Bud Light Team, ABInbev. 2020
-        </Typography>
-      </Grid>
+      <Footer logout={false} />
     </div>
   );
 }
