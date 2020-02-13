@@ -42,7 +42,6 @@ const useStyles = makeStyles({
     marginBottom: '8px'
   },
   price: {
-    marginLeft: '78px',
     marginBottom: '8px'
   },
   title: {

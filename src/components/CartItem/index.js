@@ -34,7 +34,17 @@ const CartItem = props => {
             <img className={classes.img} alt='complex' src={item.images} />
           </ButtonBase>
         </Grid>
-        <Grid item xs={8}>
+        <Grid container direction='column' xs={9}>
+          <Grid container justify='flex-end'>
+            <Typography
+              color='error'
+              style={{ cursor: 'pointer' }}
+              onClick={removeItem}
+            >
+              <DeleteIcon />
+            </Typography>
+          </Grid>
+
           <Typography
             className={classes.titleMargin}
             gutterBottom
@@ -44,23 +54,17 @@ const CartItem = props => {
             {item.title}
           </Typography>
         </Grid>
-        <Grid item xs={1}>
-          <Typography
-            color='error'
-            style={{ cursor: 'pointer' }}
-            onClick={removeItem}
-          >
-            <DeleteIcon />
-          </Typography>
-        </Grid>
       </Grid>
-      <Grid xs={12} className={classes.price}>
-        <Grid item xs={4}></Grid>
-        <Grid item xs={8}>
-          <Typography variant='h3' color='primary'>
-            R$ {item.price}
-          </Typography>
-        </Grid>
+      <Grid
+        container
+        direction='row'
+        xs={12}
+        className={classes.price}
+        justify='center'
+      >
+        <Typography variant='h3' color='primary'>
+          R$ {item.price}
+        </Typography>
       </Grid>
       <Grid container direction='row' justify='center' xs={12}>
         <Grid item>

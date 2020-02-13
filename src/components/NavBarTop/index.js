@@ -17,7 +17,7 @@ import {
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import CloseIcon from '@material-ui/icons/Close';
 import { NavLink } from 'react-router-dom';
-import logo from '../../img/logo-white.png';
+import logo from '../../assets/img/logo-white.png';
 
 export default function NavBarTop(props) {
   const { loading, total, getCart, changeQuantity } = props;

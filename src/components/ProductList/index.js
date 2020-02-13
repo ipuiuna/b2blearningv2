@@ -14,8 +14,9 @@ export default ({ products, ...others }) => {
             item
             key={idx}
             lg={3}
-            md={4}
-            sm={6}
+            md={3}
+            sm={5}
+            xl={3}
             xs={12}
           >
             <Product

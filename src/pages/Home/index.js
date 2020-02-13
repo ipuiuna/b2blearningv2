@@ -16,7 +16,7 @@ export default props => {
             getCart={getCart}
             changeQuantity={changeQuantity}
           />
-          <Grid container className='product-list-container'>
+          <Grid container className='product-list-container' justify='center'>
             {loading ? (
               <Loading />
             ) : (
