@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import GetStepContent from './GetStepContent';
 import Success from '../Success';
 import useStyles from './styles';
@@ -18,8 +17,13 @@ function getSteps() {
 }
 
 export default function CheckoutStepper(props) {
+  useEffect(() => {
+    activeStep === steps.length && placeOrder();
+  });
+
   const { getCart, total, payments, selectPaymentMethod } = props;
   const classes = useStyles();
+  const [showStepper, setShowStepper] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
@@ -28,6 +32,7 @@ export default function CheckoutStepper(props) {
   const steps = getSteps();
 
   const placeOrder = () => {
+    setShowStepper(false);
     const customer = localStorage.getItem('user');
     const order = {
       products: getCart(),
@@ -66,59 +71,31 @@ export default function CheckoutStepper(props) {
 
   return (
     <div className={classes.root}>
-      <Box boxShadow={2}>
-        <Stepper activeStep={activeStep}>
-          {steps.map((label, index) => {
-            const stepProps = {};
-            const labelProps = {};
-            return (
-              <Step key={index} {...stepProps}>
-                <StepLabel {...labelProps}>
-                  <Typography variant='h3' color='primary'>
-                    {label}
-                  </Typography>
-                </StepLabel>
-              </Step>
-            );
-          })}
-        </Stepper>
-      </Box>
+      {showStepper ? (
+        <Box boxShadow={2}>
+          <Stepper activeStep={activeStep}>
+            {steps.map((label, index) => {
+              const stepProps = {};
+              const labelProps = {};
+              return (
+                <Step key={index} {...stepProps}>
+                  <StepLabel {...labelProps}>
+                    <Typography variant='h3' color='primary'>
+                      {label}
+                    </Typography>
+                  </StepLabel>
+                </Step>
+              );
+            })}
+          </Stepper>
+        </Box>
+      ) : null}
 
       <div>
         {activeStep === steps.length ? (
-          <div>
-            {placeOrder()}
-            {order ? (
-              <Grid direction='column'>
-                <Grid container justify='center'>
-                  <Success />
-                  {/* <Typography className={classes.instructions}>
-                    Seu pedido foi realizado com sucesso!
-                  </Typography> */}
-                </Grid>
-                <Grid container justify='center'>
-                  <NavLink style={{ textDecoration: 'none' }} to='/'>
-                    <Button variant='contained' type='submit' color='secondary'>
-                      <Typography variant='h3' color='primary'>
-                        Novo pedido
-                      </Typography>
-                    </Button>
-                  </NavLink>
-                </Grid>
-              </Grid>
-            ) : (
-              <Grid container justify='center'>
-                <Typography className={classes.instructions}>
-                  Ocorreu algum erro e seu pedido não pode ser processado, por
-                  favor tente novamente.
-                </Typography>
-              </Grid>
-            )}
-          </div>
+          <div>{finalStep(classes, order)}</div>
         ) : (
           <div>
-            {/* {console.log('activestep', activeStep)}
-              {console.log('CheckoutStepper', getCart)} */}
             <GetStepContent
               activeStep={activeStep}
               total={total}
@@ -182,5 +159,26 @@ export default function CheckoutStepper(props) {
         )}
       </div>
     </div>
+  );
+}
+
+function finalStep(classes, order) {
+  if (order) {
+    return <Success />;
+  }
+  if (order !== null) {
+    return fail(classes);
+  }
+  return;
+}
+
+function fail(classes) {
+  return (
+    <Grid container justify='center'>
+      <Typography className={classes.instructions}>
+        Ocorreu um erro e seu pedido não pode ser processado, por favor tente
+        novamente.
+      </Typography>
+    </Grid>
   );
 }
