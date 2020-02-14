@@ -17,7 +17,8 @@ const useStyles = makeStyles(theme => ({
   },
   successImg: {
     marginBottom: '32px'
-  }
+  },
+  typoButton: { padding: '4px 0' }
 }));
 
 export default useStyles;

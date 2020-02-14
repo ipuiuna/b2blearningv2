@@ -114,14 +114,13 @@ export default function Footer(props) {
               container
               className={classes.linksSet}
               direction='column'
-              justify='center'
               xs={12}
               sm={3}
             >
-              <Typography variant='h3' align='center' color='textPrimary'>
+              <Typography variant='h3' color='textPrimary'>
                 CONECTE-SE
               </Typography>
-              <Grid container direction='row' justify='center'>
+              <Grid container direction='row' justify='flex-start'>
                 <Grid item>
                   <Link
                     color='textPrimary'

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import useStyles from './styles';
 import Cart from '../../pages/Cart';
 import Badge from '@material-ui/core/Badge';
@@ -20,8 +20,7 @@ import { NavLink } from 'react-router-dom';
 import logo from '../../assets/img/logo-white.png';
 
 export default function NavBarTop(props) {
-  const { loading, total, getCart, changeQuantity, itIsToShowTheCart } = props;
-  const [showCart, setShowCart] = useState(true);
+  const { loading, total, getCart, changeQuantity, showCart } = props;
   const classes = useStyles();
   const [state, setState] = useState({
     right: false

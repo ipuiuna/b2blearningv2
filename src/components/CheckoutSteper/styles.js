@@ -4,17 +4,17 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%'
   },
+  stepperTitle: {
+    [theme.breakpoints.down('xs')]: {
+      display: 'none'
+    }
+  },
   button: {
     marginRight: theme.spacing(1),
-    paddingTop: 10,
-    paddingBottom: 10,
     maxWidth: '290px'
   },
   buttonBack: {
     marginRight: theme.spacing(1),
-    marginBottom: '16px',
-    paddingTop: 10,
-    paddingBottom: 10,
     maxWidth: '290px'
   },
   instructions: {

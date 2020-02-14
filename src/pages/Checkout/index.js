@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import CartManager from '../../components/CartManager';
-import NavBarTop from '../../components/NavBarTop';
 import CheckoutStepper from '../../components/CheckoutSteper';
 import useStyle from './styles';
 import Loading from '../../components/Loading';

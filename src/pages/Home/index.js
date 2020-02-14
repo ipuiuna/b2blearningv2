@@ -15,7 +15,7 @@ export default props => {
             total={total}
             getCart={getCart}
             changeQuantity={changeQuantity}
-            itIsToShowTheCart={true}
+            showCart={true}
           />
           <Grid container className='product-list-container' justify='center'>
             {loading ? (

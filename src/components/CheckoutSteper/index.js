@@ -87,7 +87,7 @@ export default function CheckoutStepper(props) {
         total={total}
         getCart={getCart}
         changeQuantity={changeQuantity}
-        itIsToShowTheCart={false}
+        showCart={false}
       />
       {showStepper ? (
         <Box boxShadow={2}>
@@ -98,7 +98,13 @@ export default function CheckoutStepper(props) {
               return (
                 <Step key={index} {...stepProps}>
                   <StepLabel {...labelProps}>
-                    <Typography variant='h3' color='primary'>
+                    <Typography
+                      className={
+                        activeStep === index ? null : classes.stepperTitle
+                      }
+                      variant='h3'
+                      color='primary'
+                    >
                       {label}
                     </Typography>
                   </StepLabel>
@@ -125,7 +131,7 @@ export default function CheckoutStepper(props) {
               setCidade={setCidade}
             />
 
-            <Grid container style={{ marginTop: 16 }} justify='space-between'>
+            <Grid container style={{ marginTop: 16 }} justify='center' xs={12}>
               <Grid item xs={6}>
                 {' '}
                 {activeStep === 0 ? (
@@ -136,8 +142,12 @@ export default function CheckoutStepper(props) {
                       type='submit'
                       color='secondary'
                     >
-                      <Typography variant='h3' color='primary'>
-                        Voltar
+                      <Typography
+                        classesName={classes.typoButton}
+                        variant='h3'
+                        color='primary'
+                      >
+                        Continuar Comprando
                       </Typography>
                     </Button>
                   </NavLink>
@@ -149,18 +159,18 @@ export default function CheckoutStepper(props) {
                     onClick={handleBack}
                     className={classes.buttonBack}
                   >
-                    {activeStep === 0 ? (
-                      <Typography variant='h3'>Voltar</Typography>
-                    ) : (
-                      <Typography variant='h3' color='primary'>
-                        Voltar
-                      </Typography>
-                    )}
+                    <Typography
+                      classesName={classes.typoButton}
+                      variant='h3'
+                      color='primary'
+                    >
+                      Voltar
+                    </Typography>
                   </Button>
                 )}
               </Grid>
 
-              <Grid item xs={6}>
+              <Grid container xs={6} justify='flex-end'>
                 {(activeStep === 2 && !checkPayment()) ||
                 (activeStep === 0 && getCart().length === 0) ||
                 (activeStep === 1 &&
@@ -171,7 +181,11 @@ export default function CheckoutStepper(props) {
                     disabled
                     className={classes.button}
                   >
-                    <Typography variant='h3' color='primary'>
+                    <Typography
+                      classesName={classes.typoButton}
+                      variant='h3'
+                      color='primary'
+                    >
                       {activeStep === steps.length - 1
                         ? 'Finalizar pedido'
                         : 'Confirmar pedido'}
@@ -184,7 +198,11 @@ export default function CheckoutStepper(props) {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    <Typography variant='h3' color='primary'>
+                    <Typography
+                      classesName={classes.typoButton}
+                      variant='h3'
+                      color='primary'
+                    >
                       {activeStep === steps.length - 1
                         ? 'Finalizar pedido'
                         : 'Confirmar pedido'}
