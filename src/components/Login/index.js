@@ -171,6 +171,7 @@ export default function Login(props) {
 
       <Grid item>
         <AppBar
+          id='pageTop'
           bgcolor='primary.main'
           style={{
             display: 'flex',

@@ -25,17 +25,19 @@ export default function Footer(props) {
         }}
       >
         <Container>
-          <Grid container justify='center'>
-            <ExpandLessIcon
-              className='expandless-icon'
-              style={{
-                color: '#fff'
-              }}
-            />
-          </Grid>
-          <Grid container justify='center'>
-            <Typography color='textPrimary'>ir para o topo</Typography>
-          </Grid>
+          <a href='#pageTop' style={{ textDecoration: 'none' }}>
+            <Grid container justify='center'>
+              <ExpandLessIcon
+                className='expandless-icon'
+                style={{
+                  color: '#fff'
+                }}
+              />
+            </Grid>
+            <Grid container justify='center'>
+              <Typography color='textPrimary'>ir para o topo</Typography>
+            </Grid>
+          </a>
         </Container>
       </Grid>
       <Grid className={classes.linksGrid} container justify='center' xs={12}>

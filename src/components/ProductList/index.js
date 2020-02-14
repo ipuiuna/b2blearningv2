@@ -6,7 +6,11 @@ import { Grid, Container } from '@material-ui/core';
 export default ({ products, ...others }) => {
   const classes = useStyles();
   return (
-    <Container className={classes.productListContainer} justify='center'>
+    <Container
+      id='pageTop'
+      className={classes.productListContainer}
+      justify='center'
+    >
       <Grid container>
         {products.map((product, idx) => (
           <Grid

@@ -36,7 +36,7 @@ export default function CheckoutStepper(props) {
   const [rua, setRua] = useState('');
   const [numero, setNumero] = useState('');
   const [cidade, setCidade] = useState('');
-  const [order, setOrder] = useState(false);
+  const [order, setOrder] = useState(null);
   const steps = getSteps();
 
   useEffect(() => {

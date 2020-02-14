@@ -35,7 +35,7 @@ export default function Product({ product, changeQuantity, getCart }) {
           component='p'
           style={{ marginTop: 16 }}
         >
-          R$ {price}
+          R$ {price.toFixed(2)}
         </Typography>
       </CardContent>
       <Grid container justify='center'>
