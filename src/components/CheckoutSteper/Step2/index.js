@@ -2,7 +2,7 @@ import React from 'react';
 import { TextField, Grid, Box, FormControl } from '@material-ui/core';
 import useStyles from './styles';
 
-const TextContol = props => {
+const TextControl = props => {
   const classes = useStyles();
   return (
     <FormControl fullWidth>
@@ -40,7 +40,7 @@ export default function Step2(props) {
       >
         <Grid container direction='row'>
           <Grid item xs={12}>
-            <TextContol id='name' label='Nome completo' />
+            <TextControl id='name' label='Nome completo' />
           </Grid>
           <Grid item sm={6} xs={12}>
             <TextControl label='Rua' id='address' onChange={handleChangeRua} />

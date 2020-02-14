@@ -117,10 +117,10 @@ export default function Footer(props) {
               xs={12}
               sm={3}
             >
-              <Typography variant='h3' color='textPrimary'>
+              <Typography variant='h3' align='right' color='textPrimary'>
                 CONECTE-SE
               </Typography>
-              <Grid container direction='row' justify='flex-start'>
+              <Grid container direction='row' justify='flex-end'>
                 <Grid item>
                   <Link
                     color='textPrimary'

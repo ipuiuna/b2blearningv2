@@ -14,7 +14,7 @@ const Success = () => {
         </Typography>
       </Grid>
       <Grid item className={classes.successImg}>
-        <img alt='cheers' src={cheers} />
+        <img className={classes.img} alt='cheers' src={cheers} />
       </Grid>
       <Grid item>
         <Typography className={classes.goodByeMessage}>

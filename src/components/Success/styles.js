@@ -6,19 +6,34 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700,
     lineHeight: '29px',
     color: '#532C1B',
-    marginBottom: '32px'
+    marginBottom: '32px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '18px',
+      lineHeight: '18px'
+    }
   },
   goodByeMessage: {
     fontSize: '36px',
     lineHeight: '44px',
     fontWeight: 700,
     color: '#825542',
-    marginBottom: '32px'
+    marginBottom: '32px',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+      lineHeight: '20px'
+    }
   },
   successImg: {
-    marginBottom: '32px'
+    maxWidth: '100%',
+    marginBottom: '32px',
+    textAlign: 'center'
   },
-  typoButton: { padding: '4px 0' }
+  typoButton: { padding: '4px 0' },
+  img: {
+    [theme.breakpoints.down('xs')]: {
+      maxWidth: '70%'
+    }
+  }
 }));
 
 export default useStyles;
