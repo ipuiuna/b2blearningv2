@@ -2,9 +2,17 @@ import React from 'react';
 import { TextField, Grid, Box, FormControl } from '@material-ui/core';
 import useStyles from './styles';
 
+const TextContol = props => {
+  const classes = useStyles();
+  return (
+    <FormControl fullWidth>
+      <TextField className={classes.textField} color='primary' {...props} />
+    </FormControl>
+  );
+};
+
 export default function Step2(props) {
   const { setNumero, setRua, setCidade } = props;
-  const classes = useStyles();
 
   const handleChangeRua = evt => {
     setRua(evt.target.value);
@@ -32,67 +40,33 @@ export default function Step2(props) {
       >
         <Grid container direction='row'>
           <Grid item xs={12}>
-            <FormControl fullWidth>
-              <TextField
-                id='name'
-                className={classes.textField}
-                label='Nome completo'
-                color='primary'
-              />
-            </FormControl>
+            <TextContol id='name' label='Nome completo' />
           </Grid>
           <Grid item sm={6} xs={12}>
-            <FormControl fullWidth>
-              <TextField
-                className={classes.textField}
-                label='Rua'
-                id='address'
-                onChange={handleChangeRua}
-              />
-            </FormControl>
+            <TextControl label='Rua' id='address' onChange={handleChangeRua} />
           </Grid>
           <Grid item sm={2} xs={12}>
-            <FormControl fullWidth>
-              <TextField
-                className={classes.textField}
-                label='Número'
-                id='number'
-                onChange={handleChangeNumero}
-              />
-            </FormControl>
+            <TextControl
+              label='Número'
+              id='number'
+              onChange={handleChangeNumero}
+            />
           </Grid>
           <Grid item sm={4} xs={12}>
-            <FormControl fullWidth>
-              <TextField
-                className={classes.textField}
-                label='Bairro'
-                id='bairro'
-              />
-            </FormControl>
+            <TextControl label='Bairro' id='bairro' />
           </Grid>
           <Grid item sm={6} xs={12}>
-            <FormControl fullWidth>
-              <TextField
-                className={classes.textField}
-                label='Cidade'
-                id='city'
-                onChange={handleChangeCidade}
-              />
-            </FormControl>
+            <TextControl
+              label='Cidade'
+              id='city'
+              onChange={handleChangeCidade}
+            />
           </Grid>
           <Grid item sm={3} xs={12}>
-            <FormControl>
-              <TextField
-                className={classes.textField}
-                label='Estado'
-                id='state'
-              />
-            </FormControl>
+            <TextControl label='Estado' id='state' />
           </Grid>
           <Grid item sm={3} xs={12}>
-            <FormControl>
-              <TextField className={classes.textField} label='Cep' id='cep' />
-            </FormControl>
+            <TextControl label='Cep' id='cep' />
           </Grid>
         </Grid>
       </Grid>
