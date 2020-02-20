@@ -23,7 +23,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import muitheme from '../../Theme';
 import useStyles from './styles';
-import './style.css';
 import Footer from '../Footer';
 
 export default function Login(props) {
@@ -242,7 +241,7 @@ export default function Login(props) {
           >
             <Grid item>
               <Paper className={classes.paper}>
-                <DoneIcon className={`landing-icons ${classes.landingIcons}`} />
+                <DoneIcon className={classes.landingIcons} />
                 <Typography
                   className={classes.landingIconsText}
                   variant='h5'

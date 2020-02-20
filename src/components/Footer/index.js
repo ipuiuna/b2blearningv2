@@ -28,7 +28,7 @@ export default function Footer(props) {
           <a href='#pageTop' style={{ textDecoration: 'none' }}>
             <Grid container justify='center'>
               <ExpandLessIcon
-                className='expandless-icon'
+                className={classes.expandlessIcon}
                 style={{
                   color: '#fff'
                 }}
@@ -40,15 +40,17 @@ export default function Footer(props) {
           </a>
         </Container>
       </Grid>
-      <Grid className={classes.linksGrid} container justify='center' xs={12}>
+
+      <Grid className={classes.linksGrid} container justify='center'>
         <Container>
-          <Grid container direction='row'>
+          <Grid container>
             <Grid
-              container
+              item
               className={classes.linksSet}
               direction='column'
+              lg={3}
               xs={12}
-              sm={3}
+              md={3}
             >
               <Typography color='textPrimary' align='left' variant='h3'>
                 INSTITUCIONAL
@@ -64,11 +66,12 @@ export default function Footer(props) {
               </Typography>
             </Grid>
             <Grid
-              container
+              item
               className={classes.linksSet}
               direction='column'
+              lg={3}
               xs={12}
-              sm={3}
+              md={3}
             >
               <Typography color='textPrimary' align='left' variant='h3'>
                 MINHA CONTA
@@ -87,11 +90,12 @@ export default function Footer(props) {
               </Typography>
             </Grid>
             <Grid
-              container
+              item
               className={classes.linksSet}
               direction='column'
+              lg={3}
               xs={12}
-              sm={3}
+              md={3}
             >
               <Typography color='textPrimary' align='left' variant='h3'>
                 AJUDA
@@ -113,11 +117,12 @@ export default function Footer(props) {
               </Typography>
             </Grid>
             <Grid
-              container
+              item
               className={classes.linksSet}
               direction='column'
+              lg={3}
               xs={12}
-              sm={3}
+              md={3}
             >
               <Typography variant='h3' align='right' color='textPrimary'>
                 CONECTE-SE
@@ -149,6 +154,7 @@ export default function Footer(props) {
           </Grid>
         </Container>
       </Grid>
+
       <Grid container justify='center' className={classes.brandGrid}>
         <Typography variant='body2' color='textPrimary'>
           Bud Light Team, ABInbev. 2020

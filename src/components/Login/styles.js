@@ -43,9 +43,6 @@ const useStyles = makeStyles(theme => ({
     }),
     marginRight: 0
   },
-  inicialContent: {
-    marginLeft: 48
-  },
   landingIcons: {
     color: muitheme.palette.primary.main
   },
@@ -94,6 +91,12 @@ const useStyles = makeStyles(theme => ({
   },
   closeIcon: {
     color: '#fff'
+  },
+  landingIcons: {
+    marginBottom: '60px',
+    paddingTop: '18px',
+    transform: 'scale(4)',
+    color: theme.palette.primary.main
   }
 }));
 export default useStyles;

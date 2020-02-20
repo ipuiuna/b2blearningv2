@@ -14,6 +14,11 @@ const useStyles = makeStyles(theme => ({
   },
   linksSet: {
     marginBottom: '20px'
+  },
+
+  expandlessIcon: {
+    marginTop: 8,
+    transform: 'scale(1.6)'
   }
 }));
 

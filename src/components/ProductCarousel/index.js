@@ -1,32 +1,110 @@
-import { Carousel } from 'react-bootstrap';
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import './style.css';
+import React from 'react';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import MobileStepper from '@material-ui/core/MobileStepper';
+import Button from '@material-ui/core/Button';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import SwipeableViews from 'react-swipeable-views';
+import { autoPlay } from 'react-swipeable-views-utils';
 
-export class ProductCarousel extends Component {
-  static defaultProps = {
-    productImages: 'https://via.placeholder.com/300'
-  };
+import { PropTypes } from 'prop-types';
 
-  static propTypes = {
-    productImages: PropTypes.array
-  };
+const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-  render() {
-    return (
-      <Carousel>
-        {this.props.productImages.map((image, key) => (
-          <Carousel.Item key={key}>
-            <img
-              className='img-thumbnail'
-              key={key}
-              src={image}
-              alt='Description'
-            />
-          </Carousel.Item>
-        ))}
-      </Carousel>
-    );
+const useStyles = makeStyles(theme => ({
+  root: {
+    maxWidth: 400,
+    flexGrow: 1
+  },
+  header: {
+    display: 'flex',
+    alignItems: 'center',
+    height: 50,
+    paddingLeft: theme.spacing(4),
+    backgroundColor: theme.palette.background.default
+  },
+  img: {
+    height: 255,
+    display: 'block',
+    maxWidth: 400,
+    overflow: 'hidden',
+    width: '100%'
   }
+}));
+
+function SwipeableTextMobileStepper(props) {
+  const { images } = props;
+  const classes = useStyles();
+  const theme = useTheme();
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
+  const handleStepChange = step => {
+    setActiveStep(step);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AutoPlaySwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={activeStep}
+        onChangeIndex={handleStepChange}
+        enableMouseEvents
+      >
+        {images.map((step, index) => (
+          <div key={step.label}>
+            {Math.abs(activeStep - index) <= 2 ? (
+              <img
+                className={classes.img}
+                src={step.imgPath}
+                alt={step.label}
+              />
+            ) : null}
+          </div>
+        ))}
+      </AutoPlaySwipeableViews>
+      <MobileStepper
+        steps={maxSteps}
+        position='static'
+        variant='dots'
+        activeStep={activeStep}
+        nextButton={
+          <Button
+            size='small'
+            onClick={handleNext}
+            disabled={activeStep === maxSteps - 1}
+          >
+            {theme.direction === 'rtl' ? (
+              <KeyboardArrowLeft />
+            ) : (
+              <KeyboardArrowRight />
+            )}
+          </Button>
+        }
+        backButton={
+          <Button size='small' onClick={handleBack} disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? (
+              <KeyboardArrowRight />
+            ) : (
+              <KeyboardArrowLeft />
+            )}
+          </Button>
+        }
+      />
+    </div>
+  );
 }
-export default ProductCarousel;
+
+SwipeableTextMobileStepper.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string)
+};
+
+export default SwipeableTextMobileStepper;

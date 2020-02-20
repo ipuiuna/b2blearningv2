@@ -37,62 +37,8 @@ export default function NavBarTop(props) {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => (
-    <div role='presentation'>
-      <Grid container>
-        <List>
-          <ListItem>
-            <Cart
-              loading={loading}
-              total={total}
-              getCart={getCart}
-              changeQuantity={changeQuantity}
-            />
-          </ListItem>
-
-          <ListItem>
-            <Grid container justify='flex-end'>
-              <Typography variant='h2' color='primary'>
-                {`R$ ${total.toFixed(2)}`}
-              </Typography>
-            </Grid>
-          </ListItem>
-
-          <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
-            {getCart() < 1 ? (
-              <Fab
-                disabled={total < 1}
-                className={classes.finalizarButton}
-                type='submit'
-                style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
-              >
-                <Typography variant='h3' color='primary'>
-                  Finalizar Compra
-                </Typography>
-              </Fab>
-            ) : (
-              <NavLink style={{ textDecoration: 'none' }} to='/checkout'>
-                <Fab
-                  disabled={total < 1}
-                  className={classes.finalizarButton}
-                  type='submit'
-                  style={{
-                    paddingLeft: 30,
-                    paddingRight: 30,
-                    borderRadius: 15
-                  }}
-                >
-                  <Typography variant='h3' color='primary'>
-                    Finalizar Compra
-                  </Typography>
-                </Fab>
-              </NavLink>
-            )}
-          </ListItem>
-        </List>
-      </Grid>
-    </div>
-  );
+  const sideList = side =>
+    sideListContent(loading, total, getCart, changeQuantity, classes);
 
   return (
     <React.Fragment>
@@ -158,5 +104,64 @@ export default function NavBarTop(props) {
         </AppBar>
       </div>
     </React.Fragment>
+  );
+}
+
+function sideListContent(loading, total, getCart, changeQuantity, classes) {
+  return (
+    <div role='presentation'>
+      <Grid container>
+        <List>
+          <ListItem>
+            <Cart
+              loading={loading}
+              total={total}
+              getCart={getCart}
+              changeQuantity={changeQuantity}
+            />
+          </ListItem>
+
+          <ListItem>
+            <Grid container justify='flex-end'>
+              <Typography variant='h2' color='primary'>
+                {`R$ ${total.toFixed(2)}`}
+              </Typography>
+            </Grid>
+          </ListItem>
+
+          <ListItem alignItems='center' style={{ justifyContent: 'center' }}>
+            {getCart() < 1 ? (
+              <Fab
+                disabled={total < 1}
+                className={classes.finalizarButton}
+                type='submit'
+                style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
+              >
+                <Typography variant='h3' color='primary'>
+                  Finalizar Compra
+                </Typography>
+              </Fab>
+            ) : (
+              <NavLink style={{ textDecoration: 'none' }} to='/checkout'>
+                <Fab
+                  disabled={total < 1}
+                  className={classes.finalizarButton}
+                  type='submit'
+                  style={{
+                    paddingLeft: 30,
+                    paddingRight: 30,
+                    borderRadius: 15
+                  }}
+                >
+                  <Typography variant='h3' color='primary'>
+                    Finalizar Compra
+                  </Typography>
+                </Fab>
+              </NavLink>
+            )}
+          </ListItem>
+        </List>
+      </Grid>
+    </div>
   );
 }
