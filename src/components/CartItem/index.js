@@ -27,10 +27,10 @@ const CartItem = props => {
   const removeItem = changeQuantity ? () => changeQuantity(item.id, 0) : null;
 
   return item ? (
-    <Paper className={classes.paper}>
+    <Paper id='paper-cart-item' className={classes.paper}>
       <Grid className={classes.content} container direction='row' xs={12}>
         <Grid item xs={3}>
-          <ButtonBase className={classes.image}>
+          <ButtonBase id='item-img' className={classes.image}>
             <img className={classes.img} alt='complex' src={item.images} />
           </ButtonBase>
         </Grid>
@@ -41,11 +41,12 @@ const CartItem = props => {
               style={{ cursor: 'pointer' }}
               onClick={removeItem}
             >
-              <DeleteIcon />
+              <DeleteIcon id='delete-icon' />
             </Typography>
           </Grid>
 
           <Typography
+            id='item-title'
             className={classes.titleMargin}
             gutterBottom
             color='primary'
@@ -62,13 +63,14 @@ const CartItem = props => {
         className={classes.price}
         justify='center'
       >
-        <Typography variant='h3' color='primary'>
+        <Typography id='item-price' variant='h3' color='primary'>
           R$ {item.price}
         </Typography>
       </Grid>
       <Grid container direction='row' justify='center' xs={12}>
         <Grid item>
           <QuantityEditor
+            id='qtdy-editor'
             incItem={incItem}
             decItem={decItem}
             quantity={item.quantity}
@@ -76,49 +78,6 @@ const CartItem = props => {
           ></QuantityEditor>
         </Grid>
       </Grid>
-
-      {/* </Grid>
-      <Grid container spacing={2}>
-        <Grid item xs={3}>
-          <ButtonBase className={classes.image}>
-            <img className={classes.img} alt='complex' src={item.images} />
-          </ButtonBase>
-        </Grid>
-        <Grid item xs={9} sm container>
-          <Grid item xs container direction='column' spacing={2}>
-            <Grid item xs>
-              <Typography
-                className={classes.titleMargin}
-                gutterBottom
-                color='primary'
-                variant='h3'
-              >
-                {item.title}
-              </Typography>
-              <Typography variant='h3' color='primary'>
-                R$ {item.price}
-              </Typography>
-            </Grid>
-            <Grid container item justify='center'>
-              <QuantityEditor
-                incItem={incItem}
-                decItem={decItem}
-                quantity={item.quantity}
-                min={1}
-              ></QuantityEditor>
-            </Grid>
-          </Grid>
-          <Grid item>
-            <Typography
-              color='error'
-              style={{ cursor: 'pointer' }}
-              onClick={removeItem}
-            >
-              <DeleteIcon />
-            </Typography>
-          </Grid>
-        </Grid>
-      </Grid> */}
     </Paper>
   ) : null;
 };

@@ -5,6 +5,7 @@ export default function Loading() {
   return (
     <Grid container justify='center'>
       <LinearProgress
+        id='loading-bar'
         color='secondary'
         style={{ top: '64px', position: 'fixed', width: '100%', zIndex: 1200 }}
       />

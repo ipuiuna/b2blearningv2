@@ -79,6 +79,7 @@ export default function Login(props) {
           <ListItem>
             <ListItemText>
               <Typography
+                id='text-ola'
                 className={classes.ola}
                 align='center'
                 color='primary'
@@ -86,6 +87,7 @@ export default function Login(props) {
                 Olá!
               </Typography>
               <Typography
+                id='text-home-01'
                 className={classes.loginMessage}
                 align='center'
                 color='primary'
@@ -97,6 +99,7 @@ export default function Login(props) {
           <form onSubmit={handleSubmit}>
             <ListItem>
               <Input
+                id='input-home-01'
                 className={classes.inputFields}
                 type='email'
                 name='email'
@@ -106,6 +109,7 @@ export default function Login(props) {
             </ListItem>
             <ListItem>
               <Input
+                id='input-home-02'
                 className={classes.inputFields}
                 type='password'
                 name='password'
@@ -125,6 +129,7 @@ export default function Login(props) {
                   classeName={classes.loginLabel}
                   variant='h3'
                   color='primary'
+                  id='button-entrar'
                 >
                   <div
                     className={classes.loginLabel}

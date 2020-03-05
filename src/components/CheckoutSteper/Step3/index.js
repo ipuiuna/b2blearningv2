@@ -35,6 +35,7 @@ export default function Step3(props) {
                   value={item.id}
                   control={
                     <Radio
+                      id={`radio-${idx}`}
                       color='primary'
                       checked={item.selected}
                       onClick={() => selectPaymentMethod(item.id)}

@@ -19,6 +19,7 @@ export default function Product({ product, changeQuantity, getCart }) {
     <Card className={classes.card}>
       <Grid container justify='center'>
         <img
+          id='img-product'
           style={{ width: 257.72, height: 257.72 }}
           src={images[0]}
           alt={title}
@@ -26,10 +27,17 @@ export default function Product({ product, changeQuantity, getCart }) {
       </Grid>
 
       <CardContent className={classes.content}>
-        <Typography gutterBottom color='primary' variant='h3' component='h2'>
+        <Typography
+          id='label-product-title'
+          gutterBottom
+          color='primary'
+          variant='h3'
+          component='h2'
+        >
           {title}
         </Typography>
         <Typography
+          id='label-product-price'
           variant='h3'
           color='textSecondary'
           component='p'
@@ -40,6 +48,7 @@ export default function Product({ product, changeQuantity, getCart }) {
       </CardContent>
       <Grid container justify='center'>
         <QuantityEditor
+          id='qtdy-editor'
           incItem={incItem}
           decItem={decItem}
           quantity={product.quantity}

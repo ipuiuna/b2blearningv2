@@ -36,6 +36,7 @@ export default function LoginPage(props) {
   return (
     <div>
       <Modal
+        id='modal-erro-login'
         aria-labelledby='simple-modal-title'
         aria-describedby='simple-modal-description'
         open={open}
@@ -54,7 +55,7 @@ export default function LoginPage(props) {
         </div>
       </Modal>
       <div className='box'>
-        <Login title={'Login'} onLogin={handleLogin} />
+        <Login id='login-component' title={'Login'} onLogin={handleLogin} />
       </div>
     </div>
   );

@@ -18,11 +18,12 @@ export default function Step1(props) {
 
   return (
     <TableContainer>
-      <Table className={classes.table}>
+      <Table className={classes.table} id='order-table'>
         <TableHead style={{ backgroundColor: 'rgba(229, 229, 229, 0.35)' }}>
           <TableRow>
             <TableCell>
               <Typography
+                id='table-header-product'
                 className={classes.tableTitle}
                 align='left'
                 variant='h3'
@@ -33,6 +34,7 @@ export default function Step1(props) {
             </TableCell>
             <TableCell>
               <Typography
+                id='table-header-price'
                 className={classes.tableTitle}
                 align='left'
                 variant='h3'
@@ -43,6 +45,7 @@ export default function Step1(props) {
             </TableCell>
             <TableCell>
               <Typography
+                id='table-header-qtdy'
                 className={classes.tableTitle}
                 align='center'
                 variant='h3'
@@ -53,6 +56,7 @@ export default function Step1(props) {
             </TableCell>
             <TableCell>
               <Typography
+                id='table-header-total'
                 className={classes.tableTitle}
                 align='left'
                 variant='h3'
@@ -70,22 +74,38 @@ export default function Step1(props) {
               style={{ backgroundColor: 'rgba(229, 229, 229, 0.35)' }}
             >
               <TableCell>
-                <Typography className={classes.tableCell} color='primary'>
+                <Typography
+                  id='table-cell-title'
+                  className={classes.tableCell}
+                  color='primary'
+                >
                   {item.title}
                 </Typography>
               </TableCell>
               <TableCell align='left'>
-                <Typography className={classes.tableCell} color='primary'>
+                <Typography
+                  id='table-cell-price'
+                  className={classes.tableCell}
+                  color='primary'
+                >
                   R$ {item.price.toFixed(2)}
                 </Typography>
               </TableCell>
               <TableCell align='center'>
-                <Typography className={classes.tableCell} color='primary'>
+                <Typography
+                  id='table-cell-qtdy'
+                  className={classes.tableCell}
+                  color='primary'
+                >
                   {item.quantity}
                 </Typography>
               </TableCell>
               <TableCell align='left'>
-                <Typography className={classes.tableCell} color='primary'>
+                <Typography
+                  id='table-cell-total'
+                  className={classes.tableCell}
+                  color='primary'
+                >
                   R$ {(item.quantity * item.price).toFixed(2)}
                 </Typography>
               </TableCell>
@@ -100,6 +120,7 @@ export default function Step1(props) {
                 className={classes.tableTitle}
                 color='primary'
                 variant='h3'
+                id='table-cell-items-totals'
               >
                 R$ {total.toFixed(2)}
               </Typography>

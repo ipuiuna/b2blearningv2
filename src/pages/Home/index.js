@@ -12,6 +12,7 @@ export default props => {
       {(loading, products, total, getCart, changeQuantity) => (
         <div>
           <NavBarTop
+            id='navbar-home'
             total={total}
             getCart={getCart}
             changeQuantity={changeQuantity}
@@ -23,6 +24,7 @@ export default props => {
             ) : (
               <React.Fragment>
                 <ProductList
+                  id='product-list'
                   products={products}
                   changeQuantity={changeQuantity}
                   getCart={getCart}
@@ -30,7 +32,7 @@ export default props => {
               </React.Fragment>
             )}
           </Grid>
-          <Footer logout />
+          <Footer id='footer-home' logout />
         </div>
       )}
     </CartManager>

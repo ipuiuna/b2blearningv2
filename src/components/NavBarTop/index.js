@@ -43,19 +43,20 @@ export default function NavBarTop(props) {
   return (
     <React.Fragment>
       <Drawer
+        id='navbar-drawer'
         anchor='right'
         open={state.right}
         onClose={toggleDrawer('right', false)}
       >
         <div className={classes.drawerHeader}>
           <Grid container justify='center'>
-            <Typography color='textPrimary' variant='h2'>
+            <Typography id='label-cart' color='textPrimary' variant='h2'>
               Carrinho
             </Typography>
           </Grid>
 
           <IconButton onClick={toggleDrawer('right', false)}>
-            <Typography color='textPrimary'>
+            <Typography id='icon-close' color='textPrimary'>
               <CloseIcon />
             </Typography>
           </IconButton>
@@ -64,17 +65,23 @@ export default function NavBarTop(props) {
       </Drawer>
 
       <div className={classes.root}>
-        <AppBar position='fixed'>
+        <AppBar id='app-bar' position='fixed'>
           <Container>
             <Toolbar className={classes.toolbar}>
               <NavLink
+                id='link-logo'
                 to={'/'}
                 isActive={match => {
                   return match ? match.isExact : false;
                 }}
                 className='nav-link'
               >
-                <img className={classes.logo} alt='Ta na Mão' src={logo}></img>
+                <img
+                  id='img-logo'
+                  className={classes.logo}
+                  alt='Ta na Mão'
+                  src={logo}
+                ></img>
               </NavLink>
               <div>
                 {showCart ? (
@@ -86,12 +93,14 @@ export default function NavBarTop(props) {
                     spacing={2}
                   >
                     <Badge
+                      id='icon-cart-indicator'
                       style={{ cursor: 'pointer' }}
                       badgeContent={getCart().length}
                       max={99}
                       color='error'
                     >
                       <ShoppingCartIcon
+                        id='icon-shopping-cart'
                         style={{ cursor: 'pointer' }}
                         onClick={toggleDrawer('right', true)}
                       ></ShoppingCartIcon>
@@ -123,7 +132,7 @@ function sideListContent(loading, total, getCart, changeQuantity, classes) {
 
           <ListItem>
             <Grid container justify='flex-end'>
-              <Typography variant='h2' color='primary'>
+              <Typography id='label-cart-totals' variant='h2' color='primary'>
                 {`R$ ${total.toFixed(2)}`}
               </Typography>
             </Grid>
@@ -137,7 +146,7 @@ function sideListContent(loading, total, getCart, changeQuantity, classes) {
                 type='submit'
                 style={{ paddingLeft: 30, paddingRight: 30, borderRadius: 15 }}
               >
-                <Typography variant='h3' color='primary'>
+                <Typography id='label-checkout-01' variant='h3' color='primary'>
                   Finalizar Compra
                 </Typography>
               </Fab>
@@ -153,7 +162,11 @@ function sideListContent(loading, total, getCart, changeQuantity, classes) {
                     borderRadius: 15
                   }}
                 >
-                  <Typography variant='h3' color='primary'>
+                  <Typography
+                    id='label-checkout-02'
+                    variant='h3'
+                    color='primary'
+                  >
                     Finalizar Compra
                   </Typography>
                 </Fab>

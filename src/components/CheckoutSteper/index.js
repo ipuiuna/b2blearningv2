@@ -84,6 +84,7 @@ export default function CheckoutStepper(props) {
   return (
     <div className={classes.root}>
       <NavBarTop
+        id='navbar-checkout'
         total={total}
         getCart={getCart}
         changeQuantity={changeQuantity}
@@ -99,6 +100,7 @@ export default function CheckoutStepper(props) {
                 <Step key={index} {...stepProps}>
                   <StepLabel {...labelProps}>
                     <Typography
+                      id={`active-step-${index}`}
                       className={
                         activeStep === index ? null : classes.stepperTitle
                       }
@@ -137,12 +139,14 @@ export default function CheckoutStepper(props) {
                 {activeStep === 0 ? (
                   <NavLink style={{ textDecoration: 'none' }} to='/'>
                     <Button
+                      id='button-buy'
                       className={classes.buttonBack}
                       variant='contained'
                       type='submit'
                       color='secondary'
                     >
                       <Typography
+                        id='label-buy'
                         classesName={classes.typoButton}
                         variant='h3'
                         color='primary'
@@ -153,6 +157,7 @@ export default function CheckoutStepper(props) {
                   </NavLink>
                 ) : (
                   <Button
+                    id='button-back'
                     variant='contained'
                     disabled={activeStep === 0}
                     color='secondary'
@@ -160,6 +165,7 @@ export default function CheckoutStepper(props) {
                     className={classes.buttonBack}
                   >
                     <Typography
+                      id='label-back'
                       classesName={classes.typoButton}
                       variant='h3'
                       color='primary'
@@ -176,12 +182,14 @@ export default function CheckoutStepper(props) {
                 (activeStep === 1 &&
                   (rua === '' || cidade === '' || numero === '')) ? (
                   <Button
+                    id='button-order-disabled'
                     variant='contained'
                     color='secondary'
                     disabled
                     className={classes.button}
                   >
                     <Typography
+                      id='label-order-disabled'
                       classesName={classes.typoButton}
                       variant='h3'
                       color='primary'
@@ -193,12 +201,14 @@ export default function CheckoutStepper(props) {
                   </Button>
                 ) : (
                   <Button
+                    id='button-order-enabled'
                     variant='contained'
                     color='secondary'
                     onClick={handleNext}
                     className={classes.button}
                   >
                     <Typography
+                      id='label-order-enabled'
                       classesName={classes.typoButton}
                       variant='h3'
                       color='primary'

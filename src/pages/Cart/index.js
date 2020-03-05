@@ -10,6 +10,7 @@ export default props => {
       ) : (
         <React.Fragment>
           <CartlList
+            id='cart-list'
             total={total}
             getCart={getCart}
             changeQuantity={changeQuantity}

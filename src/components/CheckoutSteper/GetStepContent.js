@@ -43,7 +43,7 @@ export default function GetStepContent(props) {
         </div>
       );
     default:
-      return <div>'Passo desconhecido'</div>;
+      return <div id='unknow-step'>'Passo desconhecido'</div>;
   }
 }
 GetStepContent.propTypes = {

@@ -25,6 +25,7 @@ export default () => {
           ) : (
             <Container className={classes.checkoutStepper}>
               <CheckoutStepper
+                id='checkout-stepper'
                 total={total}
                 getCart={getCart}
                 payments={payments}

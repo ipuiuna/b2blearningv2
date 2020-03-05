@@ -10,7 +10,7 @@ const CartList = props => {
     <div className='product-list'>
       {items.length === 0 ? (
         <div className='cart-empty'>
-          <Typography variant='h3' color='primary'>
+          <Typography id='cart-empty' variant='h3' color='primary'>
             Seu carrinho está vazio
           </Typography>
         </div>

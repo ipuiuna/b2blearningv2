@@ -24,6 +24,7 @@ export default ({ products, ...others }) => {
             xs={12}
           >
             <Product
+              id={`product-${idx}`}
               className='product'
               key={idx}
               product={product}
