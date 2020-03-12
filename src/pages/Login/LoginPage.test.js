@@ -17,9 +17,9 @@ describe('<LoginPage />', () => {
   });
 
   it('Should render a modal', () => {
-    expect(wrapper.find(Modal)).toHaveLength(1);
+    expect(wrapper.find(Modal).prop('open')).toEqual(false);
   });
   it('Should render Login component', () => {
-    expect(wrapper.find(Login)).toHaveLength(1);
+    expect(wrapper.containsMatchingElement(Login)).toEqual(true);
   });
 });
