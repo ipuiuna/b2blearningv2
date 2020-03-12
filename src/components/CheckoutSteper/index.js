@@ -147,7 +147,7 @@ export default function CheckoutStepper(props) {
                     >
                       <Typography
                         id='label-buy'
-                        classesName={classes.typoButton}
+                        className={classes.typoButton}
                         variant='h3'
                         color='primary'
                       >
@@ -166,7 +166,7 @@ export default function CheckoutStepper(props) {
                   >
                     <Typography
                       id='label-back'
-                      classesName={classes.typoButton}
+                      className={classes.typoButton}
                       variant='h3'
                       color='primary'
                     >
@@ -190,7 +190,7 @@ export default function CheckoutStepper(props) {
                   >
                     <Typography
                       id='label-order-disabled'
-                      classesName={classes.typoButton}
+                      className={classes.typoButton}
                       variant='h3'
                       color='primary'
                     >
@@ -209,7 +209,7 @@ export default function CheckoutStepper(props) {
                   >
                     <Typography
                       id='label-order-enabled'
-                      classesName={classes.typoButton}
+                      className={classes.typoButton}
                       variant='h3'
                       color='primary'
                     >

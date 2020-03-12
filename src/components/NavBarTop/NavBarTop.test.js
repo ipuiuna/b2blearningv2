@@ -24,7 +24,7 @@ describe('<NavBar />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<NavBarTop total={0} />);
+    wrapper = mount(<NavBarTop total={0} getCart={() => null} />);
   });
 
   it('Should have a hide Drawer', () => {
