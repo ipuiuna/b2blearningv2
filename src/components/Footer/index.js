@@ -47,14 +47,7 @@ export default function Footer(props) {
       <Grid className={classes.linksGrid} container justify='center'>
         <Container>
           <Grid container>
-            <Grid
-              item
-              className={classes.linksSet}
-              direction='column'
-              lg={3}
-              xs={12}
-              md={3}
-            >
+            <Grid item className={classes.linksSet} lg={3} xs={12} md={3}>
               <Typography
                 id='label-institucional'
                 color='textPrimary'
@@ -79,14 +72,7 @@ export default function Footer(props) {
                 </Link>
               </Typography>
             </Grid>
-            <Grid
-              item
-              className={classes.linksSet}
-              direction='column'
-              lg={3}
-              xs={12}
-              md={3}
-            >
+            <Grid item className={classes.linksSet} lg={3} xs={12} md={3}>
               <Typography
                 id='label-minha-conta'
                 color='textPrimary'
@@ -116,14 +102,7 @@ export default function Footer(props) {
                 </Link>
               </Typography>
             </Grid>
-            <Grid
-              item
-              className={classes.linksSet}
-              direction='column'
-              lg={3}
-              xs={12}
-              md={3}
-            >
+            <Grid item className={classes.linksSet} lg={3} xs={12} md={3}>
               <Typography
                 id='label-ajuda'
                 color='textPrimary'
@@ -147,19 +126,10 @@ export default function Footer(props) {
                   <Link onClick={handleLogout} color='textPrimary'>
                     logout
                   </Link>
-                ) : (
-                  <div></div>
-                )}
+                ) : null}
               </Typography>
             </Grid>
-            <Grid
-              item
-              className={classes.linksSet}
-              direction='column'
-              lg={3}
-              xs={12}
-              md={3}
-            >
+            <Grid item className={classes.linksSet} lg={3} xs={12} md={3}>
               <Typography
                 id='label-conecte-se'
                 variant='h3'

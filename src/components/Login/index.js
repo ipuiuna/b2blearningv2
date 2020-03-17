@@ -124,12 +124,12 @@ export default function Login(props) {
                 className={classes.loginButtom}
                 type='submit'
                 color='secondary'
+                id='button-entrar-drawer'
               >
                 <Typography
-                  classeName={classes.loginLabel}
+                  className={classes.loginLabel}
                   variant='h3'
                   color='primary'
-                  id='button-entrar'
                 >
                   <div
                     className={classes.loginLabel}
@@ -193,6 +193,7 @@ export default function Login(props) {
                   className={classes.loginButtom}
                   color='secondary'
                   onClick={handleDrawerOpen}
+                  id='button-entrar-navbar'
                 >
                   <Typography color='primary' variant='h3'>
                     <div className={classes.loginLabel}>Entrar</div>
