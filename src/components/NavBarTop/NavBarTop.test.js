@@ -4,6 +4,8 @@ import { configure, shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import NavBarTop from '../../components/NavBarTop';
+import Cart from '../../pages/Cart';
+import logo from '../../assets/img/logo-white.png';
 
 import {
   AppBar,
@@ -24,10 +26,25 @@ describe('<NavBar />', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(<NavBarTop total={0} getCart={() => null} />);
+    wrapper = shallow(
+      <NavBarTop
+        total={0}
+        getCart={() => {
+          return 0;
+        }}
+      />
+    );
   });
 
-  it('Should have a hide Drawer', () => {
+  it('Should the drawer be ocult', () => {
     expect(wrapper.find(Drawer).prop('open')).toEqual(false);
+  });
+
+  it('Should have a cart component', () => {
+    expect(wrapper.find(Cart)).toHaveLength(1);
+  });
+
+  it('Should have a logo', () => {
+    expect(wrapper.find('img').prop('src')).toEqual(logo);
   });
 });
