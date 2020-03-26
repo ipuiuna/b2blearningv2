@@ -28,15 +28,16 @@ const CartItem = props => {
 
   return item ? (
     <Paper id='paper-cart-item' className={classes.paper}>
-      <Grid className={classes.content} container direction='row' xs={12}>
+      <Grid className={classes.content} container direction='row'>
         <Grid item xs={3}>
           <ButtonBase id='item-img' className={classes.image}>
             <img className={classes.img} alt='complex' src={item.images} />
           </ButtonBase>
         </Grid>
-        <Grid container direction='column' xs={9}>
+        <Grid container direction='column'>
           <Grid container justify='flex-end'>
             <Typography
+              xs={9}
               color='error'
               style={{ cursor: 'pointer' }}
               onClick={removeItem}
@@ -59,16 +60,15 @@ const CartItem = props => {
       <Grid
         container
         direction='row'
-        xs={12}
         className={classes.price}
         justify='center'
       >
-        <Typography id='item-price' variant='h3' color='primary'>
+        <Typography id='item-price' variant='h3' color='primary' xs={12}>
           R$ {item.price}
         </Typography>
       </Grid>
-      <Grid container direction='row' justify='center' xs={12}>
-        <Grid item>
+      <Grid container direction='row' justify='center'>
+        <Grid item xs={12}>
           <QuantityEditor
             id='qtdy-editor'
             incItem={incItem}

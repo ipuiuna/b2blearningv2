@@ -11,6 +11,7 @@ export default function QuantityEditor(props) {
   return (
     <ButtonGroup aria-label='primary button group'>
       <Button
+        id='button-decItem'
         className={classes.buttonStyled}
         onClick={decItem}
         disabled={quantity <= min}
@@ -28,6 +29,7 @@ export default function QuantityEditor(props) {
         }}
       >
         <Typography
+          id='field-quantity'
           color='primary'
           className={classes.typographyQuantityBox}
           variant='h2'
@@ -37,6 +39,7 @@ export default function QuantityEditor(props) {
       </Box>
 
       <Button
+        id='button-incItem'
         className={classes.buttonStyled}
         onClick={incItem}
         variant='contained'
