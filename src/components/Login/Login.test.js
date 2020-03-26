@@ -5,7 +5,7 @@ import Adapter from 'enzyme-adapter-react-16';
 
 import Login from './';
 
-import { Drawer, Fab } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 
 configure({ adapter: new Adapter() });
 
