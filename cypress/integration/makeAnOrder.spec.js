@@ -1,4 +1,5 @@
 const email = 'marcos.morais@ab-inbev.com';
+const checkoutUrl = 'http://b2blearningv2.herokuapp.com/checkout';
 const password = 'tanamao';
 const appHomeUrl = 'http://b2blearningv2.herokuapp.com/';
 const appLoginUrl = 'http://b2blearningv2.herokuapp.com/login';
@@ -23,8 +24,11 @@ const products = [
 ];
 
 describe('Adding products to cart', function() {
-  const productToBeTested = products[Math.floor(Math.random() * 16)];
-  const random = Math.floor(Math.random() * 10) + 1;
+  const productAt = Math.floor(Math.random() * 16);
+  const productToBeTested = products[productAt];
+  const randomTimes = Math.floor(Math.random() * 10) + 1;
+  const anotherProduct =
+    products[productAt === 0 ? 1 : productAt === 16 ? -1 : productAt + 1];
 
   beforeEach(() => {
     cy.restoreLocalStorageCache();
@@ -48,20 +52,37 @@ describe('Adding products to cart', function() {
     });
   });
 
-  it(`Add product id=${productToBeTested} x${random} to the cart`, () => {
-    for (let i = 0; i < random; i++) {
+  it(`Add product id=${productToBeTested} x${randomTimes} to the cart`, () => {
+    for (let i = 0; i < randomTimes; i++) {
       cy.get(`#button-incItem-${productToBeTested}`).click();
     }
   });
 
-  it(`Product id=${productToBeTested} must have qtdy field value = ${random}`, () => {
-    cy.get(`#field-quantity-${productToBeTested}`).should('be', random);
+  it(`Product id=${productToBeTested} must have qtdy field value = ${randomTimes}`, () => {
+    cy.get(`#field-quantity-${productToBeTested}`).should('be', randomTimes);
   });
 
-  it(`Reduce the qtdy of product id=${productToBeTested} to 0`, () => {
-    for (let i = 0; i < random; i++) {
-      cy.get(`#button-decItem-${productToBeTested}`).click();
-    }
-    cy.get(`#field-quantity-${productToBeTested}`).should('be', 0);
+  it(`Add another product`, () => {
+    cy.get(`#button-incItem-${anotherProduct}`).click();
+  });
+
+  it(`Open cart`, () => {
+    cy.get('#icon-shopping-cart').click();
+  });
+
+  it(`Going to checkout`, () => {
+    cy.get('#label-checkout-02').click();
+    cy.location().should(location => {
+      expect(location.href).to.eq(checkoutUrl);
+    });
+  });
+
+  it("The qtdy's needs to persist", () => {
+    cy.get(`#table-cell-qtdy-${productToBeTested}`).should('be', randomTimes);
+    cy.get(`#table-cell-qtdy-${anotherProduct}`).should('be', 1);
+  });
+
+  it(`Should go to next step`, () => {
+    cy.get('#label-order-enabled').click();
   });
 });

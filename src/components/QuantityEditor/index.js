@@ -29,7 +29,7 @@ export default function QuantityEditor(props) {
         }}
       >
         <Typography
-          id='field-quantity'
+          id={`field-quantity-${buttonsId}`}
           color='primary'
           className={classes.typographyQuantityBox}
           variant='h2'
