@@ -7,11 +7,11 @@ import { Button, Box, Typography, ButtonGroup } from '@material-ui/core';
 export default function QuantityEditor(props) {
   const classes = useStyles();
 
-  const { quantity, incItem, decItem, min } = props;
+  const { quantity, incItem, decItem, min, buttonsId } = props;
   return (
     <ButtonGroup aria-label='primary button group'>
       <Button
-        id='button-decItem'
+        id={`button-decItem-${buttonsId}`}
         className={classes.buttonStyled}
         onClick={decItem}
         disabled={quantity <= min}
@@ -39,7 +39,7 @@ export default function QuantityEditor(props) {
       </Box>
 
       <Button
-        id='button-incItem'
+        id={`button-incItem-${buttonsId}`}
         className={classes.buttonStyled}
         onClick={incItem}
         variant='contained'

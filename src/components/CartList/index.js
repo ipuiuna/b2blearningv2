@@ -19,6 +19,7 @@ const CartList = props => {
           {items.map((item, idx) => (
             <CartItem
               key={idx}
+              id={item.id}
               item={item}
               total={item.quantity * item.price}
               changeQuantity={changeQuantity}

@@ -13,7 +13,7 @@ export default function Product({ product, changeQuantity, getCart }) {
     : null;
 
   const classes = useStyles();
-  const { title, price, images } = product;
+  const { title, price, images, id } = product;
 
   return (
     <Card className={classes.card}>
@@ -49,6 +49,7 @@ export default function Product({ product, changeQuantity, getCart }) {
       <Grid container justify='center'>
         <QuantityEditor
           id='qtdy-editor'
+          buttonsId={id}
           incItem={incItem}
           decItem={decItem}
           quantity={product.quantity}
