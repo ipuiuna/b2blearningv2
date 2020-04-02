@@ -7,7 +7,7 @@ import useStyles from './styles';
 
 const CartItem = props => {
   const classes = useStyles();
-  const { item, changeQuantity } = props;
+  const { item, changeQuantity, id } = props;
 
   const incItem = changeQuantity
     ? () => {
@@ -70,6 +70,7 @@ const CartItem = props => {
       <Grid container direction='row' justify='center'>
         <Grid item xs={12}>
           <QuantityEditor
+            buttonsId={id}
             id='qtdy-editor'
             incItem={incItem}
             decItem={decItem}
