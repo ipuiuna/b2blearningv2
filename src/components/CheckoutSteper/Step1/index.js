@@ -75,7 +75,7 @@ export default function Step1(props) {
             >
               <TableCell>
                 <Typography
-                  id='table-cell-title'
+                  id={`table-cell-title-${item.id}`}
                   className={classes.tableCell}
                   color='primary'
                 >
@@ -93,7 +93,7 @@ export default function Step1(props) {
               </TableCell>
               <TableCell align='center'>
                 <Typography
-                  id='table-cell-qtdy'
+                  id={`table-cell-qtdy-${item.id}`}
                   className={classes.tableCell}
                   color='primary'
                 >
