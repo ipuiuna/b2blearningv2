@@ -121,9 +121,13 @@ export default function Footer(props) {
                   entrega
                 </Link>
               </Typography>
-              <Typography id='link-logout' align='left'>
+              <Typography align='left'>
                 {logout ? (
-                  <Link onClick={handleLogout} color='textPrimary'>
+                  <Link
+                    id='link-logout'
+                    onClick={handleLogout}
+                    color='textPrimary'
+                  >
                     logout
                   </Link>
                 ) : null}
