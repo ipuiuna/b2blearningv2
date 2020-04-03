@@ -85,4 +85,21 @@ describe('Adding products to cart', function() {
   it(`Should go to next step`, () => {
     cy.get('#label-order-enabled').click();
   });
+
+  it(`Should have fields to enter data for the delivery`, () => {
+    cy.get('#name').type('Cliente');
+    cy.get('#address').type('Rua Mococa');
+    cy.get('#number').type('32');
+    cy.get('#city').type('Ipuiuna');
+    cy.get('#label-order-enabled').click();
+  });
+
+  it(`Should select a payment method`, () => {
+    cy.get('#radio-0').click();
+    cy.get('#label-order-enabled').click();
+  });
+
+  it(`Should have successful completed the order`, () => {
+    cy.get('#label-sucess').should('be.visible');
+  });
 });
