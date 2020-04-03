@@ -82,7 +82,7 @@ describe('Adding products to cart', function() {
     cy.get(`#table-cell-qtdy-${anotherProduct}`).should('be', 1);
   });
 
-  it(`Should go to next step`, () => {
+  it(`Need to go to next step`, () => {
     cy.get('#label-order-enabled').click();
   });
 
@@ -91,6 +91,9 @@ describe('Adding products to cart', function() {
     cy.get('#address').type('Rua Mococa');
     cy.get('#number').type('32');
     cy.get('#city').type('Ipuiuna');
+  });
+
+  it(`Need to go to next step`, () => {
     cy.get('#label-order-enabled').click();
   });
 
