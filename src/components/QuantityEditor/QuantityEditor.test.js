@@ -16,7 +16,6 @@ describe('<QuantityEditor />', () => {
   });
 
   it('Should have two buttons', () => {
-    console.log(wrapper.debug());
     expect(wrapper.find(Button)).toHaveLength(2);
   });
 
