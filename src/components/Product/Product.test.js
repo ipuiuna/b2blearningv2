@@ -4,6 +4,7 @@ import { configure, shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import Product from './';
+import QuantityEditor from '../QuantityEditor';
 
 configure({ adapter: new Adapter() });
 
@@ -23,10 +24,10 @@ describe('<Product />', () => {
   });
 
   it('Should have a title', () => {
-    expect(wrapper.find('h2').props('id')).toEqual('label-product-title');
+    expect(wrapper.find('#label-product-title')).toHaveLength(1);
   });
 
-  //   it('Should have a logo', () => {
-  //     expect(wrapper.find('img').prop('src')).toEqual(logo);
-  //   });
+  it('Should have a quantity editor', () => {
+    expect(wrapper.find('QuantityEditor')).toHaveLength(1);
+  });
 });
