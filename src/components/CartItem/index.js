@@ -5,7 +5,7 @@ import QuantityEditor from '../QuantityEditor';
 import DeleteIcon from '@material-ui/icons/Delete';
 import useStyles from './styles';
 
-const CartItem = props => {
+const CartItem = (props) => {
   const classes = useStyles();
   const { item, changeQuantity, id } = props;
 
@@ -85,11 +85,11 @@ const CartItem = props => {
 
 // proptypes
 CartItem.propTypes = {
-  editable: PropTypes.bool
+  editable: PropTypes.bool,
 };
 
 CartItem.defaultProps = {
-  editable: true
+  editable: true,
 };
 
 export default CartItem;
