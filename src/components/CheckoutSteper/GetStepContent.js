@@ -1,8 +1,8 @@
-import React from 'react';
-import Step1 from './Step1';
-import Step2 from './Step2';
-import Step3 from './Step3';
-import PropTypes from 'prop-types';
+import React from "react";
+import Step1 from "./Step1";
+import Step2 from "./Step2";
+import Step3 from "./Step3";
+import PropTypes from "prop-types";
 
 export default function GetStepContent(props) {
   const {
@@ -14,7 +14,11 @@ export default function GetStepContent(props) {
     selectPaymentMethod,
     setCidade,
     setRua,
-    setNumero
+    setNumero,
+    setBairro,
+    setCep,
+    setEstado,
+    setNome,
   } = props;
   switch (activeStep) {
     case 0:
@@ -30,7 +34,15 @@ export default function GetStepContent(props) {
     case 1:
       return (
         <div>
-          <Step2 setRua={setRua} setNumero={setNumero} setCidade={setCidade} />
+          <Step2
+            setRua={setRua}
+            setNumero={setNumero}
+            setCidade={setCidade}
+            setBairro={setBairro}
+            setNome={setNome}
+            setCep={setCep}
+            setEstado={setEstado}
+          />
         </div>
       );
     case 2:
@@ -47,5 +59,5 @@ export default function GetStepContent(props) {
   }
 }
 GetStepContent.propTypes = {
-  step: PropTypes.number
+  step: PropTypes.number,
 };

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
-import GetStepContent from './GetStepContent';
-import NavBarTop from '../NavBarTop';
-import Success from '../Success';
-import useStyles from './styles';
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
+import GetStepContent from "./GetStepContent";
+import NavBarTop from "../NavBarTop";
+import Success from "../Success";
+import useStyles from "./styles";
 import {
   Stepper,
   Step,
@@ -11,11 +11,12 @@ import {
   Button,
   Typography,
   Grid,
-  Box
-} from '@material-ui/core';
+  Box,
+  Tooltip,
+} from "@material-ui/core";
 
 function getSteps() {
-  return ['Resumo do pedido', 'Detalhes de entrega', 'Pagamento'];
+  return ["Resumo do pedido", "Detalhes de entrega", "Pagamento"];
 }
 
 export default function CheckoutStepper(props) {
@@ -28,14 +29,18 @@ export default function CheckoutStepper(props) {
     total,
     payments,
     selectPaymentMethod,
-    changeQuantity
+    changeQuantity,
   } = props;
   const classes = useStyles();
   const [showStepper, setShowStepper] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [cidade, setCidade] = useState('');
+  const [nome, setNome] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [estado, setEstado] = useState("");
+  const [cep, setCep] = useState("");
+  const [rua, setRua] = useState("");
+  const [numero, setNumero] = useState("");
+  const [cidade, setCidade] = useState("");
   const [order, setOrder] = useState(null);
   const steps = getSteps();
 
@@ -45,40 +50,44 @@ export default function CheckoutStepper(props) {
 
   const placeOrder = () => {
     setShowStepper(false);
-    const customer = localStorage.getItem('user');
+    const customer = localStorage.getItem("user");
     const order = {
       products: getCart(),
-      paymentMethod: payments.find(payment => payment.selected === true),
+      paymentMethod: payments.find((payment) => payment.selected === true),
       customer: customer.id,
       shippingAddress: {
+        name: nome,
+        neighborhood: bairro,
+        zipCode: cep,
+        state: estado,
         address: rua,
         number: numero,
-        city: cidade
-      }
+        city: cidade,
+      },
     };
-    localStorage.setItem('order', JSON.stringify(order));
-    fetch('https://abi-bus-api.herokuapp.com/api/orders', {
-      method: 'POST',
-      body: localStorage.getItem('order')
-    }).then(response => {
+    localStorage.setItem("order", JSON.stringify(order));
+    fetch("https://abi-bus-api.herokuapp.com/api/orders", {
+      method: "POST",
+      body: localStorage.getItem("order"),
+    }).then((response) => {
       if (response.ok) {
-        console.log('order ok', localStorage.getItem('order'));
-        localStorage.removeItem('cart', 'order');
+        console.log("order ok", localStorage.getItem("order"));
+        localStorage.removeItem("cart", "order");
         setOrder(true);
       }
     });
   };
 
   const checkPayment = () => {
-    return payments.some(payment => payment.selected === true);
+    return payments.some((payment) => payment.selected === true);
   };
 
   const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
+    setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
   return (
@@ -129,15 +138,19 @@ export default function CheckoutStepper(props) {
               payments={payments}
               selectPaymentMethod={selectPaymentMethod}
               setRua={setRua}
+              setNome={setNome}
+              setCep={setCep}
+              setEstado={setEstado}
+              setBairro={setBairro}
               setNumero={setNumero}
               setCidade={setCidade}
             />
 
             <Grid container style={{ marginTop: 16 }} justify='center' xs={12}>
               <Grid item xs={6}>
-                {' '}
+                {" "}
                 {activeStep === 0 ? (
-                  <NavLink style={{ textDecoration: 'none' }} to='/'>
+                  <NavLink style={{ textDecoration: "none" }} to='/'>
                     <Button
                       id='button-buy'
                       className={classes.buttonBack}
@@ -180,25 +193,35 @@ export default function CheckoutStepper(props) {
                 {(activeStep === 2 && !checkPayment()) ||
                 (activeStep === 0 && getCart().length === 0) ||
                 (activeStep === 1 &&
-                  (rua === '' || cidade === '' || numero === '')) ? (
-                  <Button
-                    id='button-order-disabled'
-                    variant='contained'
-                    color='secondary'
-                    disabled
-                    className={classes.button}
-                  >
-                    <Typography
-                      id='label-order-disabled'
-                      className={classes.typoButton}
-                      variant='h3'
-                      color='primary'
-                    >
-                      {activeStep === steps.length - 1
-                        ? 'Finalizar pedido'
-                        : 'Confirmar pedido'}
-                    </Typography>
-                  </Button>
+                  (nome === "" ||
+                    bairro === "" ||
+                    cep === "" ||
+                    estado === "" ||
+                    rua === "" ||
+                    cidade === "" ||
+                    numero === "")) ? (
+                  <Tooltip title='Por favor, preencha todos campos'>
+                    <span>
+                      <Button
+                        id='button-order-disabled'
+                        variant='contained'
+                        color='secondary'
+                        disabled
+                        className={classes.button}
+                      >
+                        <Typography
+                          id='label-order-disabled'
+                          className={classes.typoButton}
+                          variant='h3'
+                          color='primary'
+                        >
+                          {activeStep === steps.length - 1
+                            ? "Finalizar pedido"
+                            : "Confirmar pedido"}
+                        </Typography>
+                      </Button>
+                    </span>
+                  </Tooltip>
                 ) : (
                   <Button
                     id='button-order-enabled'
@@ -214,8 +237,8 @@ export default function CheckoutStepper(props) {
                       color='primary'
                     >
                       {activeStep === steps.length - 1
-                        ? 'Finalizar pedido'
-                        : 'Confirmar pedido'}
+                        ? "Finalizar pedido"
+                        : "Confirmar pedido"}
                     </Typography>
                   </Button>
                 )}
