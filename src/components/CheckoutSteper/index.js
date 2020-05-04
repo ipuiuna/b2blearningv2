@@ -37,7 +37,7 @@ export default function CheckoutStepper(props) {
   const [order, setOrder] = useState(null);
   const steps = getSteps();
   const [formState, setFormState] = useState({
-    nome: null,
+    nome: '',
     rua: null,
     cep: null,
     numero: null,

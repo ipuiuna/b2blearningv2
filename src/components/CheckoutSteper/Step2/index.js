@@ -46,7 +46,7 @@ export default function Step2(props) {
               name='nome'
               id='name'
               helperText={
-                formState.name && formState.nome.length > 128
+                formState.nome.length > 128
                   ? 'Numero de caracteres máximo atingido.'
                   : formState.nome === ''
                   ? 'Por favor preencha seu nome'
