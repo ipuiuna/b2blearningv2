@@ -32,19 +32,18 @@ export default function CheckoutStepper(props) {
     changeQuantity,
   } = props;
   const classes = useStyles();
-  const [errorCep, setErrorCep] = useState(false);
-  const [errorNome, setErrorNome] = useState(false);
   const [showStepper, setShowStepper] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
-  const [nome, setNome] = useState('');
-  const [bairro, setBairro] = useState('');
-  const [estado, setEstado] = useState('');
-  const [cep, setCep] = useState('');
-  const [rua, setRua] = useState('');
-  const [numero, setNumero] = useState('');
-  const [cidade, setCidade] = useState('');
   const [order, setOrder] = useState(null);
   const steps = getSteps();
+  const [formState, setFormState] = useState({
+    nome: null,
+    rua: null,
+    cep: null,
+    numero: null,
+    estado: null,
+    cidade: null,
+  });
 
   useEffect(() => {
     activeStep === steps.length && placeOrder();
@@ -57,15 +56,7 @@ export default function CheckoutStepper(props) {
       products: getCart(),
       paymentMethod: payments.find((payment) => payment.selected === true),
       customer: customer.id,
-      shippingAddress: {
-        name: nome,
-        neighborhood: bairro,
-        zipCode: cep,
-        state: estado,
-        address: rua,
-        number: numero,
-        city: cidade,
-      },
+      shippingAddress: formState,
     };
     localStorage.setItem('order', JSON.stringify(order));
     fetch('https://abi-bus-api.herokuapp.com/api/orders', {
@@ -89,8 +80,6 @@ export default function CheckoutStepper(props) {
   };
 
   const handleBack = () => {
-    console.log(cep);
-
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
@@ -141,17 +130,8 @@ export default function CheckoutStepper(props) {
               getCart={getCart}
               payments={payments}
               selectPaymentMethod={selectPaymentMethod}
-              setRua={setRua}
-              setNome={setNome}
-              setCep={setCep}
-              setEstado={setEstado}
-              setBairro={setBairro}
-              setNumero={setNumero}
-              setCidade={setCidade}
-              setErrorCep={setErrorCep}
-              errorCep={errorCep}
-              errorNome={errorNome}
-              setErrorNome={setErrorNome}
+              setFormState={setFormState}
+              formState={formState}
             />
 
             <Grid container style={{ marginTop: 16 }} justify='center' xs={12}>
@@ -199,17 +179,23 @@ export default function CheckoutStepper(props) {
 
               <Grid container xs={6} justify='flex-end'>
                 {(activeStep === 2 && !checkPayment()) ||
-                errorCep ||
-                errorNome ||
                 (activeStep === 0 && getCart().length === 0) ||
                 (activeStep === 1 &&
-                  (nome === '' ||
-                    bairro === '' ||
-                    cep === '' ||
-                    estado === '' ||
-                    rua === '' ||
-                    cidade === '' ||
-                    numero === '')) ? (
+                  (formState.nome === '' ||
+                    formState.bairro === '' ||
+                    formState.cep === '' ||
+                    formState.estado === '' ||
+                    formState.rua === '' ||
+                    formState.cidade === '' ||
+                    formState.numero === '' ||
+                    formState.nome === null ||
+                    formState.bairro === null ||
+                    formState.cep === null ||
+                    formState.estado === null ||
+                    formState.rua === null ||
+                    formState.cidade === null ||
+                    formState.numero === null ||
+                    formState.cep.length !== 9)) ? (
                   <Tooltip title='Por favor, preencha todos campos'>
                     <span>
                       <Button

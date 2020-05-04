@@ -12,17 +12,8 @@ export default function GetStepContent(props) {
     changeQuantity,
     payments,
     selectPaymentMethod,
-    setCidade,
-    setRua,
-    setNumero,
-    setBairro,
-    setCep,
-    setEstado,
-    setNome,
-    errorCep,
-    setErrorCep,
-    errorNome,
-    setErrorNome,
+    setFormState,
+    formState,
   } = props;
   switch (activeStep) {
     case 0:
@@ -38,19 +29,7 @@ export default function GetStepContent(props) {
     case 1:
       return (
         <div>
-          <Step2
-            setRua={setRua}
-            setNumero={setNumero}
-            setCidade={setCidade}
-            setBairro={setBairro}
-            setNome={setNome}
-            setCep={setCep}
-            setEstado={setEstado}
-            setErrorCep={setErrorCep}
-            errorCep={errorCep}
-            errorNome={errorNome}
-            setErrorNome={setErrorNome}
-          />
+          <Step2 setFormState={setFormState} formState={formState} />
         </div>
       );
     case 2:
