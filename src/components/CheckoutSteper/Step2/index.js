@@ -59,6 +59,9 @@ export default function Step2(props) {
           <Grid item sm={6} xs={12}>
             <TextControl
               label='Rua'
+              helperText={
+                formState.rua === '' ? 'Digite sua rua por favor.' : ''
+              }
               id='address'
               name='rua'
               onChange={handleChangeEvt}
@@ -67,6 +70,9 @@ export default function Step2(props) {
           <Grid item sm={2} xs={12}>
             <TextControl
               label='Número'
+              helperText={
+                formState.numero === '' ? 'Digite seu número por favor.' : ''
+              }
               id='number'
               placeholder='123'
               name='numero'
@@ -77,6 +83,9 @@ export default function Step2(props) {
           <Grid item sm={4} xs={12}>
             <TextControl
               label='Bairro'
+              helperText={
+                formState.bairro === '' ? 'Digite seu bairro por favor.' : ''
+              }
               name='bairro'
               id='bairro'
               onChange={handleChangeEvt}
@@ -85,6 +94,9 @@ export default function Step2(props) {
           <Grid item sm={6} xs={12}>
             <TextControl
               label='Cidade'
+              helperText={
+                formState.cidade === '' ? 'Digite sua cidade por favor.' : ''
+              }
               name='cidade'
               id='city'
               onChange={handleChangeEvt}
@@ -94,6 +106,9 @@ export default function Step2(props) {
             <TextControl
               label='Estado'
               name='estado'
+              helperText={
+                formState.estado === '' ? 'Digite seu estado por favor.' : ''
+              }
               id='state'
               onChange={handleChangeEvt}
             />
@@ -106,7 +121,9 @@ export default function Step2(props) {
               placeholder='00000-000'
               value={cepMask(formState.cep)}
               helperText={
-                formState.cep === '' ? 'Por favor digite um CEP válido.' : ''
+                formState.cep.length !== 9
+                  ? 'Por favor digite um CEP válido.'
+                  : ''
               }
               onChange={handleChangeEvt}
             />

@@ -38,11 +38,12 @@ export default function CheckoutStepper(props) {
   const steps = getSteps();
   const [formState, setFormState] = useState({
     nome: '',
-    rua: null,
-    cep: null,
-    numero: null,
-    estado: null,
-    cidade: null,
+    rua: '',
+    cep: '',
+    numero: '',
+    estado: '',
+    cidade: '',
+    bairro: '',
   });
 
   useEffect(() => {
