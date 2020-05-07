@@ -46,7 +46,7 @@ export default function Step2(props) {
               name='nome'
               id='name'
               helperText={
-                formState.nome.length > 128
+                formState.nome && formState.nome.length > 128
                   ? 'Numero de caracteres máximo atingido.'
                   : formState.nome === ''
                   ? 'Por favor preencha seu nome'
@@ -121,7 +121,8 @@ export default function Step2(props) {
               placeholder='00000-000'
               value={cepMask(formState.cep)}
               helperText={
-                formState.cep.length !== 9
+                (formState.cep && formState.cep.length !== 9) ||
+                formState.cep === ''
                   ? 'Por favor digite um CEP válido.'
                   : ''
               }

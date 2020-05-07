@@ -37,13 +37,13 @@ export default function CheckoutStepper(props) {
   const [order, setOrder] = useState(null);
   const steps = getSteps();
   const [formState, setFormState] = useState({
-    nome: '',
-    rua: '',
-    cep: '',
-    numero: '',
-    estado: '',
-    cidade: '',
-    bairro: '',
+    nome: undefined,
+    rua: undefined,
+    cep: undefined,
+    numero: undefined,
+    estado: undefined,
+    cidade: undefined,
+    bairro: undefined,
   });
 
   useEffect(() => {
@@ -76,8 +76,11 @@ export default function CheckoutStepper(props) {
     return payments.some((payment) => payment.selected === true);
   };
 
-  const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+  const handleNext = (step) => {
+    console.log('step => ', step);
+    if (validForm(activeStep, checkPayment, getCart, formState, step)) {
+      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -179,66 +182,36 @@ export default function CheckoutStepper(props) {
               </Grid>
 
               <Grid container xs={6} justify='flex-end'>
-                {(activeStep === 2 && !checkPayment()) ||
-                (activeStep === 0 && getCart().length === 0) ||
-                (activeStep === 1 &&
-                  (formState.nome === '' ||
-                    formState.bairro === '' ||
-                    formState.cep === '' ||
-                    formState.estado === '' ||
-                    formState.rua === '' ||
-                    formState.cidade === '' ||
-                    formState.numero === '' ||
-                    formState.nome === null ||
-                    formState.bairro === null ||
-                    formState.cep === null ||
-                    formState.estado === null ||
-                    formState.rua === null ||
-                    formState.cidade === null ||
-                    formState.numero === null ||
-                    formState.cep.length !== 9)) ? (
-                  <Tooltip title='Por favor, preencha todos campos'>
-                    <span>
-                      <Button
-                        id='button-order-disabled'
-                        variant='contained'
-                        color='secondary'
-                        disabled
-                        className={classes.button}
-                      >
-                        <Typography
-                          id='label-order-disabled'
-                          className={classes.typoButton}
-                          variant='h3'
-                          color='primary'
-                        >
-                          {activeStep === steps.length - 1
-                            ? 'Finalizar pedido'
-                            : 'Confirmar pedido'}
-                        </Typography>
-                      </Button>
-                    </span>
-                  </Tooltip>
-                ) : (
-                  <Button
-                    id='button-order-enabled'
-                    variant='contained'
-                    color='secondary'
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    <Typography
-                      id='label-order-enabled'
-                      className={classes.typoButton}
-                      variant='h3'
-                      color='primary'
+                <pre>
+                  Valor pre{' '}
+                  {validForm(activeStep, checkPayment, getCart, formState)}
+                </pre>
+                <Tooltip title='Por favor, preencha todos campos'>
+                  <span>
+                    <Button
+                      id='button-order-disabled'
+                      variant='contained'
+                      color='secondary'
+                      onClick={handleNext(activeStep)}
+                      disabled={
+                        (activeStep === 0 && !getCart().length) ||
+                        (activeStep === 2 && !checkPayment())
+                      }
+                      className={classes.button}
                     >
-                      {activeStep === steps.length - 1
-                        ? 'Finalizar pedido'
-                        : 'Confirmar pedido'}
-                    </Typography>
-                  </Button>
-                )}
+                      <Typography
+                        id='label-order-disabled'
+                        className={classes.typoButton}
+                        variant='h3'
+                        color='primary'
+                      >
+                        {activeStep === steps.length - 1
+                          ? 'Finalizar pedido'
+                          : 'Confirmar pedido'}
+                      </Typography>
+                    </Button>
+                  </span>
+                </Tooltip>
               </Grid>
             </Grid>
           </div>
@@ -246,6 +219,50 @@ export default function CheckoutStepper(props) {
       </div>
     </div>
   );
+}
+
+function validForm(activeStep, checkPayment, getCart, formState, step) {
+  debugger;
+
+  switch (step) {
+    case 0:
+      return activeStep === 0 && getCart().length > 0;
+      break;
+    case 1:
+      return (
+        (activeStep === 1 &&
+          formState.nome &&
+          formState.bairro &&
+          formState.cep &&
+          formState.estado &&
+          formState.rua &&
+          formState.cidade &&
+          formState.numero &&
+          formState.cep &&
+          formState.cep.length === 9) ||
+        (activeStep === 2 && checkPayment())
+      );
+      break;
+    case 2:
+      return activeStep === 2 && checkPayment();
+      break;
+    default:
+      break;
+  }
+  /* return (
+    (activeStep === 0 && getCart().length > 0) ||
+    (activeStep === 1 &&
+      formState.nome &&
+      formState.bairro &&
+      formState.cep &&
+      formState.estado &&
+      formState.rua &&
+      formState.cidade &&
+      formState.numero &&
+      formState.cep &&
+      formState.cep.length === 9) ||
+    (activeStep === 2 && checkPayment())
+  ); */
 }
 
 function finalStep(classes, order) {
