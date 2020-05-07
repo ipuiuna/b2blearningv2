@@ -45,6 +45,7 @@ export default function Step2(props) {
             <TextControl
               name='nome'
               id='name'
+              value={formState.nome}
               helperText={
                 formState.nome && formState.nome.length > 128
                   ? 'Numero de caracteres máximo atingido.'
@@ -59,6 +60,7 @@ export default function Step2(props) {
           <Grid item sm={6} xs={12}>
             <TextControl
               label='Rua'
+              value={formState.rua}
               helperText={
                 formState.rua === '' ? 'Digite sua rua por favor.' : ''
               }
@@ -87,6 +89,7 @@ export default function Step2(props) {
                 formState.bairro === '' ? 'Digite seu bairro por favor.' : ''
               }
               name='bairro'
+              value={formState.bairro}
               id='bairro'
               onChange={handleChangeEvt}
             />
@@ -98,6 +101,7 @@ export default function Step2(props) {
                 formState.cidade === '' ? 'Digite sua cidade por favor.' : ''
               }
               name='cidade'
+              value={formState.cidade}
               id='city'
               onChange={handleChangeEvt}
             />
@@ -106,6 +110,7 @@ export default function Step2(props) {
             <TextControl
               label='Estado'
               name='estado'
+              value={formState.estado}
               helperText={
                 formState.estado === '' ? 'Digite seu estado por favor.' : ''
               }
