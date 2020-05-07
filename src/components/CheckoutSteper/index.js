@@ -89,7 +89,7 @@ export default function CheckoutStepper(props) {
             formState.cep &&
             formState.cep.length === 9) ||
           (activeStep === 2 && checkPayment());
-        fieldValid();
+        fieldValidate();
         return formValid;
         break;
       case 2:
@@ -100,7 +100,7 @@ export default function CheckoutStepper(props) {
     }
   };
 
-  const fieldValid = () => {
+  const fieldValidate = () => {
     const newFormValue = { ...formState };
     const formKeys = Object.keys(newFormValue);
     formKeys.map((item) => {
