@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` 1`] = `
-<div
-  className="MuiBox-root MuiBox-root-2"
+exports[`<Step2 /> renders correctly with 7 textcontrol fields 1`] = `
+<Styled(MuiBox)
+  boxShadow={2}
   style={
     Object {
       "backgroundColor": "rgba(229, 229, 229, 0.35)",
@@ -10,696 +10,112 @@ exports[` 1`] = `
     }
   }
 >
-  <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column"
+  <WithStyles(ForwardRef(Grid))
+    container={true}
+    direction="column"
     style={
       Object {
         "paddingBottom": "50px",
       }
     }
   >
-    <div
-      className="MuiGrid-root MuiGrid-container"
+    <WithStyles(ForwardRef(Grid))
+      container={true}
+      direction="row"
     >
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="name"
-              id="name-label"
-            >
-              Nome completo
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="name-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="name"
-                name="nome"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="name-helper-text"
-            >
-              Por favor preencha seu nome
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        <TextControl
+          helperText=""
+          id="name"
+          label="Nome completo"
+          name="nome"
+          onChange={[Function]}
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={6}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="address"
-              id="address-label"
-            >
-              Rua
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="address-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="address"
-                name="rua"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="address-helper-text"
-            >
-              Digite sua rua por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-2"
+        <TextControl
+          helperText=""
+          id="address"
+          label="Rua"
+          name="rua"
+          onChange={[Function]}
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={2}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="number"
-              id="number-label"
-            >
-              Número
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="number-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="number"
-                name="numero"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder="123"
-                required={false}
-                type="text"
-                value=""
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="number-helper-text"
-            >
-              Digite seu número por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
+        <TextControl
+          helperText=""
+          id="number"
+          label="Número"
+          name="numero"
+          onChange={[Function]}
+          placeholder="123"
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={4}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="bairro"
-              id="bairro-label"
-            >
-              Bairro
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="bairro-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="bairro"
-                name="bairro"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="bairro-helper-text"
-            >
-              Digite seu bairro por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
+        <TextControl
+          helperText=""
+          id="bairro"
+          label="Bairro"
+          name="bairro"
+          onChange={[Function]}
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={6}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="city"
-              id="city-label"
-            >
-              Cidade
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="city-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="city"
-                name="cidade"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="city-helper-text"
-            >
-              Digite sua cidade por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+        <TextControl
+          helperText=""
+          id="city"
+          label="Cidade"
+          name="cidade"
+          onChange={[Function]}
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={3}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="state"
-              id="state-label"
-            >
-              Estado
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="state-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="state"
-                name="estado"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="state-helper-text"
-            >
-              Digite seu estado por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
+        <TextControl
+          helperText=""
+          id="state"
+          label="Estado"
+          name="estado"
+          onChange={[Function]}
+        />
+      </WithStyles(ForwardRef(Grid))>
+      <WithStyles(ForwardRef(Grid))
+        item={true}
+        sm={3}
+        xs={12}
       >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="cep"
-              id="cep-label"
-            >
-              Cep
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="cep-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="cep"
-                name="cep"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder="00000-000"
-                required={false}
-                type="text"
-                value=""
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="cep-helper-text"
-            >
-              Por favor digite um CEP válido.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`<Step2 /> renders correctly 1`] = `
-<div
-  className="MuiBox-root MuiBox-root-2"
-  style={
-    Object {
-      "backgroundColor": "rgba(229, 229, 229, 0.35)",
-      "padding": "0 10%",
-    }
-  }
->
-  <div
-    className="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column"
-    style={
-      Object {
-        "paddingBottom": "50px",
-      }
-    }
-  >
-    <div
-      className="MuiGrid-root MuiGrid-container"
-    >
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="name"
-              id="name-label"
-            >
-              Nome completo
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="name-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="name"
-                name="nome"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="name-helper-text"
-            >
-              Por favor preencha seu nome
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="address"
-              id="address-label"
-            >
-              Rua
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="address-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="address"
-                name="rua"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="address-helper-text"
-            >
-              Digite sua rua por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-2"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="number"
-              id="number-label"
-            >
-              Número
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="number-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="number"
-                name="numero"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder="123"
-                required={false}
-                type="text"
-                value=""
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="number-helper-text"
-            >
-              Digite seu número por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-4"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="bairro"
-              id="bairro-label"
-            >
-              Bairro
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="bairro-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="bairro"
-                name="bairro"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="bairro-helper-text"
-            >
-              Digite seu bairro por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-6"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="city"
-              id="city-label"
-            >
-              Cidade
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="city-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="city"
-                name="cidade"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="city-helper-text"
-            >
-              Digite sua cidade por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="state"
-              id="state-label"
-            >
-              Estado
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="state-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="state"
-                name="estado"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                required={false}
-                type="text"
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="state-helper-text"
-            >
-              Digite seu estado por favor.
-            </p>
-          </div>
-        </div>
-      </div>
-      <div
-        className="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-sm-3"
-      >
-        <div
-          className="MuiFormControl-root MuiFormControl-fullWidth"
-        >
-          <div
-            className="MuiFormControl-root MuiTextField-root makeStyles-textField-106"
-          >
-            <label
-              className="MuiFormLabel-root MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated"
-              data-shrink={false}
-              htmlFor="cep"
-              id="cep-label"
-            >
-              Cep
-            </label>
-            <div
-              className="MuiInputBase-root MuiInput-root MuiInput-underline MuiInputBase-formControl MuiInput-formControl"
-              onClick={[Function]}
-            >
-              <input
-                aria-describedby="cep-helper-text"
-                aria-invalid={false}
-                autoFocus={false}
-                className="MuiInputBase-input MuiInput-input"
-                disabled={false}
-                id="cep"
-                name="cep"
-                onAnimationStart={[Function]}
-                onBlur={[Function]}
-                onChange={[Function]}
-                onFocus={[Function]}
-                placeholder="00000-000"
-                required={false}
-                type="text"
-                value=""
-              />
-            </div>
-            <p
-              className="MuiFormHelperText-root"
-              id="cep-helper-text"
-            >
-              Por favor digite um CEP válido.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+        <TextControl
+          helperText=""
+          id="cep"
+          label="Cep"
+          name="cep"
+          onChange={[Function]}
+          placeholder="00000-000"
+        />
+      </WithStyles(ForwardRef(Grid))>
+    </WithStyles(ForwardRef(Grid))>
+  </WithStyles(ForwardRef(Grid))>
+</Styled(MuiBox)>
 `;
